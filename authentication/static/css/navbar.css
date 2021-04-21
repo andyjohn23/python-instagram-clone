@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .navbar {
   background-color: white;
   border-bottom: 1px solid rgba(64, 64, 64, 0.3);
@@ -14,6 +19,28 @@
 .navbar-nav > li {
   padding-left: 3px;
   padding-right: 3px;
+}
+.search-form {
+  margin-left: 28rem;
+}
+.search-form input {
+  width: 200px;
+  height: 28px;
+  padding-left: 80px;
+  box-sizing: border-box;
+  background: url(../images/search.png);
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: 60px 6px;
+  background-color: rgba(244, 247, 246, 0.6);
+}
+.search-form input:focus {
+  padding-left: 30px;
+  background-position: 10px 5.5px;
+  background-color: rgba(244, 247, 246, 0.6);
+}
+.search-form input::placeholder {
+  font-size: 15px;
 }
 .dropdown p {
   padding-top: 10px;
