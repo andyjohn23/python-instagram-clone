@@ -1,0 +1,63 @@
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  gap: 8px;
+  background-color: rgba(240, 240, 240, 0.2);
+}
+.home .instagram__mobile {
+  flex: 0.3;
+}
+.home .instagram__mobile img {
+  pointer-events: none;
+}
+.home .signIn__form {
+  flex: 0.3;
+}
+/* very small phones media query */
+@media screen and (min-device-width: 50px) and (max-device-width: 280px) {
+  .home .instagram__mobile img {
+    display: none;
+  }
+  .home .signIn__form {
+    margin-left: -1.5rem;
+    flex: 9;
+  }
+}
+/* smaller phones media query */
+@media screen and (min-device-width: 280px) and (max-device-width: 653px) {
+  .home .instagram__mobile img {
+    display: none;
+  }
+  .home .signIn__form {
+    margin-left: -1.5rem;
+    flex: 9;
+  }
+}
+/* iphone x media query */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
+  .home .instagram__mobile img {
+    display: none;
+  }
+}
+/* ipad media query */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .home .instagram__mobile img {
+    display: none;
+  }
+  .home .signIn__form {
+    margin-left: -1.5rem;
+    flex: 8;
+  }
+}
+/* ipad pro media query */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  .home .instagram__mobile img {
+    display: none;
+  }
+  .home .signIn__form {
+    margin-left: -1.5rem;
+    flex: 9;
+  }
+}

@@ -1,0 +1,42 @@
+<div className="login__form">
+    <img src="/static/images/Instagram-word-Logo.png" alt="logo" class="center">
+    <form className="form">
+        <div className="form-group">
+            <input type="email" className="form-control" name="email" id="email" autocomplete="off" placeholder=" "
+                required />
+            <label className="label-email">
+                <span className="content-email">Email</span>
+            </label>
+        </div>
+
+        <div className="form-group">
+            <input type="password" className="form-control" name="password" id="password" autocomplete="off"
+                placeholder=" " required />
+            <label className="label-loginpassword">
+                <span className="content-loginpassword">Password</span>
+            </label>
+        </div>
+
+        <input type="submit" value="Log In">
+
+        <p className="forgot-password">
+            <Link to="">Forgot password?</Link>
+        </p>
+    </form>
+</div>
+<div className="container dont-have-an-account">
+    <p>
+        Don't have an account?&nbsp;
+        <Link to="/signup">Sign Up</Link>
+    </p>
+</div>
+<h4>Get the app.</h4>
+<div className="instagram__appDownload">
+    <a href="https://apps.apple.com/app/instagram/id389801252?vt=lo" target="blank">
+        <img src="/static/images/insta-appstore.png" alt="/static/images/insta-appstore.png">
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb&utm_campaign=loginPage&ig_mid=99387FFF-9CED-42E6-9B83-5A8DE3737E4F&utm_content=lo&utm_medium=badge"
+        target="blank">
+        <img src="/static/images/insta-googleplay.png" alt="/static/images/insta-googleplay.png">
+    </a>
+</div>
