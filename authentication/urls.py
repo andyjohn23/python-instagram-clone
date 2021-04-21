@@ -1,10 +1,10 @@
 from django.urls import path
 from . import views
-
-app_name = "authentication"
+from .views import PostListView
 
 urlpatterns = [
-    path('', views.index, name="index"),
-    path('login/', views.login, name="login"),
-    path('signup/', views.signUp, name="signup"),
+    path('', views.login_userIndex, name="index"),
+    path('login/', views.login_user, name="login"),
+    path('signup/', views.register, name="signup"),
+    path('home/', PostListView.as_view(), name="home"),
 ]

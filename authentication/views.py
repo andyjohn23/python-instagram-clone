@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, logout, authenticate
 from .forms import RegisterUserForm, AuthenticationForm
@@ -7,6 +8,8 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from .models import UserAccount, Profile
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import ListView
+from posts.models import Post
 # from django.views.generic import CreateView
 # from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # from .forms import ProjectSearchForm, RatesForm
@@ -17,15 +20,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create your views here.
 
-
-def index(request):
-    return render(request, 'auth/index.html')
-
-def login(request):
-    return render(request, 'auth/login-page.html')
-
-def signUp(request):
-    return render(request, 'auth/register-page.html')
+class PostListView(ListView):
+    model = Post
+    template_name = 'auth/home.html'
+    context_object_name = 'posts'
 
 def register(request, *arg, **kwargs):
     user = request.user
@@ -45,11 +43,11 @@ def register(request, *arg, **kwargs):
             destination = get_redirect_if_exists(request)
             if destination:
                 return redirect(destination)
-            return redirect('index')
+            return redirect('home')
         else:
             context['register_form'] = form
 
-    return render(request, 'awwards_users/register.html', context)
+    return render(request, 'auth/register-page.html', context)
 
 
 def logout_user(request, *args, **kwargs):
@@ -63,7 +61,7 @@ def login_user(request, *args, **kwargs):
 
     user = request.user
     if user.is_authenticated:
-        return redirect('index')
+        return redirect('home')
 
     destination = get_redirect_if_exists(request)
     if request.POST:
@@ -77,12 +75,39 @@ def login_user(request, *args, **kwargs):
                 destination = get_redirect_if_exists(request)
                 if destination:
                     return redirect(destination)
-                return redirect('index')
+                return redirect('home')
 
         else:
             context['login_form'] = form
 
-    return render(request, 'awwards_users/login.html', context)
+    return render(request, 'auth/login-page.html', context)
+
+def login_userIndex(request, *args, **kwargs):
+
+    context = {}
+
+    user = request.user
+    if user.is_authenticated:
+        return redirect('authentication:home')
+
+    destination = get_redirect_if_exists(request)
+    if request.POST:
+        form = AuthenticationForm(request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            password = request.POST['password']
+            user = authenticate(email=email, password=password)
+            if user:
+                login(request, user)
+                destination = get_redirect_if_exists(request)
+                if destination:
+                    return redirect(destination)
+                return redirect('home')
+
+        else:
+            context['login_form'] = form
+
+    return render(request, 'auth/index.html', context)
 
 
 def get_redirect_if_exists(request):

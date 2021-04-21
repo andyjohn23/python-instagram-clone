@@ -7,7 +7,21 @@
 {% block content %}
 <div class="login__form">
     <img src="/static/images/word-Logo.png" alt="logo" class="center">
-    <form class="form">
+    <form class="form" method="POST" action="">
+        {% csrf_token %}
+
+        {% for field in login_form %}
+        <p>
+            {% for error in field.errors %}
+        <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+        </p>
+        {% endfor %}
+        {% if login_form.non_field_errors %}
+        <div style="color: red;">
+            <p>{{ login_form.non_field_errors }}</p>
+        </div>
+        {% endif %}
         <div class="form-group">
             <input type="email" class="form-control" name="email" id="email" autocomplete="off" placeholder=" "
                 required />
@@ -34,7 +48,7 @@
 <div class="container dont-have-an-account">
     <p>
         Don't have an account?&nbsp;
-        <a href="{% url 'authentication:signup' %}">Sign Up</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
     </p>
 </div>
 <h4>Get the app.</h4>
