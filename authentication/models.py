@@ -4,6 +4,7 @@ from django.utils import timezone
 from cloudinary.models import CloudinaryField
 from django.urls import reverse
 from posts.models import Post
+from django.db.models.signals import post_save
 
 # Create your models here.
 
@@ -40,7 +41,7 @@ class ManagerAccount(BaseUserManager):
 class UserAccount(AbstractBaseUser):
     email = models.EmailField(verbose_name='email', max_length=70, unique=True)
     username = models.CharField(max_length=70, unique=True)
-    registerdate = models.DateTimeField(default=timezone.now)
+    created = models.DateTimeField(default=timezone.now)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
@@ -66,11 +67,24 @@ class Profile(models.Model):
     url = models.URLField(max_length=300, blank=True)
     favourites = models.ManyToManyField(Post)
     description = models.TextField(max_length=200, blank=True)
-    date_joined = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.user.username)
 
     class Meta:
-        ordering = ('-date_joined',)
+        ordering = ('-created',)
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+
+post_save.connect(create_user_profile, sender=UserAccount)
+post_save.connect(save_user_profile, sender=UserAccount)
