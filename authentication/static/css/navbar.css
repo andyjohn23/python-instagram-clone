@@ -7,9 +7,16 @@
   background-color: white;
   border-bottom: 1px solid rgba(64, 64, 64, 0.3);
 }
+.navbar .navbar-toggler-icon {
+  background-image: url("../images/navbar.png");
+}
+.navbar button {
+  border: none;
+  outline: none;
+}
 .material-icons {
   font-size: 26px;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.7);
   display: flex !important;
   vertical-align: middle;
 }
@@ -24,12 +31,15 @@
   margin-left: 28rem;
 }
 .search-form input {
+  display: inline-flex;
+  align-items: center;
+  justify-items: center;
   width: 200px;
   height: 28px;
   padding-left: 80px;
   box-sizing: border-box;
   background: url(../images/search.png);
-  background-size: 16px;
+  background-size: 15px;
   background-repeat: no-repeat;
   background-position: 60px 6px;
   background-color: rgba(244, 247, 246, 0.6);
