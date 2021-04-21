@@ -9,7 +9,21 @@
     <img src="/static/images/word-Logo.png" alt="logo" class="center">
     <p>Sign up to see photos and videos from your friends.</p>
 
-    <form class="form">
+    <form class="form" method="POST">
+        {% csrf_token %}
+
+        {% for fields in register_form %}
+        <p>
+            {% for error in fields.errors %}
+        <p style="color: red;">{{ error }}</p>
+        {% endfor %}
+        </p>
+        {% endfor %}
+        {% if register_form.non_field_errors %}
+        <div style="color: red;">
+            <p>{{ register_form.non_field_errors }}</p>
+        </div>
+        {% endif %}
         <div class="form-group">
             <input type="email" class="form-control" name="email" id="email" autocomplete="off" placeholder=" "
                 required />
