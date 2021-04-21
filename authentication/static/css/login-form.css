@@ -82,7 +82,7 @@
   font-family: sans-serif;
   margin-bottom: 3rem;
 }
-.login__form .forgot-password {
+.login__form .forgot-password a{
   margin-top: 1rem;
   margin-left: auto;
   margin-right: auto;
