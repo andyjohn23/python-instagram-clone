@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils import timezone
 from cloudinary.models import CloudinaryField
 from django.urls import reverse
+from posts.models import Post
 
 # Create your models here.
 
@@ -63,7 +64,7 @@ class Profile(models.Model):
     user = models.OneToOneField(UserAccount, on_delete=models.CASCADE)
     image = CloudinaryField('profile-photo', default='default-avatar.jpg',)
     url = models.URLField(max_length=300, blank=True)
-    favourites = models.TextField(max_length=200, blank=True)
+    favourites = models.ManyToManyField(Post)
     description = models.TextField(max_length=200, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
