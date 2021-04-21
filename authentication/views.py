@@ -20,10 +20,9 @@ from posts.models import Post
 
 # Create your views here.
 
-class PostListView(ListView):
-    model = Post
-    template_name = 'auth/home.html'
-    context_object_name = 'posts'
+@login_required(login_url='index')
+def home(request):
+    return render(request, 'auth/home.html')
 
 def register(request, *arg, **kwargs):
     user = request.user
