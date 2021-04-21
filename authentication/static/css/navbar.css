@@ -1,0 +1,34 @@
+.navbar {
+  background-color: white;
+  border-bottom: 1px solid rgba(64, 64, 64, 0.3);
+}
+.material-icons {
+  font-size: 26px;
+  color: rgba(0, 0, 0, 0.8);
+  display: flex !important;
+  vertical-align: middle;
+}
+.navbar-nav {
+  margin-right: 10rem;
+}
+.navbar-nav > li {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.dropdown p {
+  padding-top: 10px;
+  font-size: 13px;
+  font-family: sans-serif;
+  color: black !important;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.dropdown img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 1px solid rgba(64, 64, 64, 0.3);
+  margin-top: 0.3rem;
+}

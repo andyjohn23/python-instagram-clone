@@ -29,7 +29,7 @@ def register(request, *arg, **kwargs):
     user = request.user
 
     if user.is_authenticated:
-        return HttpResponse('You are already authenticated as { user.email }.')
+        return redirect('home')
     context = {}
 
     if request.POST:
@@ -88,7 +88,7 @@ def login_userIndex(request, *args, **kwargs):
 
     user = request.user
     if user.is_authenticated:
-        return redirect('authentication:home')
+        return redirect('home')
 
     destination = get_redirect_if_exists(request)
     if request.POST:
