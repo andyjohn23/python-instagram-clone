@@ -1,37 +1,44 @@
-<div className="login__form">
-    <img src="/static/images/Instagram-word-Logo.png" alt="logo" class="center">
-    <form className="form">
-        <div className="form-group">
-            <input type="email" className="form-control" name="email" id="email" autocomplete="off" placeholder=" "
+{% extends "auth/base.html" %}
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login-form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login__form">
+    <img src="/static/images/word-Logo.png" alt="logo" class="center">
+    <form class="form">
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" id="email" autocomplete="off" placeholder=" "
                 required />
-            <label className="label-email">
-                <span className="content-email">Email</span>
+            <label class="label-email">
+                <span class="content-email">Email</span>
             </label>
         </div>
 
-        <div className="form-group">
-            <input type="password" className="form-control" name="password" id="password" autocomplete="off"
-                placeholder=" " required />
-            <label className="label-loginpassword">
-                <span className="content-loginpassword">Password</span>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" id="password" autocomplete="off" placeholder=" "
+                required />
+            <label class="label-loginpassword">
+                <span class="content-loginpassword">Password</span>
             </label>
         </div>
 
         <input type="submit" value="Log In">
 
-        <p className="forgot-password">
+        <p class="forgot-password">
             <Link to="">Forgot password?</Link>
         </p>
     </form>
 </div>
-<div className="container dont-have-an-account">
+<div class="container dont-have-an-account">
     <p>
         Don't have an account?&nbsp;
-        <Link to="/signup">Sign Up</Link>
+        <a href="{% url 'authentication:signup' %}">Sign Up</a>
     </p>
 </div>
 <h4>Get the app.</h4>
-<div className="instagram__appDownload">
+<div class="instagram__appDownload">
     <a href="https://apps.apple.com/app/instagram/id389801252?vt=lo" target="blank">
         <img src="/static/images/insta-appstore.png" alt="/static/images/insta-appstore.png">
     </a>
@@ -40,3 +47,4 @@
         <img src="/static/images/insta-googleplay.png" alt="/static/images/insta-googleplay.png">
     </a>
 </div>
+{% endblock %}

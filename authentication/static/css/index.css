@@ -1,3 +1,6 @@
+body {
+  background-color: rgba(240, 240, 240, 0.4);
+}
 .home {
   display: flex;
   align-items: center;

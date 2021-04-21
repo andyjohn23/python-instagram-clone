@@ -1,0 +1,13 @@
+{% extends "auth/base.html" %}
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/register-page.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="register__page">
+    <div class="form">
+        {% include 'auth/registration-form.html' %}
+    </div>
+</div>
+{% endblock %}

@@ -1,8 +1,16 @@
-<div className="home">
-    <div className="instagram__mobile">
-        <img src="/static/images/insta.png" alt="/static/images/insta.png" />
+{% extends "auth/base.html" %}
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="home">
+    <div class="instagram__mobile">
+        <img src="/static/images/insta.png" alt="mobile" />
     </div>
-    <div className="signIn__form">
-        
+    <div class="signIn__form">
+        {% include 'auth/login-form.html' %}
     </div>
 </div>
+{% endblock %}

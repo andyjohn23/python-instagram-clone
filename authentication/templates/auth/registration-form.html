@@ -1,57 +1,64 @@
-<div className="register__form">
-    <img src="/static/images/Instagram-word-Logo.png" alt="logo" class="center">
+{% extends "auth/base.html" %}
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/registration-form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="register__form">
+    <img src="/static/images/word-Logo.png" alt="logo" class="center">
     <p>Sign up to see photos and videos from your friends.</p>
 
-    <form className="form">
-        <div className="form-group">
-            <input type="email" className="form-control" name="email" id="email" autocomplete="off" placeholder=" "
+    <form class="form">
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" id="email" autocomplete="off" placeholder=" "
                 required />
-            <label for="email" className="label-email">
-                <span className="content-email">Email</span>
+            <label for="email" class="label-email">
+                <span class="content-email">Email</span>
             </label>
         </div>
 
-        <div className="form-group">
-            <input type="text" className="form-control" name="username" id="username" autocomplete="off" placeholder=" "
+        <div class="form-group">
+            <input type="text" class="form-control" name="username" id="username" autocomplete="off" placeholder=" "
                 required />
-            <label for="username" className="label-username">
-                <span className="content-username">Username</span>
+            <label for="username" class="label-username">
+                <span class="content-username">Username</span>
             </label>
         </div>
 
-        <div className="form-group">
-            <input type="password" className="form-control" name="password1" id="password" autocomplete="off"
+        <div class="form-group">
+            <input type="password" class="form-control" name="password1" id="password" autocomplete="off"
                 placeholder=" " onChange={handleChange} required />
-            <label for="password1" className="label-password1">
-                <span className="content-password1">Password</span>
+            <label for="password1" class="label-password1">
+                <span class="content-password1">Password</span>
             </label>
         </div>
 
-        <div className="form-group">
-            <input type="password" className="form-control" name="password2" id="password" autocomplete="off"
+        <div class="form-group">
+            <input type="password" class="form-control" name="password2" id="password" autocomplete="off"
                 placeholder=" " required />
-            <label for="password2" className="label-password2">
-                <span className="content-password2">Confirm Password</span>
+            <label for="password2" class="label-password2">
+                <span class="content-password2">Confirm Password</span>
             </label>
         </div>
 
         <input type="submit" value="Sign Up" />
     </form>
 
-    <p className="data-policy">
+    <p class="data-policy">
         By signing up, you agree to our Terms . Data Policy and Cookies Policy
         .
     </p>
 </div>
 
-<div className="container have-an-account">
+<div class="container have-an-account">
     <p>
         Have an account?&nbsp;
-        <Link to="/login">Log in</Link>
+        <a href="{% url 'authentication:login' %}">Log in</a>
     </p>
 </div>
 <h4>Get the app.</h4>
-<div className="instagram__appDownload">
+<div class="instagram__appDownload">
     <a href="https://apps.apple.com/app/instagram/id389801252?vt=lo" target="blank">
         <img src="/static/images/insta-appstore.png" alt="/static/images/insta-appstore.png">
     </a>
@@ -60,3 +67,4 @@
         <img src="/static/images/insta-googleplay.png" alt="/static/images/insta-googleplay.png">
     </a>
 </div>
+{% endblock %}
