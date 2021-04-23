@@ -1,4 +1,14 @@
 .users__post .card {
   width: 580px;
-  height: 500px;
+  height: 600px;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+}
+.card-header a i {
+  font-size: 45px;
+}
+.card-header a i {
+  font-size: 45px;
 }
