@@ -5,19 +5,26 @@
 
 {% block content %}
 <div class="container users__post">
-    <div class="card border-success mb-3">
+    <div class="card mb-3">
         <div class="card-header">
             <a href="">
                 <i class="material-icons">account_circle</i>
             </a>
             <a href="">Andy</a>
         </div>
-        <div class="card-body text-success">
-            <h5 class="card-title">Success card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+        <div class="card-body text-center">
+            <img src="/static/images/toon.jpg" class="card-img-top" alt="">
+            <div class="like-comment-share">
+                <a href=""><i class="material-icons">favorite_border</i></a>
+                <a href=""><i class="material-icons">chat_bubble_outline</i></a>
+                <a href=""><i class="material-icons">send</i></a>
+                <a href="" style="margin-left: auto;"><i class="material-icons" style="font-size: 35px;">bookmark_border</i></a>
+            </div>
+            <div class="likes">
+                <p>3,000,000 likes</p>
+            </div>
         </div>
-        <div class="card-footer bg-transparent border-success">Footer</div>
+        <div class="card-footer"></div>
     </div>
 </div>
 {% endblock %}
