@@ -1,0 +1,21 @@
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home-user.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container user__content">
+    <div class="username">
+        <a href="">
+            <i class="material-icons">account_circle</i>
+        </a>
+        <a href="">
+            <p>Andy</p>
+        </a>
+    </div>
+    <div class="container suggestion">
+        <p>Suggestions For You</p>
+        <a href="">See All</a>
+    </div>
+</div>
+{% endblock %}

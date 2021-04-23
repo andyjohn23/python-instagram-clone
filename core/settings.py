@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication.apps.AuthenticationConfig',
     'posts.apps.PostsConfig',
+    'avatar',
 ]
 
 MIDDLEWARE = [

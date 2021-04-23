@@ -36,10 +36,10 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, related_name="tag")
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    likes = models.IntegerField()
+    likes = models.IntegerField(default=0)
 
     def get_absolute_url(self):
-        return reverse('postdetails', args=[self.slug])
+        return reverse('postdetails', args=[self.id])
 
     def __str__(self):
         return self.caption

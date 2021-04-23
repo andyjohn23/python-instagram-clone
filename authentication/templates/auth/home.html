@@ -5,5 +5,12 @@
 {% endblock %}
 
 {% block content %}
-<h1>hello</h1>
+<div class="container home__content">
+    <div class="users__posts">
+        {% include 'auth/posts.html' %}
+    </div>
+    <div class="home__userContent">
+        {% include 'auth/home-user.html' %}
+    </div>
+</div>
 {% endblock %}
