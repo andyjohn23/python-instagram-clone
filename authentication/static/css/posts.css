@@ -1,6 +1,6 @@
 .users__post .card {
   width: 600px;
-  height: 750px;
+  height: 730px;
   border: 0.5px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
@@ -45,10 +45,10 @@
   text-decoration: none;
   color: rgba(0, 0, 0, 0.8);
 }
-.card-body .likes {
+.card-body .likes-comments {
   float: left;
 }
-.card-body .likes p {
+.card-body .likes-comments span {
   font-size: 15px;
   font-weight: 600;
   font-family: sans-serif;
