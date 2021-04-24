@@ -88,7 +88,6 @@
   border-top: none;
   background-color: white;
   margin-bottom: 0.3rem;
-  width: 100vw;
 }
 .card-footer form input[type="text"] {
   padding-left: 10px;
@@ -98,6 +97,7 @@
   font-weight: normal;
   color: black;
   font-family: sans-serif;
+  width: 90%;
 }
 .card-footer form input::placeholder {
   color: rgba(0, 0, 0, 0.7);
@@ -119,20 +119,61 @@
 @media screen and (min-device-width: 280px) and (max-device-width: 653px) {
   .users__post .card {
     width: 100vw;
-    margin-left: -2rem;
+    margin-left: -1.9rem;
     border: none;
   }
   .card-body img {
-    margin-left: 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    object-position: center;
+  }
+  .card-footer form input[type="text"] {
+    width: 80%;
   }
 }
 /* iphone x media query */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
-  
+  .users__post .card {
+    width: 100vw;
+    margin-left: -1.9rem;
+    border: none;
+  }
+  .card-body img {
+    width: 100%;
+    margin-left: 0;
+  }
+  .card-footer form input[type="text"] {
+    width: 80%;
+  }
 }
 /* ipad media query */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .users__post .card {
+    width: 100vw;
+    margin-left: -14.5rem;
+    border: none;
+  }
+  .card-body img {
+    width: 100%;
+    margin-left: 0;
+  }
+  .card-footer form input[type="text"] {
+    width: 80%;
+  }
 }
 /* ipad pro media query */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  .users__post .card {
+    width: 100vw;
+    margin-left: -10rem;
+    border: none;
+  }
+  .card-body img {
+    width: 100%;
+    margin-left: 0;
+  }
+  .card-footer form input[type="text"] {
+    width: 80%;
+  }
 }
