@@ -75,7 +75,7 @@
   font-size: 15px;
   font-weight: normal;
   font-family: sans-serif;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.5);
   text-decoration: none;
 }
 .card-body .timeline {
@@ -88,6 +88,7 @@
   margin-top: 0.5rem;
   border-top: none;
   background-color: white;
+  margin-bottom: 0.3rem;
 }
 .card-footer form input[type="text"] {
   padding-left: 10px;
@@ -113,4 +114,5 @@
   font-weight: 600;
   font-family: sans-serif;
   background-color: white;
+  outline: none;
 }

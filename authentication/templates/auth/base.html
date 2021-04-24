@@ -58,6 +58,18 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        $(function () {
+            $('#submits').attr('disabled', true);
+            $('#initial_5').change(function () {
+                if ($('#initial_1').val() != '' && $('#initial_2').val() != '' && $('#initial_3').val() != '' && $('#initial_4').val() != '' && $('#initial_5').val() != '') {
+                    $('#submits').attr('disabled', false);
+                } else {
+                    $('#submits').attr('disabled', true);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
