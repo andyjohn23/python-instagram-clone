@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container users__post">
-    <div class="card mb-3">
+    <div class="card mb-5">
         <div class="card-header">
             <a href="">
                 <i class="material-icons">account_circle</i>
@@ -18,13 +18,27 @@
                 <a href=""><i class="material-icons">favorite_border</i></a>
                 <a href=""><i class="material-icons">chat_bubble_outline</i></a>
                 <a href=""><i class="material-icons">send</i></a>
-                <a href="" style="margin-left: auto;"><i class="material-icons" style="font-size: 35px;">bookmark_border</i></a>
+                <a href="" style="margin-left: auto;"><i class="material-icons"
+                        style="font-size: 35px;">bookmark_border</i></a>
             </div>
-            <div class="likes">
+            <div class="likes-comments">
                 <p>3,000,000 likes</p>
+                <a href="">View all 2,000 comments</a>
+                <div class="user-comments">
+                    <a href="">people</a>
+                    <p>hello</p>
+                </div>
+                <div class="timeline">
+                    <p>1 DAY AGO</p>
+                </div>
             </div>
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer">
+            <form>
+                <input type="text" placeholder="Add a comment...">
+                <input type="submit" value="Post">
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -1,5 +1,6 @@
 .user__content {
   position: fixed;
+  display: block;
 }
 .user__content .username {
   display: flex;
@@ -8,7 +9,7 @@
   margin-top: 1rem;
 }
 .user__content .username a i {
-  font-size: 72px;
+  font-size: 65px;
   color: grey;
 }
 .user__content .username a {
@@ -23,7 +24,7 @@
   align-items: flex-start;
   width: 100%;
   overflow: hidden;
-  gap: 6rem;
+  gap: 7rem;
   margin-top: 1rem;
 }
 .user__content .suggestion p {
