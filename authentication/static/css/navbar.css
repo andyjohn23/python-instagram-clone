@@ -7,6 +7,11 @@
   background-color: white;
   border-bottom: 1px solid rgba(64, 64, 64, 0.3);
 }
+.navbar .navbar-brand img {
+  height: 40px;
+  object-fit: cover;
+  display: none;
+}
 .navbar .navbar-toggler-icon {
   background-image: url("../images/navbar.png");
 }
@@ -94,4 +99,38 @@
   color: black;
   text-decoration: none;
   background-color: white;
+}
+/* smaller phones media query */
+@media screen and (min-device-width: 280px) and (max-device-width: 653px) {
+  .navbar .navbar-brand img {
+    height: 40px;
+    object-fit: cover;
+    display: block;
+    margin-left: 2rem;
+  }
+  .search-form {
+    margin-left: 0rem;
+  }
+  .navbar .navbar-nav .nav-item{
+    display: flex !important;
+    flex-direction: row !important;
+  }
+}
+/* iphone x media query */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
+  .navbar .navbar-brand img {
+    height: 40px;
+    object-fit: cover;
+    display: block;
+    margin-left: 2rem;
+  }
+  .search-form {
+    margin-left: 0rem;
+  }
+}
+/* ipad media query */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+}
+/* ipad pro media query */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
 }
