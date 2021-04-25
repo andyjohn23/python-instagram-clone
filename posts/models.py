@@ -41,6 +41,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('postdetails', args=[self.id])
 
+    def image_tag(self):
+        return mark_safe('<img src="{}" width="50" height="50" />' .format(self.image.url))
+
     def __str__(self):
         return self.caption
 

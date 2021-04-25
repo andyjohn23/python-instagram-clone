@@ -1,6 +1,7 @@
 from django import forms
 from posts.models import Post
-from cloudinary.models import CloudinaryField
 
 class NewPostForm(forms.ModelForm):
-    photo = forms.CloudinaryField
+    image = forms.ImageField(required=True)
+    caption = forms.Textarea(widget=forms.Textarea(attrs=('class': 'input is-medium')), required=True)
+    
