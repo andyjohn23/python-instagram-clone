@@ -26,7 +26,11 @@
             </div>
             <div class="likes-comments">
                 <span>3,000,000 likes</span>
-                <a href="">View all 2,000 comments</a>
+                <div class="owner-caption">
+                    <a href="">{{ post_item.user.username }}</a>
+                    <p>{{ post_item.caption }}</p>
+                </div>
+                <a href="" class="views">View all 2,000 comments</a>
                 <div class="user-comments">
                     <a href="">andyjohn</a>
                     <p>hello</p>

@@ -1,6 +1,6 @@
 .users__post .card {
   width: 600px;
-  height: 730px;
+  height: auto;
   border: 0.5px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
@@ -30,6 +30,27 @@
   object-position: center;
   margin-right: 0;
   margin-left: -1.3rem;
+}
+.card-body .likes-comments .views {
+  margin-top: -0.75rem;
+}
+.card-body .likes-comments .owner-caption {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-top: 0.3rem;
+}
+.card-body .likes-comments .owner-caption a {
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: 600;
+  color: black;
+}
+.card-body .likes-comments .owner-caption p {
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.8);
 }
 .card-body .like-comment-share {
   display: flex;
@@ -78,13 +99,12 @@
   text-decoration: none;
 }
 .card-body .timeline {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   font-family: sans-serif;
   color: rgba(0, 0, 0, 0.5);
 }
 .card-footer {
-  margin-top: 0.5rem;
   border-top: none;
   background-color: white;
   margin-bottom: 0.3rem;
