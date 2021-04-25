@@ -15,7 +15,7 @@
             </a>
             <a href="">{{ post_item.user.username }}</a>
             <div class="view-more">
-                <a href=""><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                <a href="{% url 'postdetails' post_item.id %}"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
             </div>
         </div>
         <div class="card-body text-center">

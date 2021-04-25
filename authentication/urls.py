@@ -7,4 +7,5 @@ urlpatterns = [
     path('signup/', views.register, name="signup"),
     path('home/', views.home, name="home"),
     path('newpost/', views.NewPost, name="newpost"),
+    path('<uuid:post_id>/', views.PostDetail, name="postdetails"),
 ]

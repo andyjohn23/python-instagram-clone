@@ -143,13 +143,13 @@ def get_redirect_if_exists(request):
 def PostDetail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
-    template = loader.get_template('post-detail.html')
+    template = loader.get_template('auth/post-detail.html')
 
     context = {
-        'post': post,
+        'post': post
     }
 
-    return HttpResponse(template.render(request, context))
+    return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='index')
