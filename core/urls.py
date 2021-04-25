@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from authentication import views as auth_views
+admin.site.site_header = "INSTAGRAM CLONE"
+admin.site.index_title = "INSTAGRAM CLONE ADMIN"
 
 urlpatterns = [
     path('admin/', admin.site.urls),

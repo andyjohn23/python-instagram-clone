@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, logout, authenticate
 from .forms import RegisterUserForm, AuthenticationForm
+from posts.forms import NewPostForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
@@ -136,3 +137,16 @@ def get_redirect_if_exists(request):
             redirect = str(request.GET.get('next'))
 
     return redirect
+
+
+@login_required(login_url='index')
+def NewPost(request):
+    user = request.user.id
+
+    if request.method == "POST":
+        form = NewPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.cleaned_data.get('image')
+            caption = form.cleaned_data.get('caption')
+
+    return render(request, 'auth/new-posts.html')
