@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django.db.models.signals import post_save
 from django.conf import settings
+from django.utils.html import mark_safe
 
 
 class Tag(models.Model):
@@ -42,7 +43,7 @@ class Post(models.Model):
         return reverse('postdetails', args=[self.id])
 
     def image_tag(self):
-        return mark_safe('<img src="{}" width="50" height="50" />' .format(self.image.url))
+        return mark_safe('<img src="{}" width="40" height="40" />' .format(self.image.url))
 
     def __str__(self):
         return self.caption
