@@ -34,7 +34,7 @@ class Post(models.Model):
     caption = models.TextField(max_length=1500, verbose_name="caption")
     image = CloudinaryField('post-image', blank=False)
     posted = models.DateTimeField(default=timezone.now)
-    tags = models.ManyToManyField(Tag, related_name="tag")
+    tags = models.ManyToManyField(Tag, related_name="tag", blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     likes = models.IntegerField(default=0)

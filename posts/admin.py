@@ -4,7 +4,7 @@ from posts.models import Follow, Post, Stream, Tag
 
 class PostsAdmin(admin.ModelAdmin):
     list_display = ['caption', 'image_tag', 'user', 'posted', 'likes']
-    readonly_fields = ['caption', 'tags', 'image', 'image_tag', 'user', 'posted', 'likes']
+    readonly_fields = ['caption', 'tags', 'image_tag', 'user', 'posted', 'likes']
     # prepopulated_fields = {'slug': ('producttitle',)}
 
 
