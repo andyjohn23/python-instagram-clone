@@ -23,6 +23,17 @@
   text-decoration: none;
   color: black;
 }
+.card-header .view-more {
+  margin-left: auto;
+}
+.card-header .view-more a i {
+  font-size: 19px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  margin-top: 1.5rem;
+  padding: 2px;
+
+}
 .card-body img {
   width: 600px;
   height: 475px;

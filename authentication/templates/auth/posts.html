@@ -14,6 +14,9 @@
                 <i class="material-icons">account_circle</i>
             </a>
             <a href="">{{ post_item.user.username }}</a>
+            <div class="view-more">
+                <a href=""><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+            </div>
         </div>
         <div class="card-body text-center">
             <img src="{{ post_item.image.url }}" alt="{{ post_item.image.url }}">
