@@ -9,7 +9,8 @@ from django.contrib import messages
 from .models import UserAccount, Profile
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView
-from posts.models import Post
+from posts.models import Post, Stream
+from django.template import loader
 # from django.views.generic import CreateView
 # from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # from .forms import ProjectSearchForm, RatesForm
@@ -20,9 +21,27 @@ from posts.models import Post
 
 # Create your views here.
 
+
 @login_required(login_url='index')
 def home(request):
-    return render(request, 'auth/home.html')
+    user = request.user
+    posts = Stream.objects.filter(user=user)
+
+    group_ids = []
+
+    for post in posts:
+        group_ids.append(post.post_id)
+
+    post_items = Post.objects.filter(
+        id__in=group_ids).all().order_by('-posted')
+
+    template = loader.get_template('auth/home.html')
+    context = {
+        'post_items': post_items
+    }
+
+    return HttpResponse(template.render(context, request))
+
 
 def register(request, *arg, **kwargs):
     user = request.user
@@ -80,6 +99,7 @@ def login_user(request, *args, **kwargs):
             context['login_form'] = form
 
     return render(request, 'auth/login-page.html', context)
+
 
 def login_userIndex(request, *args, **kwargs):
 
