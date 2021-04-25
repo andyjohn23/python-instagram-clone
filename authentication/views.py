@@ -140,6 +140,19 @@ def get_redirect_if_exists(request):
 
 
 @login_required(login_url='index')
+def PostDetail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    template = loader.get_template('post-detail.html')
+
+    context = {
+        'post': post,
+    }
+
+    return HttpResponse(template.render(request, context))
+
+
+@login_required(login_url='index')
 def NewPost(request):
     user = request.user.id
 
