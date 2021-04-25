@@ -149,4 +149,11 @@ def NewPost(request):
             image = form.cleaned_data.get('image')
             caption = form.cleaned_data.get('caption')
 
+            p, created = Post.objects.get_or_create(
+                image=image, caption=caption, user=user)
+            p.save()
+            return redirect('index')
+    else:
+        form = NewPostForm()
+
     return render(request, 'auth/new-posts.html')
