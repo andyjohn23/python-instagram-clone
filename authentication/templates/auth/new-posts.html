@@ -7,16 +7,16 @@
 {% block content %}
 <div class="container d-flex justify-content-center">
     <div class="post-form">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" name="myform" onsubmit="return validation()">
             {% csrf_token %}
             <h2>ADD A NEW POST</h2>
             <div class="mb-4">
                 <label class="form-label">Choose photo</label><br>
-                <input type="file" name="image" accept=".png, .jpg, .jpeg" required>
+                <input type="file" name="image" accept=".png, .jpg, .jpeg">
             </div>
             <div class="mb-4">
                 <label for="addCaption" class="form-label">Add caption</label>
-                <textarea class="form-control" name="caption" id="addCaption" rows="5" required></textarea>
+                <textarea class="form-control" name="caption" id="addCaption" rows="5"></textarea>
             </div>
             <input type="submit" value="Post" class="text-center"/>
         </form>

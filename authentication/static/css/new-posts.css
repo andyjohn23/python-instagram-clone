@@ -1,13 +1,9 @@
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100vw;
-}
 .post-form {
   margin-top: 5rem;
   width: 70%;
   border: 0.1px solid rgba(0, 0, 0, 0.2);
   background-color: white;
+  border-radius: 5px;
 }
 .post-form form {
   padding: 15px;
@@ -62,4 +58,66 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+/* smaller phones media query */
+@media screen and (min-device-width: 280px) and (max-device-width: 653px) {
+  .post-form {
+    border: none;
+    margin-left: -5rem;
+    width: 100%;
+  }
+  .post-form form {
+    width: 28%;
+    margin-left: 1.6rem;
+  }
+  .post-form form h2 {
+    margin-bottom: 2rem;
+  }
+  .post-form form textarea {
+    width: 100%;
+  }
+}
+/* iphone x media query */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
+  .post-form {
+    border: none;
+    margin-left: -5rem;
+    width: 100%;
+  }
+  .post-form form {
+    width: 28%;
+    margin-left: 1.6rem;
+  }
+  .post-form form h2 {
+    margin-bottom: 2rem;
+  }
+}
+/* ipad media query */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .post-form {
+    border: none;
+    margin-left: -34rem;
+    width: 100%;
+  }
+  .post-form form h2 {
+    margin-bottom: 2rem;
+  }
+  .post-form form textarea {
+    width: 100%;
+  }
+}
+
+/* ipad pro media query */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  .post-form {
+    border: none;
+    margin-left: -18rem;
+    width: 100%;
+  }
+  .post-form form h2 {
+    margin-bottom: 2rem;
+  }
+  .post-form form textarea {
+    width: 100%;
+  }
 }
