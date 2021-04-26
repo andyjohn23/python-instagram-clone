@@ -23,7 +23,7 @@
   height: 8vh;
   border-bottom: none;
   background-color: white;
-  border-bottom: 1px solid rgba(64, 64, 64, 0.3);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
   margin-left: -3.1rem;
   margin-top: -1.28rem;
   z-index: 200;
@@ -46,6 +46,5 @@
   font-size: 19px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.7);
-  margin-top: 0.5rem;
   padding: 10px;
 }
