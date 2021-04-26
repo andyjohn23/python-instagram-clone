@@ -33,7 +33,7 @@ class Tag(models.Model):
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     caption = models.TextField(max_length=1500, verbose_name="caption")
-    image = CloudinaryField('post-image', blank=False)
+    image = CloudinaryField('post-image', blank=True)
     posted = models.DateTimeField(default=timezone.now)
     tags = models.ManyToManyField(Tag, related_name="tag", blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -48,6 +48,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.caption
+
+class postExtraImages(models.Model):
+    post = models.ForeignKey(Post, related_name='postphoto', on_delete=models.CASCADE)
+    image = CloudinaryField('postimage', blank=False)
 
 
 class Follow(models.Model):

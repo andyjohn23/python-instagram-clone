@@ -7,16 +7,16 @@ function validation() {
     var imageExtension = img.value.substring(img.value.lastIndexOf(".") + 1);
     var result = validFileEXtension.includes(imageExtension);
     if (result == false) {
-      alert("SELECTED FILE IS NOT AN IMAGE");
+      swal("SELECTED FILE IS NOT AN IMAGE");
       return false;
     } else {
-      if (parseFloat(img.files[0].size / (1024 * 1024)) >= 4) {
-        alert("FILE SIZE IS GREATER THAN 3MB");
+      if (parseFloat(img.files[0].size / (1024 * 1024)) >= 3) {
+        swal("FILE SIZE IS GREATER THAN 3MB");
         return false;
       }
     }
   } else {
-    alert("NO IMAGE SELECTED");
+    swal("NO IMAGE SELECTED");
     return false;
   }
 }

@@ -1,10 +1,17 @@
 from django.contrib import admin
-from posts.models import Follow, Post, Stream, Tag
+from posts.models import Follow, Post, Stream, Tag, postExtraImages
+
+
+class PostsImageInline(admin.TabularInline):
+    model = postExtraImages
+    extra = 3
 
 
 class PostsAdmin(admin.ModelAdmin):
     list_display = ['caption', 'image_tag', 'user', 'posted', 'likes']
-    readonly_fields = ['caption', 'tags', 'image_tag', 'user', 'posted', 'likes']
+    # readonly_fields = ['caption', 'tags',
+    #                    'image_tag', 'user', 'posted', 'likes']
+    inlines = [PostsImageInline]
     # prepopulated_fields = {'slug': ('producttitle',)}
 
 

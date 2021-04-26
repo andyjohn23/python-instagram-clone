@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView
 from posts.models import Post, Stream
 from django.template import loader
+from django.views.generic import TemplateView
 # from django.views.generic import CreateView
 # from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # from .forms import ProjectSearchForm, RatesForm
@@ -169,8 +170,9 @@ def NewPost(request):
     else:
         form = NewPostForm()
 
-    context = {
-        'form': form
-    }
 
-    return render(request, 'auth/new-posts.html', context)
+    return render(request, 'auth/new-posts.html')
+
+
+    
+        
