@@ -26,14 +26,26 @@
   color: rgba(0, 0, 0, 0.8);
   text-align: center;
 }
-.post-form form textarea {
-  resize: none;
-}
 .post-form form input[type="file"] {
   font-size: 15px;
   font-weight: 500;
   font-family: sans-serif;
   color: rgba(0, 0, 0, 0.7);
+  outline: none;
+  cursor: pointer;
+}
+.post-form form textarea {
+  resize: none;
+  font-size: 15px;
+  font-weight: normal;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.7);
+}
+.post-form form .form-control:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: none;
 }
 .post-form form input[type="submit"] {
   margin-bottom: 0.5rem;
