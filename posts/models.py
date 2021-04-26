@@ -9,6 +9,7 @@ from django.conf import settings
 from django.utils.html import mark_safe
 
 
+
 class Tag(models.Model):
     title = models.CharField(max_length=75, verbose_name="tag")
     slug = models.SlugField(null=False, unique=True)

@@ -1,0 +1,53 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100vw;
+}
+.post-form {
+  margin-top: 5rem;
+  width: 70%;
+  border: 0.1px solid rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+.post-form form {
+  padding: 15px;
+  margin-top: 1rem;
+}
+.post-form form label {
+  font-size: 15px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.7);
+}
+.post-form form h2 {
+  font-size: 17px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+.post-form form textarea {
+  resize: none;
+}
+.post-form form input[type="file"] {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.7);
+}
+.post-form form input[type="submit"] {
+  margin-bottom: 0.5rem;
+  width: 50%;
+  height: 33px;
+  font-size: 14px;
+  font-weight: bolder;
+  font-family: sans-serif;
+  border-radius: 5px;
+  background-color: #0e93cd;
+  outline: none;
+  border: none;
+  color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
