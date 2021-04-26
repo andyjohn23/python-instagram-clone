@@ -39,6 +39,12 @@
 .register__form .form-group {
   margin-bottom: 5px;
 }
+.register__form input:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
 .register__form input::placeholder {
   font-size: 13px;
 }

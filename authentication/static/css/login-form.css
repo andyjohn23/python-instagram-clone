@@ -38,6 +38,12 @@
 .login__form .form-group {
   margin-bottom: 5px;
 }
+.login__form input:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
 .login__form input::placeholder {
   font-size: 13px;
 }
