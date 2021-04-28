@@ -39,7 +39,7 @@
                     <p>hello</p>
                 </div>
                 <div class="timeline">
-                    <p>{{ post_item.posted|naturaltime }}</p>
+                    <a href="{% url 'postdetails' post_item.id %}"title="{{ post_item.posted | date:'F d, Y' }}">{{ post_item.posted|naturaltime }}</a>
                 </div>
             </div>
         </div>

@@ -108,11 +108,13 @@
   color: rgba(0, 0, 0, 0.5);
   text-decoration: none;
 }
-.card-body .timeline {
+.card-body .timeline a{
   font-size: 14px;
   font-weight: normal;
   font-family: sans-serif;
   color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  text-decoration: none;
 }
 .card-footer {
   border-top: none;

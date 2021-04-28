@@ -1,5 +1,6 @@
 {% include 'auth/navbar.html' %}
 {% load static %}
+{% load humanize %}
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/post-detail.css' %}">
 {% endblock %}
@@ -17,18 +18,36 @@
                         <a href="">
                             <i class="material-icons">account_circle</i>
                         </a>
-                        <a href="">{{ post.user.username }}</a>
+                        <a href="">{{ post.user.username|truncatechars:9 }}</a>
                         <i class="material-icons" style="font-size: 4px; color: black;">brightness_1</i>
-                        <a>Follow</a>
+                        <a>Following</a>
                         <div class="view-more">
-                            <a href=""><i class="fa fa-ellipsis-h"
-                                    aria-hidden="true"></i></a>
+                            <a href=""><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
                         </div>
                     </div>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                         additional
                         content. This content is a little bit longer.</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <div class="like-comment-share">
+                        <a href=""><i class="material-icons">favorite_border</i></a>
+                        <a href=""><i class="material-icons">chat_bubble_outline</i></a>
+                        <a href=""><i class="material-icons">send</i></a>
+                        <a href="" style="margin-left: auto;"><i class="material-icons"
+                                style="font-size: 35px;">bookmark_border</i></a>
+                    </div>
+                    <div class="likes-comments">
+                        <span>3,000,000 likes</span>
+                        <div class="timeline">
+                            <a href="{% url 'postdetails' post.id %}"title="{{ post.posted | date:'F d, Y' }}">{{ post.posted|naturaltime }}</a>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <form>
+                            <input type="text" placeholder="Add a comment..." required>
+                            <input type="submit" value="Post">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

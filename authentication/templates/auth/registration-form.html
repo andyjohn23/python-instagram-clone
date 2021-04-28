@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <input type="text" class="form-control" name="username" id="username" autocomplete="off" placeholder=" "
-                required />
+            maxlength="15" required />
             <label for="username" class="label-username">
                 <span class="content-username">Username</span>
             </label>
@@ -29,7 +29,7 @@
 
         <div class="form-group">
             <input type="password" class="form-control" name="password1" id="password" autocomplete="off"
-                placeholder=" " onChange={handleChange} required />
+                placeholder=" " onChange={handleChange} minlength="4" required />
             <label for="password1" class="label-password1">
                 <span class="content-password1">Password</span>
             </label>
