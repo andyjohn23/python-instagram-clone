@@ -165,14 +165,13 @@ def NewPost(request):
 
             created = Post.objects.get_or_create(
                 image=image, caption=caption, user_id=user)
-            
+
             return redirect('index')
     else:
         form = NewPostForm()
 
-
     return render(request, 'auth/new-posts.html')
 
 
-    
-        
+def profile(request):
+    return render(request, 'auth/profile.html')

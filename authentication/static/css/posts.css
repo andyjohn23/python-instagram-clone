@@ -70,6 +70,7 @@
 }
 .card-body .like-comment-share a {
   text-decoration: none;
+  cursor: pointer;
 }
 .card-body .like-comment-share a i {
   font-size: 30px;
