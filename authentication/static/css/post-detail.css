@@ -48,6 +48,38 @@
   color: rgba(0, 0, 0, 0.7);
   padding: 10px;
 }
+.card-body .users-comments {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-left: -2rem;
+  max-width: 280px;
+  height: 180px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.card-body .users-comments span {
+  font-size: 10px;
+  font-weight: normal;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  text-decoration: none;
+}
+.card-body .users-comments a {
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+  text-decoration-style: solid;
+  text-decoration: none;
+}
+.card-body .users-comments a i{
+  font-size: 29px;
+}
+.card-body .users-comments p{
+  width: 210px;
+  word-wrap: break-word;
+}
 .card-body .likes-comments {
   float: left;
   margin-left: -2.4rem;
@@ -70,10 +102,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 3.3rem;
+  margin-top: 0.5rem;
   margin-left: -3.1rem;
   border-top: 0.5px solid rgba(0, 0, 0, 0.1);
   width: 128.5%;
+  background-color: white;
 }
 .card-body .like-comment-share a {
   text-decoration: none;
