@@ -131,19 +131,18 @@ img {
   margin-top: -2rem;
 }
 /* Gallery Section */
-.cards {
-  display: inline-grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: auto;
-  grid-gap: 3px;
-  margin-top: -23rem;
-  float: left;
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -1rem -1rem;
-  padding-bottom: 3rem;
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 2rem;
+  justify-items: center;
+  align-items: center;
 }
 .gallery-item {
   position: relative;
