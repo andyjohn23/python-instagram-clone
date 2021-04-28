@@ -70,8 +70,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 3.5rem;
-  margin-left: -2.5rem;
+  margin-top: 3.3rem;
+  margin-left: -3.1rem;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+  width: 128.5%;
 }
 .card-body .like-comment-share a {
   text-decoration: none;
@@ -80,6 +82,7 @@
   font-size: 30px;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.8);
+  padding-top: 0.2rem;
 }
 .card-footer {
   border-top: 0.5px solid rgba(0, 0, 0, 0.1);
