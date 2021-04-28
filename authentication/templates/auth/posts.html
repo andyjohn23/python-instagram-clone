@@ -33,7 +33,7 @@
                     <a href="">{{ post_item.user.username }}</a>
                     <p>{{ post_item.caption }}</p>
                 </div>
-                <a href="" class="views">View all 2,000 comments</a>
+                <a href="{% url 'postdetails' post_item.id %}" class="views">View all 2,000 comments</a>
                 <div class="user-comments">
                     <a href="">andyjohn</a>
                     <p>hello</p>
