@@ -33,14 +33,14 @@
                         </p>
                     </div>
                     <div class="like-comment-share">
-                        <a id="heart" style="padding-left: 10px;"><i class="material-icons">favorite_border</i></a>
+                        <a href="{% url 'postlike' post.id %}" id="heart" style="padding-left: 10px;"><i class="material-icons">favorite_border</i></a>
                         <a href=""><i style="transform: rotateY(180deg);" class="material-icons">chat_bubble_outline</i></a>
                         <a href=""><i class="material-icons">near_me</i></a>
                         <a href="" style="margin-left: auto; margin-right: 0.5rem;"><i class="material-icons"
                                 style="font-size: 35px;">bookmark_border</i></a>
                     </div>
                     <div class="likes-comments">
-                        <span>3,000,000 likes</span>
+                        <span>{{ post.likes }} like{{ post.likes|pluralize }}</span>
                         <div class="timeline">
                             <a href="{% url 'postdetails' post.id %}"
                                 title="{{ post.posted | date:'F d, Y' }}">{{ post.posted|naturaltime }}</a>

@@ -10,7 +10,7 @@ from django.contrib import messages
 from .models import UserAccount, Profile
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView
-from posts.models import Post, Stream
+from posts.models import Post, Stream, Likes
 from django.template import loader
 from django.views.generic import TemplateView
 # from django.views.generic import CreateView
@@ -175,3 +175,25 @@ def NewPost(request):
 
 def profile(request):
     return render(request, 'auth/profile.html')
+
+
+@login_required(login_url='index')
+def like(request, post_id):
+    user = request.user
+    post = Post.objects.get(id=post_id)
+    current_likes = post.likes
+
+    liked = Likes.objects.filter(user=user, post=post).count()
+
+    if not liked:
+        like = Likes.objects.create(user=user, post=post)
+        like.save()
+        current_likes = current_likes + 1
+    else:
+        Likes.object.filter(user=user, post=post).delete()
+        current_likes = current_likes - 1
+    
+    post.likes = current_likes
+    post.save()
+
+    return HttpResponseRedirect(reverse('postdetails', args=[post_id]))

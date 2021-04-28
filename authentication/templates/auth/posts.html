@@ -21,14 +21,14 @@
         <div class="card-body text-center">
             <img src="{{ post_item.image.url }}" alt="{{ post_item.image.url }}">
             <div class="like-comment-share">
-                <a id=heart><i class="material-icons">favorite_border</i></a>
+                <a href="{% url 'postlike' post_item.id %}" id=heart><i class="material-icons">favorite_border</i></a>
                 <a href=""><i style="transform: rotateY(180deg);" class="material-icons">chat_bubble_outline</i></a>
                 <a href=""><i class="material-icons">near_me</i></a>
                 <a href="" style="margin-left: auto;"><i class="material-icons"
                         style="font-size: 35px;">turned_in_not</i></a>
             </div>
             <div class="likes-comments">
-                <span>3,000,000 likes</span>
+                <span>{{ post_item.likes }} like{{ post_item.likes|pluralize }}</span>
                 <div class="owner-caption">
                     <a href="">{{ post_item.user.username }}</a>
                     <p>{{ post_item.caption }}</p>

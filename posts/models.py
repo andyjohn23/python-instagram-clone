@@ -9,7 +9,6 @@ from django.conf import settings
 from django.utils.html import mark_safe
 
 
-
 class Tag(models.Model):
     title = models.CharField(max_length=75, verbose_name="tag")
     slug = models.SlugField(null=False, unique=True)
@@ -49,8 +48,10 @@ class Post(models.Model):
     def __str__(self):
         return self.caption
 
+
 class postExtraImages(models.Model):
-    post = models.ForeignKey(Post, related_name='postphoto', on_delete=models.CASCADE)
+    post = models.ForeignKey(
+        Post, related_name='postphoto', on_delete=models.CASCADE)
     image = CloudinaryField('postimage', blank=False)
 
 
@@ -77,7 +78,13 @@ class Stream(models.Model):
             stream = Stream(post=post, user=follower.follower,
                             date=post.posted, following=user)
             stream.save()
-            
+
+
+class Likes(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE, related_name="userlikes")
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name="postlikes")
 
 
 post_save.connect(Stream.add_post, sender=Post)
