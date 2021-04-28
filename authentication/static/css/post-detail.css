@@ -58,6 +58,9 @@
   max-height: 180px;
   overflow-y: auto;
 }
+.card-body .users-comments::-webkit-scrollbar {
+  display: none;
+}
 .card-body .users-comments span {
   font-size: 10px;
   font-weight: normal;
@@ -73,10 +76,10 @@
   text-decoration-style: solid;
   text-decoration: none;
 }
-.card-body .users-comments a i{
+.card-body .users-comments a i {
   font-size: 29px;
 }
-.card-body .users-comments p{
+.card-body .users-comments p {
   width: 210px;
   word-wrap: break-word;
 }
@@ -90,7 +93,7 @@
   font-family: sans-serif;
   color: black;
 }
-.card-body .timeline a{
+.card-body .timeline a {
   font-size: 14px;
   font-weight: normal;
   font-family: sans-serif;
