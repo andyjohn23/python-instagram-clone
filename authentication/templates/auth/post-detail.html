@@ -28,10 +28,10 @@
                     <div class="users-comments">
                         <a href=""><i class="material-icons">account_circle</i></a>
                         <p>
-                            <a href="">andyjohn</a>&nbsp;hellohellohellohellohellohellohellohello<br>
+                            <a href="">{{ post.user.username|truncatechars:10 }}</a>&nbsp;{{ post.caption }}<br>
                             <span>1 hour ago</span>
                         </p>
-                        <a href=""><i class="material-icons">account_circle</i></a>
+                        <!-- <a href=""><i class="material-icons">account_circle</i></a>
                         <p>
                             <a href="">andyjohn</a>&nbsp;hellohellohellohellohellohellohellohellohello
                             <br>
@@ -49,7 +49,7 @@
                             hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohello
                             hellohellohellohellohellohellohellohellohello<br>
                             <span>1 hour ago</span>
-                        </p>
+                        </p> -->
                     </div>
                     <div class="like-comment-share">
                         <a href="" style="padding-left: 10px;"><i class="material-icons">favorite_border</i></a>
