@@ -1,11 +1,19 @@
-$(document).ready(function () {
-  $("#heart").click(function () {
-    if ($("#heart").hasClass("liked")) {
-      $("#heart").html('<i style="cursor:pointer;" class="material-icons">favorite_border</i>');
-      $("#heart").removeClass("liked");
-    } else {
-      $("#heart").html('<i style="color:red; cursor:pointer;" class="material-icons">favorite</i>');
-      $("#heart").addClass("liked");
+$(document).on('click', '#like-button', function (e){
+  e.preventDefault();
+  $.ajax({
+    type: 'POST',
+    url: '{% url "accounts:like" %}',
+    data:{
+      postid:$('#like-button').val(),
+      csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+      action: 'post'
+    },
+    success: function(json) {
+      document.getElementById("like_count").innerHTML = json['result']
+      console.log(json)
+    },
+    error: function(xhr, errmsg, err) {
+      
     }
-  });
-});
+  })
+})
