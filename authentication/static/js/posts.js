@@ -1,19 +1,17 @@
-$(document).on('click', '#like-button', function (e) {
+$(document).on("submit", "#like-form", function (e) {
   e.preventDefault();
   $.ajax({
-    type: 'POST',
+    type: "POST",
     url: '{% url "postlike" %}',
-    data:{
-      postid:$('#like-button').val(),
-      csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-      action: 'post'
+    data: {
+      post_id: $("#likes").val(),
+      csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+      action: "post",
     },
-    success: function(json) {
-      document.getElementById("like_count").innerHTML = json['result']
-      console.log(json)
+    success: function (json) {
+      document.getElementById("like_count").innerHTML = json["result"];
+      console.log(json);
     },
-    error: function(xhr, errmsg, err) {
-
-    }
-  })
-})
+    error: function (xhr, errmsg, err) {},
+  });
+});

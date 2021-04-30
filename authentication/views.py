@@ -195,28 +195,3 @@ def like(request):
             post.save()
 
         return JsonResponse({'result': result, })
-
-
-@login_required(login_url='index')
-def like_post(request, *args, **kwargs):
-    user = request.user
-    if request.method == 'POST':
-        post_id = request.POST.get('post_id')
-        post_obj = Post.objects.get(id=post_id)
-
-        if user in post_obj.liked.all():
-            post_obj.liked.remove(user)
-
-        else:
-            post_obj.liked.add(user)
-
-        like, created = Likes.objects.get_or_create(user=user, post_id=post_id)
-
-        if not created:
-            if like.value == 'like':
-                like.value == 'unlike'
-            else:
-                like.value == 'like'
-
-        like.save()
-    return redirect('postdetails')

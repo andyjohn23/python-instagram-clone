@@ -10,5 +10,4 @@ urlpatterns = [
     path('<uuid:post_id>/', views.PostDetail, name="postdetails"),
     path('profile/', views.profile, name="profile"),
     path('like/', views.like, name="postlike"),
-    path('<uuid:post_id>/like', views.like_post, name="postliked"),
 ]

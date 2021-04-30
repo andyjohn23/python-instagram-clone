@@ -36,7 +36,7 @@
                         style="font-size: 35px;">turned_in_not</i></a>
             </div>
             <div class="likes-comments">
-                <span id="like_count" value="like">{{ post_item.like_count }}</span>
+                <span id="like_count">{{ post_item.like_count }}</span>
                 <div class="owner-caption">
                     <a href="">{{ post_item.user.username }}</a>
                     <p>{{ post_item.caption }}</p>
@@ -61,5 +61,4 @@
     </div>
     {% endfor %}
 </div>
-
 {% endblock %}
