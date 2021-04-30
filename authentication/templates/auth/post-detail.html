@@ -36,11 +36,7 @@
                         <form id="like-form">
                             {% csrf_token %}
                             <input type="hidden" name="post_id" value="{{ post.id }}" id="likes">
-                            {% if user not in post.liked.all %}
                             <button type="submit" style="margin-left: 10px;"><i class="material-icons">favorite_border</i></button>
-                            {% else %}
-                            <button type="submit" style="margin-left: 10px;"><i class="material-icons" style="color: red;">favorite</i></button>
-                            {% endif %}
                         </form>
                         <a href=""><i style="transform: rotateY(180deg);"
                                 class="material-icons">chat_bubble_outline</i></a>
@@ -49,7 +45,10 @@
                                 style="font-size: 35px;">bookmark_border</i></a>
                     </div>
                     <div class="likes-comments">
-                        <span id="like_count">{{ post.like_count }} like</span>
+                        <div class="like-counts">
+                            <span id="like_count">{{ post.liked.all.count }}</span>
+                            <span>like{{ post.liked.all.count|pluralize }}</span>
+                        </div>
                         <div class="timeline">
                             <a href="{% url 'postdetails' post.id %}"
                                 title="{{ post.posted | date:'F d, Y' }}">{{ post.posted|naturaltime }}</a>

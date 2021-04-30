@@ -15,3 +15,4 @@ $(document).on("submit", "#like-form", function (e) {
     error: function (xhr, errmsg, err) {},
   });
 });
+href="{% url 'postdetails' post_item.id %}"

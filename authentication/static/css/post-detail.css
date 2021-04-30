@@ -117,6 +117,11 @@
   user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
 }
+.card-body .likes-comments .like-counts {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
 .card-body .like-comment-share a {
   text-decoration: none;
 }

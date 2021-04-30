@@ -103,6 +103,11 @@
   font-family: sans-serif;
   color: black;
 }
+.card-body .likes-comments .like-counts {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
 .card-body .likes-comments {
   display: flex;
   flex-direction: column;
@@ -165,6 +170,39 @@
   background-color: white;
   outline: none;
 }
+.modal:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: " ";
+  height: 30%;
+}
+.modal-content{
+  width: 100%;
+  -webkit-border-radius: 15px !important;
+  -moz-border-radius: 15px !important;
+  border-radius: 15px !important; 
+}
+.modal-body .go-to-post button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  gap: 0;
+  color: black;
+  width: 100%;
+  height: auto;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: sans-serif;
+  background: transparent;
+  outline: none;
+  border: none;
+}
+.horizontal-line {
+  width: 100%;
+}
+
 /* smaller phones media query */
 @media screen and (min-device-width: 280px) and (max-device-width: 653px) {
   .users__post .card {

@@ -15,7 +15,8 @@
             </a>
             <a href="">{{ post_item.user.username }}</a>
             <div class="view-more">
-                <a href="{% url 'postdetails' post_item.id %}"><i class="material-icons">more_horiz</i></a>
+                <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#postModal{{ post_item.id }}"><i
+                        class="material-icons">more_horiz</i></a>
             </div>
         </div>
         <div class="card-body text-center">
@@ -24,11 +25,7 @@
                 <form id="like-form">
                     {% csrf_token %}
                     <input type="hidden" name="post_id" value="{{ post_item.id }}" id="likes">
-                    {% if user not in post_item.liked.all %}
                     <button type="submit"><i class="material-icons">favorite_border</i></button>
-                    {% else %}
-                    <button type="submit"><i class="material-icons" style="color: red;">favorite</i></button>
-                    {% endif %}
                 </form>
                 <a href=""><i style="transform: rotateY(180deg);" class="material-icons">chat_bubble_outline</i></a>
                 <a href=""><i class="material-icons">near_me</i></a>
@@ -36,7 +33,10 @@
                         style="font-size: 35px;">turned_in_not</i></a>
             </div>
             <div class="likes-comments">
-                <span id="like_count">{{ post_item.like_count }}</span>
+                <div class="like-counts">
+                    <span id="like_count">{{ post_item.liked.all.count }}</span>
+                    <span>like{{ post_item.liked.all.count|pluralize }}</span>
+                </div>
                 <div class="owner-caption">
                     <a href="">{{ post_item.user.username }}</a>
                     <p>{{ post_item.caption }}</p>
@@ -57,6 +57,22 @@
                 <input type="text" placeholder="Add a comment..." required>
                 <input type="submit" value="Post">
             </form>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="postModal{{ post_item.id }}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-5">
+                <div class="modal-body">
+                    <div class="go-to-post">
+                        <button type="button" onclick="location.href='{% url 'postdetails' post_item.id %}'">Go to post</button>
+                        <hr class="horizontal-line">
+                        <button type="button" onclick="location.href=''">Copy Link</button>
+                        <hr class="horizontal-line">
+                        <button type="button" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     {% endfor %}
