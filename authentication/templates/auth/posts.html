@@ -22,11 +22,16 @@
         <div class="card-body text-center">
             <img src="{{ post_item.image.url }}" alt="{{ post_item.image.url }}">
             <div class="like-comment-share">
-                <form id="like-form">
+                {% if request.user.is_authenticated %}
+                <form>
                     {% csrf_token %}
-                    <input type="hidden" name="post_id" value="{{ post_item.id }}" id="likes">
-                    <button type="submit"><i class="material-icons">favorite_border</i></button>
+                    {% if user not in post_item.liked.all %}
+                    <button type="submit" id="like" name="post_id" value="{{ post_item.id }}"><i class="material-icons">favorite_border</i></button>
+                    {% else %}
+                    <button type="submit" id="like" name="post_id" value="{{ post_item.id }}"><i style="color: red;" class="material-icons">favorite</i></button>
+                    {% endif %}
                 </form>
+                {% endif %}
                 <a href=""><i style="transform: rotateY(180deg);" class="material-icons">chat_bubble_outline</i></a>
                 <a href=""><i class="material-icons">near_me</i></a>
                 <a href="" style="margin-left: auto;"><i class="material-icons"
@@ -34,8 +39,8 @@
             </div>
             <div class="likes-comments">
                 <div class="like-counts">
-                    <span id="like_count">{{ post_item.liked.all.count }}</span>
-                    <span>like{{ post_item.liked.all.count|pluralize }}</span>
+                    <span id="liked">{{ post_item.total_likes }} like{{ post_item.total_likes|pluralize }}</span>
+                    <!-- <span>like{{ post_item.liked.all.count|pluralize }}</span> -->
                 </div>
                 <div class="owner-caption">
                     <a href="">{{ post_item.user.username }}</a>

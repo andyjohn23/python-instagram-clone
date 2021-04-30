@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView
 from posts.models import Post, Stream, Likes
 from django.template import loader
+from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 # from django.views.generic import CreateView
 # from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -179,19 +180,17 @@ def profile(request):
 
 @login_required(login_url='index')
 def like(request):
-    if request.POST.get('action') == 'post':
-        result = ''
-        id = request.POST.get('post_id')
-        post = get_object_or_404(Post, id=id)
-        if post.liked.filter(id=request.user.id).exists():
-            post.liked.remove(request.user)
-            post.like_count -= 1
-            result = post.like_count
-            post.save()
-        else:
-            post.liked.add(request.user)
-            post.like_count += 1
-            result = post.like_count
-            post.save()
+    user = request.user
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    is_liked = ""
+    if post.liked.filter(id=user.id).exists():
+        post.liked.remove(user)
+        is_liked = False
+    else:
+        post.liked.add(user)
+        is_liked = True
 
-        return JsonResponse({'result': result, })
+    return JsonResponse({'form': is_liked})
+
+
+

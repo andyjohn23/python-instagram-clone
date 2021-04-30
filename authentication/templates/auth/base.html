@@ -61,27 +61,28 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="{% static 'js/main.js' %}"></script>
     <script>
-        $(document).on('submit', '#like-form', function (e) {
-            e.preventDefault();
+        $(document).on('click', '#like', function (event) {
+            event.preventDefault();
+            console.log("from jquery section")
+            var pk = $(this).attr('value');
             $.ajax({
                 type: 'POST',
                 url: '{% url "postlike" %}',
                 data: {
-                    post_id: $('#likes').val(),
-                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                    action: 'post'
+                    'post_id': pk,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
                 },
-                success: function (json) {
-                    document.getElementById("like_count").innerHTML = json['result']
-                    console.log(json)
+                dataType: 'json',
+                success: function (response) {
+                    $('#like-section').html(response['form'])
+                    console.log($('#like-section').html(response['form']));
                 },
-                error: function (xhr, errmsg, err) {
-
-                }
-            })
-        })
+                error: function (rs, e) {
+                    console.log(rs.responseText);
+                },
+            });
+        });
     </script>
-
 </body>
 
 </html>

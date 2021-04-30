@@ -33,10 +33,10 @@
                         </p>
                     </div>
                     <div class="like-comment-share">
-                        <form id="like-form">
+                        <form>
                             {% csrf_token %}
-                            <input type="hidden" name="post_id" value="{{ post.id }}" id="likes">
-                            <button type="submit" style="margin-left: 10px;"><i class="material-icons">favorite_border</i></button>
+                            <button type="submit" style="margin-left: 10px;" id="like" name="post_id"
+                                value="{{ post.id }}"><i class="material-icons">favorite_border</i></button>
                         </form>
                         <a href=""><i style="transform: rotateY(180deg);"
                                 class="material-icons">chat_bubble_outline</i></a>
@@ -46,8 +46,7 @@
                     </div>
                     <div class="likes-comments">
                         <div class="like-counts">
-                            <span id="like_count">{{ post.liked.all.count }}</span>
-                            <span>like{{ post.liked.all.count|pluralize }}</span>
+                            <span id="liked">{{ post.total_likes }} like{{ post.total_likes|pluralize }}</span>
                         </div>
                         <div class="timeline">
                             <a href="{% url 'postdetails' post.id %}"
