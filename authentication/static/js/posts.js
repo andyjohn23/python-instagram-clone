@@ -2,10 +2,10 @@ $(document).on('click', '#like-button', function (e) {
   e.preventDefault();
   $.ajax({
     type: 'POST',
-    url: '{% url "postlikes" %}',
+    url: '{% url "postlike" %}',
     data:{
       postid:$('#like-button').val(),
-      "csrfmiddlewaretoken" : "{{csrf_token}}",
+      csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
       action: 'post'
     },
     success: function(json) {

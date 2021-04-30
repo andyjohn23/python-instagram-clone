@@ -179,27 +179,23 @@ def profile(request):
 
 @login_required(login_url='index')
 def like(request):
-    user = request.user
-    if request.method == 'POST':
-        post_id = request.POST.get('post_id')
-        post_obj = Post.objects.get(id=post_id)
-
-        if user in post_obj.liked.all():
-            post_obj.liked.remove(user)
-
+    if request.POST.get('action') == 'post':
+        result = ''
+        id = request.POST.get('post_id')
+        post = get_object_or_404(Post, id=id)
+        if post.liked.filter(id=request.user.id).exists():
+            post.liked.remove(request.user)
+            post.like_count -= 1
+            result = post.like_count
+            post.save()
         else:
-            post_obj.liked.add(user)
+            post.liked.add(request.user)
+            post.like_count += 1
+            result = post.like_count
+            post.save()
 
-        like, created = Likes.objects.get_or_create(user=user, post_id=post_id)
+        return JsonResponse({'result': result, })
 
-        if not created:
-            if like.value == 'like':
-                like.value == 'unlike'
-            else:
-                like.value == 'like'
-
-        like.save()
-    return redirect('home')
 
 @login_required(login_url='index')
 def like_post(request, *args, **kwargs):

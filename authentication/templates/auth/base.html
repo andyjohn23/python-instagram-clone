@@ -61,7 +61,25 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="{% static 'js/main.js' %}"></script>
     <script>
-        $(document).on('submit', '' )
+        $(document).on('submit', '#like-form', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "postlike" %}',
+                data: {
+                    post_id: $('#likes').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    action: 'post'
+                },
+                success: function (json) {
+                    document.getElementById("like_count").innerHTML = json['result']
+                    console.log(json)
+                },
+                error: function (xhr, errmsg, err) {
+
+                }
+            })
+        })
     </script>
 
 </body>
