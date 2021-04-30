@@ -9,5 +9,6 @@ urlpatterns = [
     path('newpost/', views.NewPost, name='newpost'),
     path('<uuid:post_id>/', views.PostDetail, name="postdetails"),
     path('profile/', views.profile, name="profile"),
-    path('<uuid:post_id>/like', views.like, name="postlike"),
+    path('like/', views.like, name="postlike"),
+    path('<uuid:post_id>/like', views.like_post, name="postliked"),
 ]

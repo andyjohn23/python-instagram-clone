@@ -64,18 +64,35 @@
 }
 .card-body .like-comment-share {
   display: flex;
-  align-items: center;
+  justify-items: center;
   gap: 12px;
   margin-top: 0.5rem;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
 .card-body .like-comment-share a {
   text-decoration: none;
-  cursor: pointer;
+}
+.card-body .like-comment-share button {
+  border: none;
+  background: transparent;
+  outline: none;
+}
+.card-body .like-comment-share button i {
+  font-size: 30px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.8);
 }
 .card-body .like-comment-share a i {
   font-size: 30px;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.8);
+  margin-top: 2px;
 }
 .card-body .likes-comments {
   float: left;
@@ -109,7 +126,7 @@
   color: rgba(0, 0, 0, 0.5);
   text-decoration: none;
 }
-.card-body .timeline a{
+.card-body .timeline a {
   font-size: 14px;
   font-weight: normal;
   font-family: sans-serif;

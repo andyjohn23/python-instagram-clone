@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth import login, logout, authenticate
 from .forms import RegisterUserForm, AuthenticationForm
 from posts.forms import NewPostForm
@@ -178,22 +178,49 @@ def profile(request):
 
 
 @login_required(login_url='index')
-def like(request, post_id):
+def like(request):
     user = request.user
-    post = Post.objects.get(id=post_id)
-    current_likes = post.likes
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post_obj = Post.objects.get(id=post_id)
 
-    liked = Likes.objects.filter(user=user, post=post).count()
+        if user in post_obj.liked.all():
+            post_obj.liked.remove(user)
 
-    if not liked:
-        like = Likes.objects.create(user=user, post=post)
+        else:
+            post_obj.liked.add(user)
+
+        like, created = Likes.objects.get_or_create(user=user, post_id=post_id)
+
+        if not created:
+            if like.value == 'like':
+                like.value == 'unlike'
+            else:
+                like.value == 'like'
+
         like.save()
-        current_likes = current_likes + 1
-    else:
-        Likes.object.filter(user=user, post=post).delete()
-        current_likes = current_likes - 1
-    
-    post.likes = current_likes
-    post.save()
+    return redirect('home')
 
-    return HttpResponseRedirect(reverse('postdetails', args=[post_id]))
+@login_required(login_url='index')
+def like_post(request, *args, **kwargs):
+    user = request.user
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post_obj = Post.objects.get(id=post_id)
+
+        if user in post_obj.liked.all():
+            post_obj.liked.remove(user)
+
+        else:
+            post_obj.liked.add(user)
+
+        like, created = Likes.objects.get_or_create(user=user, post_id=post_id)
+
+        if not created:
+            if like.value == 'like':
+                like.value == 'unlike'
+            else:
+                like.value == 'like'
+
+        like.save()
+    return redirect('postdetails')

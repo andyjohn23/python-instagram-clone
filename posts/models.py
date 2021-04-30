@@ -37,7 +37,13 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, related_name="tag", blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    likes = models.IntegerField(default=0)
+    liked = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name='like', default=None, blank=True)
+    like_count = models.BigIntegerField(default='0')
+
+    @property
+    def total_likes(self):
+        return self.liked.all().count()
 
     def get_absolute_url(self):
         return reverse('postdetails', args=[self.id])
@@ -47,6 +53,25 @@ class Post(models.Model):
 
     def __str__(self):
         return self.caption
+    
+    class Meta:
+        ordering = ('-posted',)
+
+LIKE_CHOICES = [
+    ('like', 'like'),
+    ('unlike', 'unlike'),
+]
+
+class Likes(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default='like', max_length=10)
+
+    def __str__(self):
+        return str(self.post)
+
+    def get_absolute_url(self):
+        return reverse('postdetails', args=[self.id])
 
 
 class postExtraImages(models.Model):
@@ -78,13 +103,6 @@ class Stream(models.Model):
             stream = Stream(post=post, user=follower.follower,
                             date=post.posted, following=user)
             stream.save()
-
-
-class Likes(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE, related_name="userlikes")
-    post = models.ForeignKey(
-        Post, on_delete=models.CASCADE, related_name="postlikes")
 
 
 post_save.connect(Stream.add_post, sender=Post)

@@ -21,14 +21,23 @@
         <div class="card-body text-center">
             <img src="{{ post_item.image.url }}" alt="{{ post_item.image.url }}">
             <div class="like-comment-share">
-                <a href="{% url 'postlike' post_item.id %}" id=like-button><i class="material-icons">favorite_border</i></a>
+                <form action="{% url 'postlike'%}" method="POST" id="like-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{ post_item.id }}" id="task">
+                    {% if user not in post_item.liked.all %}
+                    <button type="button"><i class="material-icons">favorite_border</i></button>
+                    {% else %}
+                    <button type="button"><i class="material-icons" style="color: red;">favorite</i></button>
+                    {% endif %}
+                </form>
                 <a href=""><i style="transform: rotateY(180deg);" class="material-icons">chat_bubble_outline</i></a>
                 <a href=""><i class="material-icons">near_me</i></a>
                 <a href="" style="margin-left: auto;"><i class="material-icons"
                         style="font-size: 35px;">turned_in_not</i></a>
             </div>
             <div class="likes-comments">
-                <span>{{ post_item.likes }} like{{ post_item.likes|pluralize }}</span>
+                <span id="like_count">{{ post_item.liked.all.count }}
+                    like{{ post_item.liked.all.count|pluralize }}</span>
                 <div class="owner-caption">
                     <a href="">{{ post_item.user.username }}</a>
                     <p>{{ post_item.caption }}</p>
@@ -39,7 +48,8 @@
                     <p>hello</p>
                 </div>
                 <div class="timeline">
-                    <a href="{% url 'postdetails' post_item.id %}"title="{{ post_item.posted | date:'F d, Y' }}">{{ post_item.posted|naturaltime }}</a>
+                    <a href="{% url 'postdetails' post_item.id %}"
+                        title="{{ post_item.posted | date:'F d, Y' }}">{{ post_item.posted|naturaltime }}</a>
                 </div>
             </div>
         </div>
@@ -52,7 +62,5 @@
     </div>
     {% endfor %}
 </div>
-{% block scripts %}
-<script src="{% static 'js/posts.js' %}"></script>
-{% endblock %}
+
 {% endblock %}

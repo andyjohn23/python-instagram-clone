@@ -1,11 +1,11 @@
-$(document).on('click', '#like-button', function (e){
+$(document).on('click', '#like-button', function (e) {
   e.preventDefault();
   $.ajax({
     type: 'POST',
-    url: '{% url "accounts:like" %}',
+    url: '{% url "postlikes" %}',
     data:{
       postid:$('#like-button').val(),
-      csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+      "csrfmiddlewaretoken" : "{{csrf_token}}",
       action: 'post'
     },
     success: function(json) {
@@ -13,7 +13,7 @@ $(document).on('click', '#like-button', function (e){
       console.log(json)
     },
     error: function(xhr, errmsg, err) {
-      
+
     }
   })
 })

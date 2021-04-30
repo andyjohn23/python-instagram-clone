@@ -33,14 +33,24 @@
                         </p>
                     </div>
                     <div class="like-comment-share">
-                        <a href="{% url 'postlike' post.id %}" id="heart" style="padding-left: 10px;"><i class="material-icons">favorite_border</i></a>
-                        <a href=""><i style="transform: rotateY(180deg);" class="material-icons">chat_bubble_outline</i></a>
+                        <form action="{% url 'postliked' post.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            {% if user not in post.liked.all %}
+                            <button type="button" style="margin-left: 10px;"><i class="material-icons">favorite_border</i></button>
+                            {% else %}
+                            <button type="button" style="margin-left: 10px;"><i class="material-icons" style="color: red;">favorite</i></button>
+                            {% endif %}
+                        </form>
+                        <a href=""><i style="transform: rotateY(180deg);"
+                                class="material-icons">chat_bubble_outline</i></a>
                         <a href=""><i class="material-icons">near_me</i></a>
                         <a href="" style="margin-left: auto; margin-right: 0.5rem;"><i class="material-icons"
                                 style="font-size: 35px;">bookmark_border</i></a>
                     </div>
                     <div class="likes-comments">
-                        <span>{{ post.likes }} like{{ post.likes|pluralize }}</span>
+                        <span id="like_count">{{ post.liked.all.count }}
+                            like{{ post.liked.all.count|pluralize }}</span>
                         <div class="timeline">
                             <a href="{% url 'postdetails' post.id %}"
                                 title="{{ post.posted | date:'F d, Y' }}">{{ post.posted|naturaltime }}</a>
@@ -57,7 +67,28 @@
         </div>
     </div>
 </div>
-{% block scripts %}
+<!-- {% block scripts %}
 <script src="{% static 'js/posts.js' %}"></script>
-{% endblock %}
+{% endblock %} -->
+<!-- <script>
+    $(document).on('click', '#like-button', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "postlike" %}',
+            data: {
+                postid: $('#like-button').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                action: 'post'
+            },
+            success: function (json) {
+                document.getElementById("like_count").innerHTML = json['result']
+                console.log(json)
+            },
+            error: function (xhr, errmsg, err) {
+
+            }
+        })
+    })
+</script> -->
 {% endblock %}
