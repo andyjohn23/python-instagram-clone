@@ -50,7 +50,7 @@ def register(request, *arg, **kwargs):
     user = request.user
 
     if user.is_authenticated:
-        return redirect('home')
+        return redirect('authentication:home')
     context = {}
 
     if request.POST:
@@ -64,7 +64,7 @@ def register(request, *arg, **kwargs):
             destination = get_redirect_if_exists(request)
             if destination:
                 return redirect(destination)
-            return redirect('home')
+            return redirect('authentication:home')
         else:
             context['register_form'] = form
 
@@ -73,7 +73,7 @@ def register(request, *arg, **kwargs):
 
 def logout_user(request, *args, **kwargs):
     logout(request)
-    return redirect("index")
+    return redirect("authentication:index")
 
 
 def login_user(request, *args, **kwargs):
@@ -82,7 +82,7 @@ def login_user(request, *args, **kwargs):
 
     user = request.user
     if user.is_authenticated:
-        return redirect('home')
+        return redirect('authentication:home')
 
     destination = get_redirect_if_exists(request)
     if request.POST:
@@ -96,7 +96,7 @@ def login_user(request, *args, **kwargs):
                 destination = get_redirect_if_exists(request)
                 if destination:
                     return redirect(destination)
-                return redirect('home')
+                return redirect('authentication:home')
 
         else:
             context['login_form'] = form
@@ -110,7 +110,7 @@ def login_userIndex(request, *args, **kwargs):
 
     user = request.user
     if user.is_authenticated:
-        return redirect('home')
+        return redirect('authentication:home')
 
     destination = get_redirect_if_exists(request)
     if request.POST:
@@ -124,7 +124,7 @@ def login_userIndex(request, *args, **kwargs):
                 destination = get_redirect_if_exists(request)
                 if destination:
                     return redirect(destination)
-                return redirect('home')
+                return redirect('authentication:home')
 
         else:
             context['login_form'] = form

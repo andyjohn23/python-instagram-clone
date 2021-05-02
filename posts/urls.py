@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name = "posts"
+
 urlpatterns = [
     path('newpost/', views.NewPost, name='newpost'),
     path('<uuid:post_id>/', views.PostDetail, name="postdetails"),

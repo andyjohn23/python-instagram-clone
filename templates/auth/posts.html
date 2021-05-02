@@ -46,13 +46,13 @@
                     <a href="">{{ post_item.user.username }}</a>
                     <p>{{ post_item.caption }}</p>
                 </div>
-                <a href="{% url 'postdetails' post_item.id %}" class="views">View all 2,000 comments</a>
+                <a href="{% url 'posts:postdetails' post_item.id %}" class="views">View all 2,000 comments</a>
                 <div class="user-comments">
                     <a href="">andyjohn</a>
                     <p>hello</p>
                 </div>
                 <div class="timeline">
-                    <a href="{% url 'postdetails' post_item.id %}"
+                    <a href="{% url 'posts:postdetails' post_item.id %}"
                         title="{{ post_item.posted | date:'F d, Y' }}">{{ post_item.posted|naturaltime }}</a>
                 </div>
             </div>
@@ -70,7 +70,7 @@
             <div class="modal-content rounded-5">
                 <div class="modal-body">
                     <div class="go-to-post">
-                        <button type="button" onclick="location.href='{% url 'postdetails' post_item.id %}'">Go to post</button>
+                        <button type="button" onclick="location.href='{% url 'posts:postdetails' post_item.id %}'">Go to post</button>
                         <hr class="horizontal-line">
                         <button type="button" onclick="location.href=''">Copy Link</button>
                         <hr class="horizontal-line">

@@ -48,7 +48,7 @@
                             <span id="liked">{{ post.total_likes }} like{{ post.total_likes|pluralize }}</span>
                         </div>
                         <div class="timeline">
-                            <a href="{% url 'postdetails' post.id %}"
+                            <a href="{% url 'posts:postdetails' post.id %}"
                                 title="{{ post.posted | date:'F d, Y' }}">{{ post.posted|naturaltime }}</a>
                         </div>
                     </div>

@@ -21,6 +21,7 @@ admin.site.index_title = "INSTAGRAM CLONE ADMIN"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('authentication.urls')),
+    path('', include('authentication.urls', namespace="authentication")),
+    path('post/', include('posts.urls', namespace="posts")),
     path('logout/', auth_views.logout_user, name='logout'),
 ]

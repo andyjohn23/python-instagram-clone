@@ -66,7 +66,7 @@
             var pk = $(this).attr('value');
             $.ajax({
                 type: 'POST',
-                url: '{% url "postlike" %}',
+                url: '{% url "posts:postlike" %}',
                 data: {
                     'post_id': pk,
                     'csrfmiddlewaretoken': '{{ csrf_token }}'
