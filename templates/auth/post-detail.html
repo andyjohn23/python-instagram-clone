@@ -35,8 +35,7 @@
                     <div class="like-comment-share">
                         <form>
                             {% csrf_token %}
-                            <button type="submit" style="margin-left: 10px;" id="like" name="post_id"
-                                value="{{ post.id }}"><i class="material-icons">favorite_border</i></button>
+                            <button type="submit" style="margin-left: 10px;"><i class="material-icons">favorite_border</i></button>
                         </form>
                         <a href=""><i style="transform: rotateY(180deg);"
                                 class="material-icons">chat_bubble_outline</i></a>

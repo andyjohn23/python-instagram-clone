@@ -141,56 +141,7 @@ def get_redirect_if_exists(request):
     return redirect
 
 
-@login_required(login_url='index')
-def PostDetail(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
 
-    template = loader.get_template('auth/post-detail.html')
-
-    context = {
-        'post': post
-    }
-
-    return HttpResponse(template.render(context, request))
-
-
-@login_required(login_url='index')
-def NewPost(request):
-    user = request.user.id
-
-    if request.method == "POST":
-        form = NewPostForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.cleaned_data.get('image')
-            caption = form.cleaned_data.get('caption')
-
-            created = Post.objects.get_or_create(
-                image=image, caption=caption, user_id=user)
-
-            return redirect('index')
-    else:
-        form = NewPostForm()
-
-    return render(request, 'auth/new-posts.html')
-
-
-def profile(request):
-    return render(request, 'auth/profile.html')
-
-
-@login_required(login_url='index')
-def like(request):
-    user = request.user
-    post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    is_liked = ""
-    if post.liked.filter(id=user.id).exists():
-        post.liked.remove(user)
-        is_liked = False
-    else:
-        post.liked.add(user)
-        is_liked = True
-
-    return JsonResponse({'form': is_liked})
 
 
 
