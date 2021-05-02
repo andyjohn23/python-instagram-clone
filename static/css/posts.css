@@ -40,6 +40,7 @@
   object-position: center;
   margin-right: 0;
   margin-left: -1.3rem;
+  pointer-events: none;
 }
 .card-body .likes-comments .views {
   margin-top: -0.75rem;
