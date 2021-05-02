@@ -2,6 +2,7 @@
 {% load static %}
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/new-posts.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/emojionearea.min.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -16,13 +17,20 @@
             </div>
             <div class="mb-4">
                 <label for="addCaption" class="form-label">Add caption</label>
-                <textarea class="form-control" name="caption" id="addCaption" rows="5" required></textarea>
+                <textarea id="myTextarea" class="form-control" name="caption" id="addCaption" rows="5"
+                    required></textarea>
             </div>
-            <input type="submit" value="Post" class="text-center"/>
+            <input type="submit" value="Post" class="text-center" />
         </form>
     </div>
 </div>
 {% block scripts %}
 <script src="{% static 'js/new-posts.js' %}"></script>
+<script src="{% static 'js/emojionearea.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#myTextarea").emojioneArea();
+    });
+</script>
 {% endblock %}
 {% endblock %}

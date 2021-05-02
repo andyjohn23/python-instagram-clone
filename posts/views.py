@@ -41,7 +41,7 @@ def NewPost(request):
             created = Post.objects.get_or_create(
                 image=image, caption=caption, user_id=user)
 
-            return redirect('index')
+            return redirect('authentication:index')
     else:
         form = NewPostForm()
 
