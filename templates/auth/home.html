@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+{% if post_items %}
 <div class="container home__content">
     <div class="users__posts">
         {% include 'auth/posts.html' %}
@@ -13,4 +14,17 @@
         {% include 'auth/home-user.html' %}
     </div>
 </div>
+{% else %}
+{% if posts == True %}
+<div class="container home__content">
+    <div class="users__posts">
+        {% include 'auth/posts.html' %}
+    </div>
+    <div class="home__userContent">
+        {% include 'auth/home-user.html' %}
+    </div>
+</div>
+{% endif %}
+<p style="margin-top: 8rem;">trial</p>
+{% endif %}
 {% endblock %}

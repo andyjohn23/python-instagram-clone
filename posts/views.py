@@ -87,27 +87,28 @@ def favourites(request, post_id):
 
     return HttpResponseRedirect(reverse('posts:postdetails', args=[post_id]))
 
+
 @login_required(login_url='index')
 def follow(request, option, username):
     user = request.user
     following = get_object_or_404(UserAccount, username=username)
 
-
     try:
-        p, created = Follow.objects.get_or_create(follower=user, following=following)
+        p, created = Follow.objects.get_or_create(
+            follower=user, following=following)
 
         if int(option) == 0:
             p.delete()
-            Stream.objects.filter(following=following, user=user).all().delete()
+            Stream.objects.filter(following=following,
+                                  user=user).all().delete()
         else:
-            posts = Post.objects.all().filter(user=following)[:5]
+            posts = Post.objects.all().filter(user=following)[:3]
 
             with transaction.atomic():
                 for post in posts:
-                    stream = Stream(post=post, user=user, date=post.posted, following=following)
+                    stream = Stream(post=post, user=user,
+                                    date=post.posted, following=following)
                     stream.save()
         return HttpResponseRedirect(reverse('profile', args=[username]))
     except UserAccount.DoesNotExist:
         return HttpResponseRedirect(reverse('profile', args=[username]))
-
-

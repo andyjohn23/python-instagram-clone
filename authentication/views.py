@@ -37,7 +37,8 @@ def userProfile(request, username):
     number_of_following = Follow.objects.filter(follower=user).count()
     number_of_followers = Follow.objects.filter(following=user).count()
 
-    follow_status = Follow.objects.filter(following=user, follower=request.user).exists()
+    follow_status = Follow.objects.filter(
+        following=user, follower=request.user).exists()
 
     template = loader.get_template('auth/profile.html')
 
@@ -168,3 +169,12 @@ def get_redirect_if_exists(request):
             redirect = str(request.GET.get('next'))
 
     return redirect
+
+
+class ProfileList(ListView):
+    model = Profile
+    template_name = 'home-user.html'
+    context_object_name = 'profiles'
+
+    def get_queryset(self):
+        return Profile.objects.all().exclude(user=self.request.user)
