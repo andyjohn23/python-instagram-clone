@@ -20,7 +20,11 @@
                     aria-hidden="true"></i></button>
             {% else %}
             {% if follow_status == True %}
-            <button onclick="location.href='{% url 'follow' profile.user 0 %}'" class="btn profile-follow-btn">UnFollow</button>
+            <button onclick="location.href=''" class="btn profile-message-btn">Message</button>
+            <button class="btn profile-unfollow-btn">
+                <i class="material-icons">person</i>
+                <i class="material-icons">done</i>
+            </button>
             {% else %}
             <button onclick="location.href='{% url 'follow' profile.user 1 %}'" class="btn profile-follow-btn">Follow</button>
             {% endif %}

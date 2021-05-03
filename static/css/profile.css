@@ -75,6 +75,50 @@ img {
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: none;
 }
+.profile-unfollow-btn {
+  font-size: 15px;
+  font-family: sans-serif;
+  line-height: 2;
+  border: 0.3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 0 1rem;
+  outline: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  gap: 0;
+}
+.profile-unfollow-btn i {
+  font-size: 17px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.7);
+}
+.profile-unfollow-btn:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
+.profile-message-btn {
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: bold;
+  line-height: 2;
+  border: 0.3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 0 1rem;
+  outline: none;
+  box-shadow: none;
+  color: black;
+}
+.profile-message-btn:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
 .profile-follow-btn {
   font-size: 15px;
   font-family: sans-serif;
