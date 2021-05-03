@@ -58,7 +58,9 @@ def userProfile(request, username):
 @login_required(login_url='index')
 def home(request):
     user = request.user
+    suggest_users = Profile.objects.all().exclude(user=user)
     posts = Stream.objects.filter(user=user)
+    
 
     group_ids = []
 
@@ -70,7 +72,8 @@ def home(request):
 
     template = loader.get_template('auth/home.html')
     context = {
-        'post_items': post_items
+        'post_items': post_items,
+        'suggest_users': suggest_users
     }
 
     return HttpResponse(template.render(context, request))
@@ -173,8 +176,8 @@ def get_redirect_if_exists(request):
 
 class ProfileList(ListView):
     model = Profile
-    template_name = 'home-user.html'
+    template_name = 'auth/home.html'
     context_object_name = 'profiles'
 
     def get_queryset(self):
-        return Profile.objects.all().exclude(user=self.request.user)
+        return UserAccount.objects.all().exclude(user=self.request.user)

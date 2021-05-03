@@ -25,6 +25,8 @@
     </div>
 </div>
 {% endif %}
-<p style="margin-top: 8rem;">trial</p>
+{% for profile in suggest_users %}
+<p style="margin-top: 10rem;"><a href="{% url 'profile' profile.user %}">{{ profile }}</a></p>
+{% endfor %}
 {% endif %}
 {% endblock %}
