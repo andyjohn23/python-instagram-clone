@@ -36,11 +36,19 @@
   margin-bottom: 1rem;
 }
 .suggestion__container {
+  display: flex;
+  align-items: center;
   background-color: white;
   max-width: 600px;
   width: 600px;
   border: 0.5px solid rgba(0, 0, 0, 0.2);
-
+}
+.suggestion__container .userProfile {
+  display: flex;
+  align-items: center;
+}
+.suggestion__container .follow__button {
+  margin-left: auto;
 }
 /* smaller phones media query */
 @media screen and (min-device-width: 280px) and (max-device-width: 653px) {
