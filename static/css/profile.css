@@ -114,6 +114,10 @@ img {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.4);
 }
+.post-saved-header .is-active {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: bolder;
+}
 .post-saved-header i {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.4);

@@ -33,15 +33,15 @@
 </div>
 <hr class="horizontal-line">
 <div class="post-saved-header">
-    <a href="{% url 'profile' request.user %}">
+    <a href="{% url 'profile' profile.user %}">
         <div class="posts {% if url_name == 'profile' %}is-active{% endif %}">
-            <i class="material-icons">border_all</i>
+            <i class="material-icons {% if url_name == 'profile' %}is-active{% endif %}">border_all</i>
             <p>POSTS</p>
         </div>
     </a>
-    <a href="{% url 'profile' request.user %}">
+    <a href="{% url 'favourites' profile.user %}">
         <div class="saved {% if url_name == 'favourites' %}is-active{% endif %}">
-            <i class="material-icons">turned_in_not</i>
+            <i class="material-icons {% if url_name == 'favourites' %}is-active{% endif %}">turned_in_not</i>
             <p>SAVED</p>
         </div>
     </a>
