@@ -110,8 +110,13 @@ img {
   margin: 0 auto;
   margin-top: 0.5rem;
 }
+.post-saved-header a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.4);
+}
 .post-saved-header i {
   font-size: 18px;
+  color: rgba(0, 0, 0, 0.4);
 }
 .post-saved-header p {
   font-size: 13px;
