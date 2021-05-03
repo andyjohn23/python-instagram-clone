@@ -57,10 +57,6 @@ def NewPost(request):
     return render(request, 'auth/new-posts.html')
 
 
-def profile(request):
-    return render(request, 'auth/profile.html')
-
-
 @login_required(login_url='index')
 def like(request):
     user = request.user

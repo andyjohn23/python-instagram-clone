@@ -9,7 +9,7 @@
         <a href="">
             <i class="material-icons">account_circle</i>
         </a>
-        <a href="{% url 'posts:profile' %}">
+        <a href="{% url 'profile' request.user %}">
             {{ user.username }}
         </a>
     </div>

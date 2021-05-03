@@ -46,7 +46,7 @@ class Post(models.Model):
         return self.liked.all().count()
 
     def get_absolute_url(self):
-        return reverse('postdetails', args=[self.id])
+        return reverse('posts:postdetails', args=[self.id])
 
     def image_tag(self):
         return mark_safe('<img src="{}" width="40" height="40" />' .format(self.image.url))
