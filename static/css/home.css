@@ -47,6 +47,18 @@
 .suggestion__container .userProfile {
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+.suggestion__container .userProfile i {
+  font-size: 50px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.2);
+}
+.suggestion__container .userProfile .username a {
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.85);
 }
 .suggestion__container .follow__button {
   margin-left: auto;
