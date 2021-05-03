@@ -100,12 +100,11 @@
         <div class="modal-content">
             <div class="user-profile">
                 <i class="material-icons">account_circle</i>
-                <h1 class="profile-user-name">{{ profile.user }}</h1>
-                <p>Unfollow @{{ profile.user }}?</p>
+                <p>Unfollow &#64;{{ profile.user }}?</p>
             </div>
             <div class="modal-body">
                 <div class="go-to-post">
-                    <button type="button" style="color: #F33B3B;"
+                    <button type="button" style="color: #F33B3B; font-weight: bold;"
                         onclick="location.href='{% url 'follow' profile.user 0 %}'">Unfollow</button>
                     <hr class="modal-horizontal-line">
                     <button type="button" data-bs-dismiss="modal">Cancel</button>
