@@ -24,9 +24,6 @@
 }
 .suggest__container {
   margin-top: 5rem;
-  display: block;
-  margin-left: 0 auto;
-  margin-right: 0 auto;
 }
 .suggest__container h1 {
   font-size: 16px;
@@ -37,16 +34,21 @@
 }
 .suggestion__container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  flex-direction: row;
+  height: 0;
   background-color: white;
+  width: 400px;
   max-width: 600px;
-  width: 600px;
   height: auto;
   border: 0.5px solid rgba(0, 0, 0, 0.2);
-  padding: 15px;
+  padding: 12px;
 }
 .suggestion__container .userProfile {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   gap: 8px;
 }
 .suggestion__container .userProfile i {
@@ -111,6 +113,12 @@
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
   .home__content .home__userContent {
     display: none;
+  }
+  .suggest__container {
+    margin-left: -55.5rem;
+  }
+  .suggestion__container {
+    width: 100vw;
   }
 }
 /* ipad media query */
