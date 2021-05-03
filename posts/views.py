@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView
 from .models import Post, Stream, Likes
+from authentication.models import Profile
 from django.template import loader
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
@@ -18,11 +19,19 @@ from django.views.generic import TemplateView
 @login_required(login_url='index')
 def PostDetail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
+    favourite = False
+
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+
+        if profile.favourites.filter(id=post_id).exists():
+            favourite = True
 
     template = loader.get_template('auth/post-detail.html')
 
     context = {
-        'post': post
+        'post': post,
+        'favourite': favourite
     }
 
     return HttpResponse(template.render(context, request))
@@ -65,3 +74,20 @@ def like(request):
         is_liked = True
 
     return JsonResponse({'form': is_liked})
+
+
+@login_required(login_url='index')
+def favourites(request, post_id):
+    user = request.user
+    post = Post.objects.get(id=post_id)
+    profile = Profile.objects.get(user=user)
+
+    if profile.favourites.filter(id=post_id).exists():
+        profile.favourites.remove(post)
+
+    else:
+        profile.favourites.add(post)
+
+    return HttpResponseRedirect(reverse('posts:postdetails', args=[post_id]))
+
+

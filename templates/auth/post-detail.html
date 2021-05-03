@@ -35,13 +35,19 @@
                     <div class="like-comment-share">
                         <form>
                             {% csrf_token %}
-                            <button type="submit" style="margin-left: 10px;"><i class="material-icons">favorite_border</i></button>
+                            <button type="submit" style="margin-left: 10px;"><i
+                                    class="material-icons">favorite_border</i></button>
                         </form>
                         <a href=""><i style="transform: rotateY(180deg);"
                                 class="material-icons">chat_bubble_outline</i></a>
                         <a href=""><i class="material-icons">near_me</i></a>
-                        <a href="" style="margin-left: auto; margin-right: 0.5rem;"><i class="material-icons"
-                                style="font-size: 35px;">bookmark_border</i></a>
+                        {% if favourite is True %}
+                        <a href="{% url 'posts:postfavourite' post.id %}" style="margin-left: auto;"><i
+                                class="material-icons" style="font-size: 35px;">bookmark</i></a>
+                        {% else %}
+                        <a href="{% url 'posts:postfavourite' post.id %}" style="margin-left: auto;"><i
+                                class="material-icons" style="font-size: 35px;">bookmark_border</i></a>
+                        {% endif %}
                     </div>
                     <div class="likes-comments">
                         <div class="like-counts">

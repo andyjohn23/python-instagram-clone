@@ -34,8 +34,13 @@
                 {% endif %}
                 <a href=""><i style="transform: rotateY(180deg);" class="material-icons">chat_bubble_outline</i></a>
                 <a href=""><i class="material-icons">near_me</i></a>
-                <a href="" style="margin-left: auto;"><i class="material-icons"
-                        style="font-size: 35px;">turned_in_not</i></a>
+                {% if favourite is True %}
+                <a href="{% url 'posts:postfavourite' post_item.id %}" style="margin-left: auto;"><i class="material-icons"
+                        style="font-size: 35px;">bookmark</i></a>
+                {% else %}
+                <a href="{% url 'posts:postfavourite' post_item.id %}" style="margin-left: auto;"><i class="material-icons"
+                    style="font-size: 35px;">bookmark_border</i></a>
+                {% endif %}
             </div>
             <div class="likes-comments">
                 <div class="like-counts">

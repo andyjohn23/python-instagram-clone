@@ -14,15 +14,33 @@ from posts.models import Post, Stream, Likes
 from django.template import loader
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
+from django.urls import resolve
 # from django.views.generic import CreateView
 # from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-# from .forms import ProjectSearchForm, RatesForm
-# from .serializer import userSerializer, projectSerializer
-# from rest_framework import status
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
 
 # Create your views here.
+
+
+@login_required(login_url='index')
+def userProfile(request, username):
+    user = get_object_or_404(UserAccount, username=username)
+    profile = Profile.objects.get(user=user)
+    url_name = resolve(request.path).url_name
+
+    if url_name == 'profile':
+        posts = Post.objects.filter(user=user).order_by('-posted')
+
+    else:
+        posts = profile.favourites.all()
+
+    template = loader.get_template('auth/profile.html')
+
+    context = {
+        'posts': posts,
+        'profile': profile
+    }
+
+    return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='index')
@@ -139,9 +157,3 @@ def get_redirect_if_exists(request):
             redirect = str(request.GET.get('next'))
 
     return redirect
-
-
-
-
-
-
