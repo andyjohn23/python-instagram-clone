@@ -44,12 +44,12 @@
 </div>
 
 <div class="container-fluid">
+    {% if posts %}
     <div class="gallery">
         {% for post in posts %}
         <a href="{{ post.get_absolute_url }}">
             <div class="gallery-item" tabindex="0">
-                <img src="{{ post.image.url }}"
-                    class="gallery-image" alt="postimg">
+                <img src="{{ post.image.url }}" class="gallery-image" alt="postimg">
                 <div class="gallery-item-info">
                     <ul>
                         <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fa fa-heart"
@@ -62,10 +62,12 @@
         </a>
         {% endfor %}
     </div>
-    <!-- <div class="no-posts">
+    {% else %}
+    <div class="no-posts">
         <i class="material-icons">photo_camera</i>
         <p>No Posts Yet</p>
-    </div> -->
+    </div>
+    {% endif %}
 </div>
 <div class="footer">
     {% include 'auth/footer.html' %}

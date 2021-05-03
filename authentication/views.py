@@ -37,7 +37,8 @@ def userProfile(request, username):
 
     context = {
         'posts': posts,
-        'profile': profile
+        'profile': profile,
+        'url_name': url_name
     }
 
     return HttpResponse(template.render(context, request))
