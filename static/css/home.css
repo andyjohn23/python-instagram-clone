@@ -26,7 +26,7 @@
   margin-top: 5rem;
   display: block;
   margin-left: 0 auto;
-  margin-right:0 auto;
+  margin-right: 0 auto;
 }
 .suggest__container h1 {
   font-size: 16px;
@@ -50,6 +50,28 @@
 }
 .suggestion__container .follow__button {
   margin-left: auto;
+}
+.suggestion__container .follow__button button {
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: bold;
+  line-height: 2;
+  border: none;
+  border-radius: 2px;
+  padding: 0 1rem;
+  outline: none;
+  box-shadow: none;
+  background-color: #0e93cd;
+  color: white;
+}
+.suggestion__container .follow__button button:hover {
+  color: white;
+}
+.suggestion__container .follow__button button:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: none;
+  box-shadow: none;
 }
 /* smaller phones media query */
 @media screen and (min-device-width: 280px) and (max-device-width: 653px) {
