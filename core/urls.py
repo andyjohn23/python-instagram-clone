@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from authentication import views as auth_views
+from posts import views as post_views
 admin.site.site_header = "INSTAGRAM CLONE"
 admin.site.index_title = "INSTAGRAM CLONE ADMIN"
 
@@ -26,4 +27,5 @@ urlpatterns = [
     path('logout/', auth_views.logout_user, name='logout'),
     path('<username>/', auth_views.userProfile, name='profile'),
     path('<username>/saved/', auth_views.userProfile, name='favourites'),
+    path('<username>/follow/<option>', post_views.follow, name='follow'),
 ]
