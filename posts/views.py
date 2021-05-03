@@ -94,20 +94,20 @@ def follow(request, option, username):
 
 
     try:
-        created = Follow.objects.get_or_create(follower=user, following=following)
+        p, created = Follow.objects.get_or_create(follower=user, following=following)
 
         if int(option) == 0:
-            created.delete()
+            p.delete()
             Stream.objects.filter(following=following, user=user).all().delete()
         else:
             posts = Post.objects.all().filter(user=following)[:5]
 
             with transaction.atomic():
                 for post in posts:
-                    Stream = Stream(post=post, user=user, date=post.posted, following=following)
-                    Stream.save()
-        return HttpResponseRedirect('profile', args=[username])
+                    stream = Stream(post=post, user=user, date=post.posted, following=following)
+                    stream.save()
+        return HttpResponseRedirect(reverse('profile', args=[username]))
     except UserAccount.DoesNotExist:
-        return HttpResponseRedirect('profile', args=[username])
+        return HttpResponseRedirect(reverse('profile', args=[username]))
 
 

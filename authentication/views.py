@@ -37,6 +37,8 @@ def userProfile(request, username):
     number_of_following = Follow.objects.filter(follower=user).count()
     number_of_followers = Follow.objects.filter(following=user).count()
 
+    follow_status = Follow.objects.filter(following=user, follower=request.user).exists()
+
     template = loader.get_template('auth/profile.html')
 
     context = {
@@ -45,7 +47,8 @@ def userProfile(request, username):
         'url_name': url_name,
         'number_of_post': number_of_post,
         'number_of_following': number_of_following,
-        'number_of_followers': number_of_followers
+        'number_of_followers': number_of_followers,
+        'follow_status': follow_status
     }
 
     return HttpResponse(template.render(context, request))
