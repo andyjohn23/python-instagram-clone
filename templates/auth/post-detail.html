@@ -15,10 +15,10 @@
             <div class="col-md-4">
                 <div class="card-body">
                     <div class="card-title">
-                        <a href="">
+                        <a href="{% url 'profile' post.user %}">
                             <i class="material-icons">account_circle</i>
                         </a>
-                        <a href="">{{ post.user.username|truncatechars:9 }}</a>
+                        <a href="{% url 'profile' post.user %}">{{ post.user.username|truncatechars:9 }}</a>
                         <i class="material-icons" style="font-size: 4px; color: black;">brightness_1</i>
                         <a>Following</a>
                         <div class="view-more">
@@ -26,9 +26,10 @@
                         </div>
                     </div>
                     <div class="users-comments">
-                        <a href=""><i class="material-icons">account_circle</i></a>
+                        <a href="{% url 'profile' post.user %}"><i class="material-icons">account_circle</i></a>
                         <p>
-                            <a href="">{{ post.user.username|truncatechars:10 }}</a>&nbsp;{{ post.caption }}<br>
+                            <a
+                                href="{% url 'profile' post.user %}">{{ post.user.username|truncatechars:10 }}</a>&nbsp;{{ post.caption }}<br>
                             <span>{{ post.posted|naturaltime }}</span>
                         </p>
                     </div>

@@ -6,7 +6,7 @@ class UserAccountAdmin(admin.ModelAdmin):
     # prepopulated_fields = {'slug': ('categoryname',)}
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'image', 'url', 'get_favourites', 'description', 'created', 'last_login']
+    list_display = ['user', 'image', 'url', 'get_favourites', 'bio', 'created', 'last_login']
     # prepopulated_fields = {'slug': ('categoryname',)}
 
 # Register your models here.

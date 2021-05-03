@@ -13,22 +13,30 @@
             <i class="material-icons">account_circle</i>
         </div>
         <div class="profile-user-settings">
-            <h1 class="profile-user-name">janedoehhhhhhh</h1>
+            <h1 class="profile-user-name">{{ profile.user }}</h1>
+            {% if user.is_authenticated and user == profile.user %}
             <a href="" style="color: black;"><button class="btn profile-edit-btn">Edit Profile</button></a>
             <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fa fa-cog"
                     aria-hidden="true"></i></button>
+            {% else %}
+            {% endif %}
         </div>
         <div class="profile-stats">
             <ul>
-                <li><span class="profile-stat-count">100</span> posts</li>
-                <li><span class="profile-stat-count">100</span> followers</li>
-                <li><span class="profile-stat-count">100</span> following</li>
+                <li><span class="profile-stat-count">{{ number_of_post }}</span>&nbsp;post{{ number_of_post|pluralize }}
+                </li>
+                <li><span
+                        class="profile-stat-count">{{ number_of_followers }}</span>&nbsp;follower{{ number_of_followers|pluralize }}
+                </li>
+                <li><span class="profile-stat-count">{{ number_of_following }}</span>&nbsp;following</li>
             </ul>
         </div>
+        {% if profile.bio %}
         <div class="profile-bio">
-            <p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing
-                elit 📷✈️🏕️</p>
+            <p><span class="profile-real-name"></span>{{ profile.bio }}</p>
         </div>
+        {% else %}
+        {% endif %}
     </div>
 </div>
 <hr class="horizontal-line">
@@ -39,12 +47,15 @@
             <p>POSTS</p>
         </div>
     </a>
+    {% if user.is_authenticated and user == profile.user %}
     <a href="{% url 'favourites' profile.user %}">
         <div class="saved {% if url_name == 'favourites' %}is-active{% endif %}">
             <i class="material-icons {% if url_name == 'favourites' %}is-active{% endif %}">turned_in_not</i>
             <p>SAVED</p>
         </div>
     </a>
+    {% else %}
+    {% endif %}
 </div>
 
 <div class="container-fluid">
@@ -59,7 +70,7 @@
                         <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fa fa-heart"
                                 aria-hidden="true"></i>&nbsp;{{ post.liked.all.count }}</li>
                         <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i
-                                class="fa fa-comment" aria-hidden="true"></i>&nbsp;1</li>
+                                class="fa fa-comment" aria-hidden="true"></i>&nbsp;0</li>
                     </ul>
                 </div>
             </div>

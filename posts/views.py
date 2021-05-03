@@ -8,11 +8,12 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView
-from .models import Post, Stream, Likes
-from authentication.models import Profile
+from .models import Post, Stream, Likes, Follow
+from authentication.models import Profile, UserAccount
 from django.template import loader
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
+from django.db import transaction
 # Create your views here.
 
 
@@ -85,5 +86,28 @@ def favourites(request, post_id):
         profile.favourites.add(post)
 
     return HttpResponseRedirect(reverse('posts:postdetails', args=[post_id]))
+
+@login_required(login_url='index')
+def follow(request, option, username):
+    user = request.user
+    following = get_object_or_404(UserAccount, username=username)
+
+
+    try:
+        created = Follow.objects.get_or_create(follower=user, following=following)
+
+        if int(option) == 0:
+            created.delete()
+            Stream.objects.filter(following=following, user=user).all().delete()
+        else:
+            posts = Post.objects.all().filter(user=following)[:5]
+
+            with transaction.atomic():
+                for post in posts:
+                    Stream = Stream(post=post, user=user, date=post.posted, following=following)
+                    Stream.save()
+        return HttpResponseRedirect('profile', args=[username])
+    except UserAccount.DoesNotExist:
+        return HttpResponseRedirect('profile', args=[username])
 
 

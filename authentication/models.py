@@ -66,7 +66,7 @@ class Profile(models.Model):
     image = CloudinaryField('profile-photo', default='default-avatar.jpg',)
     url = models.URLField(max_length=300, blank=True)
     favourites = models.ManyToManyField(Post)
-    description = models.TextField(max_length=200, blank=True)
+    bio = models.TextField(max_length=200, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
 

@@ -10,10 +10,10 @@
     {% for post_item in post_items %}
     <div class="card mb-5">
         <div class="card-header">
-            <a href="">
+            <a href="{% url 'profile' post_item.user %}">
                 <i class="material-icons">account_circle</i>
             </a>
-            <a href="">{{ post_item.user.username }}</a>
+            <a href="{% url 'profile' post_item.user %}">{{ post_item.user.username }}</a>
             <div class="view-more">
                 <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#postModal{{ post_item.id }}"><i
                         class="material-icons">more_horiz</i></a>

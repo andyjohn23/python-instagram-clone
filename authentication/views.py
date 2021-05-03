@@ -10,7 +10,7 @@ from django.contrib import messages
 from .models import UserAccount, Profile
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView
-from posts.models import Post, Stream, Likes
+from posts.models import Post, Stream, Likes, Follow
 from django.template import loader
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
@@ -33,12 +33,19 @@ def userProfile(request, username):
     else:
         posts = profile.favourites.all()
 
+    number_of_post = Post.objects.filter(user=user).count()
+    number_of_following = Follow.objects.filter(follower=user).count()
+    number_of_followers = Follow.objects.filter(following=user).count()
+
     template = loader.get_template('auth/profile.html')
 
     context = {
         'posts': posts,
         'profile': profile,
-        'url_name': url_name
+        'url_name': url_name,
+        'number_of_post': number_of_post,
+        'number_of_following': number_of_following,
+        'number_of_followers': number_of_followers
     }
 
     return HttpResponse(template.render(context, request))
