@@ -280,6 +280,44 @@ img {
   font-weight: 500;
   font-family: sans-serif;
 }
+.modal:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: " ";
+  height: 30%;
+}
+.modal-content{
+  width: 100%;
+  -webkit-border-radius: 15px !important;
+  -moz-border-radius: 15px !important;
+  border-radius: 15px !important; 
+}
+.modal-content .user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal-body .go-to-post button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  gap: 0;
+  color: black;
+  width: 100%;
+  height: auto;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: sans-serif;
+  background: transparent;
+  outline: none;
+  border: none;
+}
+.modal-horizontal-line {
+  width: 100%;
+}
 
 
 /* Loader */

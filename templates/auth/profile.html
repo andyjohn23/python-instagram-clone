@@ -21,12 +21,13 @@
             {% else %}
             {% if follow_status == True %}
             <button onclick="location.href=''" class="btn profile-message-btn">Message</button>
-            <button class="btn profile-unfollow-btn">
+            <button class="btn profile-unfollow-btn" data-bs-toggle="modal" data-bs-target="#unfollowModal">
                 <i class="material-icons">person</i>
                 <i class="material-icons">done</i>
             </button>
             {% else %}
-            <button onclick="location.href='{% url 'follow' profile.user 1 %}'" class="btn profile-follow-btn">Follow</button>
+            <button onclick="location.href='{% url 'follow' profile.user 1 %}'"
+                class="btn profile-follow-btn">Follow</button>
             {% endif %}
             {% endif %}
         </div>
@@ -92,6 +93,26 @@
         <p>No Posts Yet</p>
     </div>
     {% endif %}
+</div>
+<!-- Modal -->
+<div class="modal fade" id="unfollowModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="user-profile">
+                <i class="material-icons">account_circle</i>
+                <h1 class="profile-user-name">{{ profile.user }}</h1>
+                <p>Unfollow @{{ profile.user }}?</p>
+            </div>
+            <div class="modal-body">
+                <div class="go-to-post">
+                    <button type="button" style="color: #F33B3B;"
+                        onclick="location.href='{% url 'follow' profile.user 0 %}'">Unfollow</button>
+                    <hr class="modal-horizontal-line">
+                    <button type="button" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="footer">
     {% include 'auth/footer.html' %}
