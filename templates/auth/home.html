@@ -25,8 +25,26 @@
     </div>
 </div>
 {% endif %}
-{% for profile in suggest_users %}
+<div class="container d-flex justify-content-center">
+    <div class="suggest__container">
+        <h1>Suggestions For You</h1>
+        <div class="suggestion__container">
+            <div class="userProfile">
+                <i class="material-icons">account_circle</i>
+                <div class="username">
+                    <a href="">andyjohn</a>
+                    <p>Suggested for you</p>
+                </div>
+            </div>
+            <div class="follow__button">
+                <button type="button">Follow</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- {% for profile in suggest_users %}
 <p style="margin-top: 10rem;"><a href="{% url 'profile' profile.user %}">{{ profile }}</a></p>
-{% endfor %}
+<button type="button" onclick="location.href='{% url 'follow' profile.user 0 %}'">Follow</button>
+{% endfor %} -->
 {% endif %}
 {% endblock %}
