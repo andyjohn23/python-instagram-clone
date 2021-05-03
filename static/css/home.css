@@ -46,7 +46,6 @@
 }
 .suggestion__container .userProfile {
   display: flex;
-  align-items: center;
   gap: 8px;
 }
 .suggestion__container .userProfile i {
@@ -59,6 +58,12 @@
   font-family: sans-serif;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.85);
+}
+.suggestion__container .userProfile .username p {
+  font-size: 13px;
+  font-family: sans-serif;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.35);
 }
 .suggestion__container .follow__button {
   margin-left: auto;
