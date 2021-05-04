@@ -8,6 +8,10 @@ from django.db.models.signals import post_save
 from django.conf import settings
 from django.utils.html import mark_safe
 from .utils import get_filtered_image
+from io import BytesIO
+import numpy as np
+from django.core.files.base import ContentFile
+import cloudinary
 
 
 class Tag(models.Model):
@@ -44,7 +48,7 @@ class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     caption = models.TextField(max_length=1500, verbose_name="caption")
     image = CloudinaryField('post-image', blank=False)
-    action = models.CharField(max_length=50, choices=ACTION_CHOICES)
+    action = models.CharField(max_length=50, choices=ACTION_CHOICES, default='no filter')
     posted = models.DateTimeField(default=timezone.now)
     tags = models.ManyToManyField(Tag, related_name="tag", blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -66,26 +70,26 @@ class Post(models.Model):
     def __str__(self):
         return self.caption
 
-        def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
 
-            pil_img = Image.open(self.image)
+        pil_img = cloudinary.CloudinaryImage.open(self.image)
 
-            #  convert image to an array for processing
-            cv_img = np.array(pil_img)
-            img = get_filtered_image(cv_img, self.action)
+        #  convert image to an array for processing
+        cv_img = np.array(pil_img)
+        img = get_filtered_image(cv_img, self.action)
 
-            #  convert back to image
-            img_pil = Image.fromarray(img)
+        #  convert back to image
+        img_pil = cloudinary.CloudinaryImage.fromarray(img)
 
-            #  saving
-            buffer = BytesIO()
-            img_pil.save(buffer, format='png')
-            image_png = buffer.getvalue()
+        #  saving
+        buffer = BytesIO()
+        img_pil.save(buffer, format='png')
+        image_png = buffer.getvalue()
 
-            self.image.save(str(self.image), ContentFile(
-                image_png), save=False)
+        self.image.save(str(self.image), ContentFile(
+            image_png), save=False)
 
-            super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ('-posted',)

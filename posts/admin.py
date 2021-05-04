@@ -8,7 +8,7 @@ class PostsImageInline(admin.TabularInline):
 
 
 class PostsAdmin(admin.ModelAdmin):
-    list_display = ['caption', 'image_tag', 'user', 'posted', 'total_likes', 'like_count']
+    list_display = ['caption', 'image_tag', 'action', 'user', 'posted', 'total_likes', 'like_count']
     # readonly_fields = ['caption', 'tags',
     #                    'image_tag', 'user', 'posted', 'likes']
     inlines = [PostsImageInline]

@@ -8,6 +8,7 @@
 .post-form form {
   padding: 15px;
   margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 .post-form form label {
   font-size: 15px;
@@ -44,7 +45,7 @@
   box-shadow: none;
 }
 .post-form form input[type="submit"] {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   width: 50%;
   height: 33px;
   font-size: 14px;
@@ -58,6 +59,9 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.post-form .not-visible {
+  display: none;
 }
 /* smaller phones media query */
 @media screen and (min-device-width: 280px) and (max-device-width: 653px) {

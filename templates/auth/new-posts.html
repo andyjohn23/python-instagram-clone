@@ -8,17 +8,26 @@
 {% block content %}
 <div class="container d-flex justify-content-center">
     <div class="post-form">
-        <form method="POST" enctype="multipart/form-data" name="myform" onsubmit="return validation()">
+        <div id="alert-box"></div>
+        <form id="post-form" method="POST" enctype="multipart/form-data" name="myform" onsubmit="return validation()">
             {% csrf_token %}
             <h2>ADD A NEW POST</h2>
             <div class="mb-4">
                 <label class="form-label">Choose photo</label><br>
-                <input type="file" name="image">
+                <input type="file" name="image" id="uploaded-image">
+                <div id="img-box"></div>
+            </div>
+            <div class="not-visible" id="btn-box">
+                <button type="submit" class="btn btn-primary" data-filter="NO_FILTER">No filter</button>
+                <button type="submit" class="btn btn-primary" data-filter="COLORIZED">Colorize</button>
+                <button type="submit" class="btn btn-primary" data-filter="GRAYSCALE">Grayscale</button>
+                <button type="submit" class="btn btn-primary" data-filter="BLURRED">Blur</button>
+                <button type="submit" class="btn btn-primary" data-filter="BINARY">Binary</button>
+                <button type="submit" class="btn btn-primary" data-filter="INVERT">Invert</button>
             </div>
             <div class="mb-4">
                 <label for="addCaption" class="form-label">Add caption</label>
-                <textarea id="myTextarea" class="form-control" name="caption" id="addCaption" rows="5"
-                    required></textarea>
+                <textarea id="myTextarea" class="form-control" name="caption" rows="5" required></textarea>
             </div>
             <input type="submit" value="Post" class="text-center" />
         </form>
@@ -31,6 +40,77 @@
     $(document).ready(function () {
         $("#myTextarea").emojioneArea();
     });
+</script>
+<script type="text/javascript">
+    const alertBox = document.getElementById('alert-box')
+    const imgBox = document.getElementById('img-box')
+    const form = document.getElementById('post-form')
+
+    const uploadedImage = document.getElementById('uploaded-image')
+    const myTextArea = document.getElementById('myTextarea')
+    const btnBox = document.getElementById('btn-box')
+
+    const btns = [...btnBox.children]
+
+    const csrf = document.getElementsByName('csrfmiddlewaretoken')
+    console.log(csrf)
+
+    const url = ""
+
+    const handleAlert = (type, text) => {
+        alertBox.innerHTML = `<div class="alert alert-${type}" role="alert"> ${text} </div>`
+    }
+
+    uploadedImage.addEventListener('change', () => {
+        const img_data = uploadedImage.files[0]
+        const url = URL.createObjectURL(img_data)
+        console.log(url)
+        imgBox.innerHTML = `<img src="${url}" width="200px"; height="130px"; style="object-fit: cover;">`
+        btnBox.classList.remove('not-visible')
+    })
+
+    let id = null
+    let filter = null
+    btns.forEach(btn => btn.addEventListener('click', () => {
+        filter = btn.getAttribute('data-filter')
+        console.log(filter)
+
+    }))
+
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+
+        const fd = new FormData()
+        fd.append('csrfmiddlewaretoken', csrf[0].value)
+        fd.append('uploaded-image', uploadedImage.files[0])
+        fd.append('myTextarea', myTextArea.value)
+        fd.append('action', filter)
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            enctype: 'multpart/form-data',
+            data: fd,
+            success: function (response) {
+                console.log(response)
+                const sText = `successfully uploaded ${response.myTextArea}`
+                handleAlert('success', sText)
+                setTimeout(() => {
+                    alertBox.innerHTML = ""
+                    imgBox.innerHTML = ""
+                    myTextArea = ""
+                }, 3000)
+            },
+            error: function (error) {
+                console.log(error)
+                handleAlert('danger', 'something went wrong..!!!')
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        })
+    })
+    console.log(form)
 </script>
 {% endblock %}
 {% endblock %}
