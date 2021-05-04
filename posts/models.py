@@ -7,11 +7,6 @@ from django.utils.text import slugify
 from django.db.models.signals import post_save
 from django.conf import settings
 from django.utils.html import mark_safe
-from .utils import get_filtered_image
-from io import BytesIO
-import numpy as np
-from django.core.files.base import ContentFile
-import cloudinary
 
 
 class Tag(models.Model):
@@ -34,21 +29,10 @@ class Tag(models.Model):
         return super().save(*args, **kwargs)
 
 
-ACTION_CHOICES = (
-    ('NO_FILTER', 'no filter'),
-    ('COLORIZED', 'colorized'),
-    ('GRAYSCALE', 'grayscale'),
-    ('BLURRED', 'blurred'),
-    ('BINARY', 'binary'),
-    ('INVERT', 'invert')
-)
-
-
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     caption = models.TextField(max_length=1500, verbose_name="caption")
     image = CloudinaryField('post-image', blank=False)
-    action = models.CharField(max_length=50, choices=ACTION_CHOICES, default='no filter')
     posted = models.DateTimeField(default=timezone.now)
     tags = models.ManyToManyField(Tag, related_name="tag", blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -69,44 +53,19 @@ class Post(models.Model):
 
     def __str__(self):
         return self.caption
-
-    def save(self, *args, **kwargs):
-
-        pil_img = cloudinary.CloudinaryImage.open(self.image)
-
-        #  convert image to an array for processing
-        cv_img = np.array(pil_img)
-        img = get_filtered_image(cv_img, self.action)
-
-        #  convert back to image
-        img_pil = cloudinary.CloudinaryImage.fromarray(img)
-
-        #  saving
-        buffer = BytesIO()
-        img_pil.save(buffer, format='png')
-        image_png = buffer.getvalue()
-
-        self.image.save(str(self.image), ContentFile(
-            image_png), save=False)
-
-        super().save(*args, **kwargs)
-
+    
     class Meta:
         ordering = ('-posted',)
-
 
 LIKE_CHOICES = [
     ('like', 'like'),
     ('unlike', 'unlike'),
 ]
 
-
 class Likes(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    value = models.CharField(choices=LIKE_CHOICES,
-                             default='like', max_length=10)
+    value = models.CharField(choices=LIKE_CHOICES, default='like', max_length=10)
 
     def __str__(self):
         return str(self.post)
