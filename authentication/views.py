@@ -59,8 +59,8 @@ def userProfile(request, username):
 def home(request):
     user = request.user
     suggest_users = Profile.objects.all().exclude(user=user)
+    follow_status = Follow.objects.filter(following=user, follower=request.user).exists()
     posts = Stream.objects.filter(user=user)
-    
 
     group_ids = []
 
@@ -73,7 +73,8 @@ def home(request):
     template = loader.get_template('auth/home.html')
     context = {
         'post_items': post_items,
-        'suggest_users': suggest_users
+        'suggest_users': suggest_users,
+        'follow_status': follow_status
     }
 
     return HttpResponse(template.render(context, request))

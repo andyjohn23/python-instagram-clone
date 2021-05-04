@@ -38,7 +38,12 @@
                 </div>
             </div>
             <div class="follow__button">
-                <button type="button" onclick="location.href='{% url 'follow' profile.user 0 %}'">Follow</button>
+                {% if follow_status == True %}
+                <button type="button" onclick="location.href='{% url 'follow' profile.user 0 %}'">Following</button>
+                {% else %}
+                <button type="button" onclick="location.href='{% url 'follow' profile.user 1 %}'">Follow</button>
+                {% endif %}
+
             </div>
             {% endfor %}
         </div>
