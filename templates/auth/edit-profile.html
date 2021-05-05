@@ -1,5 +1,6 @@
 {% include 'auth/navbar.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/edit-profile.css' %}">
 {% endblock %}
@@ -9,33 +10,36 @@
     <div class="edit-profile">
         <div class="edit-profile-form">
             <div class="profile-form">
+                <h1>Edit Profile</h1>
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" id="message">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
                 <div class="username-profile mb-3 row">
                     <i class="material-icons col-sm-3">account_circle</i>
-                    <p class="col-sm-9">andyjohn</p>
+                    <p class="col-sm-9">{{ user.username }}</p>
                 </div>
                 <form method="POST" action="">
+                    {% csrf_token %}
                     <div class="mb-3 row">
                         <label for="username" class="col-sm-3 col-form-label">Username</label>
                         <div class="col-sm-9">
-                            <input type="text" id="username" class="form-control" placeholder="Username" required>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="bio" class="col-sm-3 col-form-label">Website</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="username" class="form-control" placeholder="Website">
+                            {{ u_form.username }}
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="bio" class="col-sm-3 col-form-label">Bio</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="bio" cols="5"></textarea>
+                            {{ p_form.bio }}
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label for="email" class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">
-                            <input type="email" id="email" class="form-control" placeholder="Email Address" required>
+                            {{ u_form.email }}
                         </div>
                     </div>
                     <input type="submit" value="Submit" class="text-center" />
@@ -44,4 +48,7 @@
         </div>
     </div>
 </div>
+{% block scripts %}
+<script src="{% static 'js/edit-profile.js' %}"></script>
+{% endblock %}
 {% endblock %}

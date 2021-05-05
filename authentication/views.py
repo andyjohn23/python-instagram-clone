@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth import login, logout, authenticate
-from .forms import RegisterUserForm, AuthenticationForm
+from .forms import RegisterUserForm, AuthenticationForm, ProfileUpdateForm, UserUpdateForm
 from posts.forms import NewPostForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -61,7 +61,8 @@ def userProfile(request, username):
 def home(request):
     user = request.user
     suggest_users = Profile.objects.all().exclude(user=user)
-    follow_status = Follow.objects.filter(following=user, follower=request.user).exists()
+    follow_status = Follow.objects.filter(
+        following=user, follower=request.user).exists()
     posts = Stream.objects.filter(user=user)
 
     group_ids = []
@@ -177,5 +178,27 @@ def get_redirect_if_exists(request):
     return redirect
 
 
+@login_required(login_url='index')
 def editProfile(request):
-    return render(request, 'auth/edit-profile.html')
+
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Profile updated successfully')
+            return redirect('authentication:settings')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+
+    return render(request, 'auth/edit-profile.html', context)

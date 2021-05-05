@@ -45,12 +45,21 @@ class AuthenticationForm(forms.ModelForm):
                 raise forms.ValidationError('invalid login')
 
 
+class UserUpdateForm(forms.ModelForm):
+    username = forms.CharField(widget=forms.TextInput(),
+                            max_length=15, required=True)
+    email = forms.CharField(widget=forms.TextInput(),
+                            max_length=100, required=True)
+
+    class Meta:
+        model = UserAccount
+        fields = ['username', 'email']
+
+
 class ProfileUpdateForm(forms.ModelForm):
-    username = forms.CharField(widget=forms.TextInput(), max_length=100, required=True)
-    email = forms.CharField(widget=forms.TextInput(), max_length=100, required=True)
-    bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'input is-medium'}))
-    siteUrl = forms.URLField(initial="http://", widget=TextInput())
+    bio = forms.CharField(widget=forms.Textarea(
+        attrs={'class': 'input is-medium'}), required=False)
 
     class Meta:
         model = Profile
-        fields = ['username', 'email', 'bio', 'url']
+        fields = ['bio']

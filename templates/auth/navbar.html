@@ -62,14 +62,14 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{% url 'authentication:settings' %}">
                                 <i class="material-icons">settings</i>Settings
                             </a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{% url 'logout'%}">Log Out</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                     </ul>
                 </li>
                 {% else %}

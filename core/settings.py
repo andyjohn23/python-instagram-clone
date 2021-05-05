@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'avatar',
     'active_link',
     'easy_thumbnails',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
