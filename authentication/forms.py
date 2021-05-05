@@ -3,6 +3,7 @@ from .models import UserAccount, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django import forms
+from django.forms.widgets import TextInput
 
 
 class RegisterUserForm(UserCreationForm):
@@ -43,3 +44,11 @@ class AuthenticationForm(forms.ModelForm):
             password = self.cleaned_data['password']
             if not authenticate(email=email, password=password):
                 raise forms.ValidationError('invalid login')
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    siteUrl = forms.URLField(initial="http://", widget=TextInput)
+
+    class Meta:
+        model = Profile
+        fields = ['image']
