@@ -47,7 +47,7 @@ class AuthenticationForm(forms.ModelForm):
 
 class UserUpdateForm(forms.ModelForm):
     username = forms.CharField(widget=forms.TextInput(),
-                            max_length=15, required=True)
+                               max_length=15, required=True)
     email = forms.CharField(widget=forms.TextInput(),
                             max_length=100, required=True)
 

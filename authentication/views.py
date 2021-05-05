@@ -15,6 +15,8 @@ from django.template import loader
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 from django.urls import resolve
+from comments.models import Comments
+from comments.forms import commentForm
 # from django.views.generic import CreateView
 # from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -202,3 +204,32 @@ def editProfile(request):
     }
 
     return render(request, 'auth/edit-profile.html', context)
+
+
+@login_required(login_url='index')
+def commentHome(request, post_id):
+    user = request.user
+    post = get_object_or_404(Post, id=post_id)
+
+    comments = Comments.objects.filter(post=post).order_by('date_commented')
+
+    if request.method == 'POST':
+        form = commentForm(request.POST)
+        if form.is_valid():
+            body = form.cleaned_data.get('body')
+            body = form.save(commit=False)
+            body.post = post
+            body.user = user
+            body.save()
+
+            return HttpResponseRedirect(reverse('authentication:home', args=[post_id]))
+    else:
+        form = commentForm(request.POST)
+
+    template = loader.get_template('auth/home.html')
+    context = {
+        'comments': comments,
+        'form': form
+    }
+
+    return HttpResponse(template.render(context, request))

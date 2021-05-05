@@ -12,3 +12,7 @@ class Comments(models.Model):
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     body = models.TextField()
     date_commented = models.DateTimeField(default=timezone.now)
+
+    @property
+    def total_comments(self):
+        return self.user.all().count()

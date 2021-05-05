@@ -1,0 +1,10 @@
+{% include 'auth/navbar.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/message-box.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>hello message</h1>
+{% endblock %}

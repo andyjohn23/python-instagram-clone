@@ -72,7 +72,8 @@ def NewPost(request):
             created = Post.objects.get_or_create(
                 image=image, caption=caption, user_id=user)
 
-            return redirect('authentication:index')
+            messages.success(request, f'Post uploaded successfully see in profile')
+            return redirect('posts:newpost')
     else:
         form = NewPostForm()
 

@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container user__content">
     <div class="container username">
-        <a href="">
+        <a href="{% url 'profile' request.user %}">
             <i class="material-icons">account_circle</i>
         </a>
         <a href="{% url 'profile' request.user %}">

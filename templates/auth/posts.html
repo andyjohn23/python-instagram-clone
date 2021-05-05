@@ -53,13 +53,10 @@
                     <a href="">{{ post_item.user.username }}</a>
                     <p>{{ post_item.caption }}</p>
                 </div>
-                <a href="{% url 'posts:postdetails' post_item.id %}" class="views">View all 2,000 comments</a>
-                <div class="user-comments">
-                    {% for comment in comments %}
-                    <a href="">{{ comment.user.profile.username }}</a>
-                    <p>{{ comment.body }}</p>
-                    {% endfor %}
-                </div>
+                {% if post_item.comment.all.count %}
+                <a href="{% url 'posts:postdetails' post_item.id %}" class="views">View all {{ post_item.comment.all.count }} comment(s)</a>
+                {% else %}
+                {% endif %}
                 <div class="timeline">
                     <a href="{% url 'posts:postdetails' post_item.id %}"
                         title="{{ post_item.posted | date:'F d, Y' }}">{{ post_item.posted|naturaltime }}</a>
@@ -67,7 +64,7 @@
             </div>
         </div>
         <div class="card-footer">
-            <form method="POST">
+            <form method="POST" action="{% url 'posts:postdetails' post_item.id %}">
                 {% csrf_token %}
                 <input type="text" name="body" placeholder="Add a comment..." required>
                 <input type="submit" name="action" value="Post">
