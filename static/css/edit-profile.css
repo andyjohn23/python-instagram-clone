@@ -40,7 +40,7 @@
 .edit-profile-form .profile-form textarea:focus {
   outline: none !important;
   outline-width: 0 !important;
-  border: 2px solid rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(0, 0, 0, 0.9);
   box-shadow: none;
 }
 .edit-profile-form .profile-form input {

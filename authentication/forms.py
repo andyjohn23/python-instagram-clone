@@ -2,7 +2,6 @@ from django import forms
 from .models import UserAccount, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
-from django import forms
 from django.forms.widgets import TextInput
 
 
@@ -47,8 +46,11 @@ class AuthenticationForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
-    siteUrl = forms.URLField(initial="http://", widget=TextInput)
+    username = forms.CharField(widget=forms.TextInput(), max_length=100, required=True)
+    email = forms.CharField(widget=forms.TextInput(), max_length=100, required=True)
+    bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'input is-medium'}))
+    siteUrl = forms.URLField(initial="http://", widget=TextInput())
 
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['username', 'email', 'bio', 'url']
