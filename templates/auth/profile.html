@@ -15,7 +15,7 @@
         <div class="profile-user-settings">
             <h1 class="profile-user-name">{{ profile.user }}</h1>
             {% if user.is_authenticated and user == profile.user %}
-            <a href="" style="color: black;"><button class="btn profile-edit-btn">Edit Profile</button></a>
+            <a href="{% url 'authentication:settings' %}" style="color: black;"><button class="btn profile-edit-btn">Edit Profile</button></a>
             <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fa fa-cog"
                     aria-hidden="true"></i></button>
             {% else %}
@@ -47,10 +47,6 @@
         </div>
         {% else %}
         {% endif %}
-        <div class="profile-bio">
-            <a href="{{ profile.url }}" target="_blank">{{ profile.url }}</a>
-        </div>
-        
     </div>
 </div>
 <hr class="horizontal-line">
