@@ -58,7 +58,7 @@ class UserUpdateForm(forms.ModelForm):
 
 class ProfileUpdateForm(forms.ModelForm):
     bio = forms.CharField(widget=forms.Textarea(
-        attrs={'class': 'input is-medium'}), required=False)
+        attrs={'class': 'input is-medium'}), max_length=150, required=False)
 
     class Meta:
         model = Profile

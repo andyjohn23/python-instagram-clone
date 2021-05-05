@@ -6,6 +6,13 @@
 .navbar {
   background-color: white;
   border-bottom: 1px solid rgba(64, 64, 64, 0.3);
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
 .navbar .navbar-brand img {
   height: 40px;

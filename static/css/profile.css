@@ -144,6 +144,14 @@ img {
 }
 .profile-settings-btn {
   font-size: 2.1rem;
+  border: none !important;
+  outline: none !important;
+}
+.profile-settings-btn:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: none;
+  box-shadow: none;
 }
 .profile-stats {
   margin-top: 1rem;
@@ -428,3 +436,4 @@ img {
     margin-left: 4.5rem;
   }
 }
+

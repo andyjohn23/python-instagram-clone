@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication.apps.AuthenticationConfig',
     'posts.apps.PostsConfig',
+    'comments.apps.CommentsConfig',
     'avatar',
     'active_link',
     'easy_thumbnails',
