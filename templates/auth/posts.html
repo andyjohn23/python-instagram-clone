@@ -26,20 +26,22 @@
                 <form>
                     {% csrf_token %}
                     {% if user not in post_item.liked.all %}
-                    <button type="submit" id="like" name="post_id" value="{{ post_item.id }}"><i class="material-icons">favorite_border</i></button>
+                    <button type="submit" id="like" name="post_id" value="{{ post_item.id }}"><i
+                            class="material-icons">favorite_border</i></button>
                     {% else %}
-                    <button type="submit" id="like" name="post_id" value="{{ post_item.id }}"><i style="color: red;" class="material-icons">favorite</i></button>
+                    <button type="submit" id="like" name="post_id" value="{{ post_item.id }}"><i style="color: red;"
+                            class="material-icons">favorite</i></button>
                     {% endif %}
                 </form>
                 {% endif %}
                 <a href=""><i style="transform: rotateY(180deg);" class="material-icons">chat_bubble_outline</i></a>
                 <a href=""><i class="material-icons">near_me</i></a>
                 {% if favourite is True %}
-                <a href="{% url 'posts:postfavourite' post_item.id %}" style="margin-left: auto;"><i class="material-icons"
-                        style="font-size: 35px;">bookmark</i></a>
+                <a href="{% url 'posts:postfavourite' post_item.id %}" style="margin-left: auto;"><i
+                        class="material-icons" style="font-size: 35px;">bookmark</i></a>
                 {% else %}
-                <a href="{% url 'posts:postfavourite' post_item.id %}" style="margin-left: auto;"><i class="material-icons"
-                    style="font-size: 35px;">bookmark_border</i></a>
+                <a href="{% url 'posts:postfavourite' post_item.id %}" style="margin-left: auto;"><i
+                        class="material-icons" style="font-size: 35px;">bookmark_border</i></a>
                 {% endif %}
             </div>
             <div class="likes-comments">
@@ -53,8 +55,10 @@
                 </div>
                 <a href="{% url 'posts:postdetails' post_item.id %}" class="views">View all 2,000 comments</a>
                 <div class="user-comments">
+                    {% for comment in comments %}
                     <a href="">andyjohn</a>
                     <p>hello</p>
+                    {% endfor %}
                 </div>
                 <div class="timeline">
                     <a href="{% url 'posts:postdetails' post_item.id %}"
@@ -75,7 +79,8 @@
             <div class="modal-content rounded-5">
                 <div class="modal-body">
                     <div class="go-to-post">
-                        <button type="button" onclick="location.href='{% url 'posts:postdetails' post_item.id %}'">Go to post</button>
+                        <button type="button" onclick="location.href='{% url 'posts:postdetails' post_item.id %}'">Go to
+                            post</button>
                         <hr class="horizontal-line">
                         <button type="button" onclick="location.href=''">Copy Link</button>
                         <hr class="horizontal-line">

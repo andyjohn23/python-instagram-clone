@@ -14,13 +14,31 @@ from django.template import loader
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 from django.db import transaction
+from comments.models import Comments
+from comments.forms import commentForm
 # Create your views here.
 
 
 @login_required(login_url='index')
 def PostDetail(request, post_id):
+    user = request.user
     post = get_object_or_404(Post, id=post_id)
     favourite = False
+
+    comments = Comments.objects.filter(post=post).order_by('date_commented')
+
+    if request.method == 'POST':
+        form = commentForm(request.POST)
+        if form.is_valid():
+            comments = form.save(commit=False)
+            comments.post = post
+            comments.user = user
+            comments.save()
+
+            return HttpResponseRedirect(reverse('postdetails', args=[post_id]))
+    else:
+        form = commentForm(request.POST)
+
 
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)

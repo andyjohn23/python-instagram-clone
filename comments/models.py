@@ -6,7 +6,7 @@ from django.utils import timezone
 # Create your models here.
 
 
-class comments(models.Model):
+class Comments(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name="comment")
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
