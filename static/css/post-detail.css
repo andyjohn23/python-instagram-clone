@@ -185,26 +185,70 @@
     margin-left: -29rem;
     width: 100%;
   }
+  .container .card img {
+    width: 350px;
+    margin-left: -1.1rem;
+  }
   .container .card .card-body .card-title {
     display: none;
   }
   .container .card .card-body .users-comments {
     width: 265px;
   }
+  .container .card .card-body .like-comment-share {
+    padding: 12px;
+  }
+  .container .card .card-body .likes-comments {
+    padding: 12px;
+  }
 }
 /* iphone x media query */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
-  .post-form {
-    border: none;
-    margin-left: -5rem;
+  .container {
     width: 100vw;
   }
-  .post-form form {
-    width: 28%;
-    margin-left: 1.6rem;
+  .container .card {
+    margin-left: -29rem;
+    width: 90vw;
   }
-  .post-form form h2 {
-    margin-bottom: 2rem;
+  .container .card img {
+    width: 100vw;
+  }
+  .container .card .card-body .card-title {
+    display: none;
+  }
+  .container .card .card-body .users-comments {
+    width: 265px;
+  }
+  .container .card .card-body .like-comment-share {
+    padding: 12px;
+  }
+  .container .card .card-body .likes-comments {
+    padding: 12px;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+  .container {
+    width: 100vw;
+  }
+  .container .card {
+    margin-left: -27rem;
+    width: 82vw;
+  }
+  .container .card img {
+    width: 97vw;
+  }
+  .container .card .card-body .card-title {
+    display: none;
+  }
+  .container .card .card-body .users-comments {
+    width: 265px;
+  }
+  .container .card .card-body .like-comment-share {
+    padding: 12px;
+  }
+  .container .card .card-body .likes-comments {
+    padding: 12px;
   }
 }
 /* ipad media query */
