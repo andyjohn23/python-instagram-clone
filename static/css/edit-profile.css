@@ -4,11 +4,12 @@
   margin-top: 5rem;
   width: 65%;
 }
-.edit-profile-form {
-  margin-top: 1rem;
+.username-profile {
+  display: flex;
+  align-items: center;
 }
 .username-profile i {
-  font-size: 5rem;
+  font-size: 6rem;
   color: rgba(0, 0, 0, 0.3);
 }
 .username-profile p {
@@ -16,11 +17,18 @@
   font-family: sans-serif;
   font-weight: 500;
 }
+.edit-profile-form {
+  margin-top: 1rem;
+}
+.edit-profile-form .profile-form {
+  display: block;
+  margin-left: 7rem;
+  margin-right: auto;
+}
 .edit-profile-form .profile-form label {
   font-size: 16px;
   font-weight: 600;
   font-family: sans-serif;
-  text-indent: 50px;
 }
 .edit-profile-form .profile-form input:focus {
   outline: none !important;
@@ -31,7 +39,7 @@
 .edit-profile-form .profile-form textarea:focus {
   outline: none !important;
   outline-width: 0 !important;
-  border: 1.8px solid rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(0, 0, 0, 0.8);
   box-shadow: none;
 }
 .edit-profile-form .profile-form input {
@@ -49,4 +57,54 @@
   padding-left: 10px;
   width: 300px;
   height: 60px;
+}
+/* smaller phones media query */
+@media screen and (min-device-width: 280px) and (max-device-width: 653px) {
+  .edit-profile {
+    margin-left: -58.7rem;
+    width: 100vw;
+    border: none;
+    margin-top: 4rem;
+  }
+  .edit-profile-form .profile-form {
+    margin-left: 2rem;
+    margin-bottom: 5rem;
+  }
+  .username-profile {
+    margin-left: 5rem;
+  }
+}
+/* iphone x media query */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
+  .edit-profile {
+    margin-left: -58.7rem;
+    width: 100vw;
+    border: none;
+    margin-top: 4rem;
+  }
+  .edit-profile-form .profile-form {
+    margin-left: 2rem;
+    margin-bottom: 5rem;
+  }
+  .username-profile {
+    margin-left: 5rem;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+  .edit-profile {
+    margin-left: -56rem;
+    width: 100vw;
+    border: none;
+    margin-top: 4rem;
+  }
+  .edit-profile-form .profile-form {
+    margin-left: 4rem;
+    margin-bottom: 5rem;
+  }
+  .username-profile {
+    margin-left: 5rem;
+  }
+}
+/* ipad media query */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 }
