@@ -1,5 +1,5 @@
 from django import forms
-from .models import comments
+from .models import Comments
 
 
 class commentForm(forms.ModelForm):
@@ -7,5 +7,5 @@ class commentForm(forms.ModelForm):
         attrs={'class': 'input is-medium'}), required=False)
 
     class Meta:
-        model = comments
-        fields = ['body',]
+        model = Comments
+        fields = ['body']

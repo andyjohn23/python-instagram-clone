@@ -30,12 +30,13 @@ def PostDetail(request, post_id):
     if request.method == 'POST':
         form = commentForm(request.POST)
         if form.is_valid():
-            comments = form.save(commit=False)
-            comments.post = post
-            comments.user = user
-            comments.save()
+            body = form.cleaned_data.get('body')
+            body = form.save(commit=False)
+            body.post = post
+            body.user = user
+            body.save()
 
-            return HttpResponseRedirect(reverse('postdetails', args=[post_id]))
+            return HttpResponseRedirect(reverse('posts:postdetails', args=[post_id]))
     else:
         form = commentForm(request.POST)
 
@@ -50,7 +51,9 @@ def PostDetail(request, post_id):
 
     context = {
         'post': post,
-        'favourite': favourite
+        'favourite': favourite,
+        'form': form,
+        'comments': comments
     }
 
     return HttpResponse(template.render(context, request))

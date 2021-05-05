@@ -56,8 +56,8 @@
                 <a href="{% url 'posts:postdetails' post_item.id %}" class="views">View all 2,000 comments</a>
                 <div class="user-comments">
                     {% for comment in comments %}
-                    <a href="">andyjohn</a>
-                    <p>hello</p>
+                    <a href="">{{ comment.user.profile.username }}</a>
+                    <p>{{ comment.body }}</p>
                     {% endfor %}
                 </div>
                 <div class="timeline">
@@ -67,9 +67,10 @@
             </div>
         </div>
         <div class="card-footer">
-            <form>
-                <input type="text" placeholder="Add a comment..." required>
-                <input type="submit" value="Post">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="body" placeholder="Add a comment..." required>
+                <input type="submit" name="action" value="Post">
             </form>
         </div>
     </div>
