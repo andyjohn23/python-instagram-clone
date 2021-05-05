@@ -1,12 +1,12 @@
 .post-form {
-  margin-top: 8rem;
+  margin-top: 6rem;
   width: 70%;
-  border: 0.1px solid rgba(0, 0, 0, 0.2);
+  border: 0.1px solid rgba(0, 0, 0, 0.15);
   background-color: white;
   border-radius: 5px;
 }
 .post-form form {
-  padding: 15px;
+  padding: 20px;
   margin-top: 1rem;
 }
 .post-form form label {
@@ -29,6 +29,7 @@
   color: rgba(0, 0, 0, 0.7);
   outline: none;
   cursor: pointer;
+  width: 200px;
 }
 .post-form form textarea {
   resize: none;
@@ -44,7 +45,7 @@
   box-shadow: none;
 }
 .post-form form input[type="submit"] {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   width: 50%;
   height: 33px;
   font-size: 14px;

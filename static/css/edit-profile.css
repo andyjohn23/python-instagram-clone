@@ -1,0 +1,52 @@
+.edit-profile {
+  background-color: white;
+  border: 0.4px solid rgba(0, 0, 0, 0.2);
+  margin-top: 5rem;
+  width: 65%;
+}
+.edit-profile-form {
+  margin-top: 1rem;
+}
+.username-profile i {
+  font-size: 5rem;
+  color: rgba(0, 0, 0, 0.3);
+}
+.username-profile p {
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: 500;
+}
+.edit-profile-form .profile-form label {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: sans-serif;
+  text-indent: 50px;
+}
+.edit-profile-form .profile-form input:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: 1.8px solid rgba(0, 0, 0, 0.8);
+  box-shadow: none;
+}
+.edit-profile-form .profile-form textarea:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: 1.8px solid rgba(0, 0, 0, 0.8);
+  box-shadow: none;
+}
+.edit-profile-form .profile-form input {
+  font-size: 14px;
+  font-family: sans-serif;
+  color: black;
+  padding-left: 10px;
+  width: 300px;
+  height: 30px;
+}
+.edit-profile-form .profile-form textarea {
+  font-size: 14px;
+  font-family: sans-serif;
+  color: black;
+  padding-left: 10px;
+  width: 300px;
+  height: 60px;
+}

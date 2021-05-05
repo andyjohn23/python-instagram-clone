@@ -117,9 +117,14 @@
   .search-form {
     margin-left: 0rem;
   }
-  .navbar .navbar-nav .nav-item{
+  .navbar .navbar-nav {
     display: flex !important;
     flex-direction: row !important;
+    margin-left: auto;
+    gap: 10px;
+  }
+  .dropdown-menu {
+    width: 140px;
   }
 }
 /* iphone x media query */

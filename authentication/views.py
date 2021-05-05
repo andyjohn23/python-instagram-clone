@@ -26,6 +26,7 @@ def userProfile(request, username):
     user = get_object_or_404(UserAccount, username=username)
     profile = Profile.objects.get(user=user)
     url_name = resolve(request.path).url_name
+    title = profile
 
     if url_name == 'profile':
         posts = Post.objects.filter(user=user).order_by('-posted')
@@ -49,7 +50,8 @@ def userProfile(request, username):
         'number_of_post': number_of_post,
         'number_of_following': number_of_following,
         'number_of_followers': number_of_followers,
-        'follow_status': follow_status
+        'follow_status': follow_status,
+        'title': title
     }
 
     return HttpResponse(template.render(context, request))
@@ -175,10 +177,5 @@ def get_redirect_if_exists(request):
     return redirect
 
 
-class ProfileList(ListView):
-    model = Profile
-    template_name = 'auth/home.html'
-    context_object_name = 'profiles'
-
-    def get_queryset(self):
-        return UserAccount.objects.all().exclude(user=self.request.user)
+def editProfile(request):
+    return render(request, 'auth/edit-profile.html')
