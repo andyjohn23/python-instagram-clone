@@ -30,7 +30,35 @@
                         card's content.</p>
                 </div>
                 <div class="card-footer">
-                    Footer
+                    <div class="like-comment-share">
+                        <form>
+                            {% csrf_token %}
+                            <button type="submit" style="margin-left: 10px;"><i
+                                    class="material-icons">favorite_border</i></button>
+                        </form>
+                        <a href=""><i style="transform: rotateY(180deg);"
+                                class="material-icons">chat_bubble_outline</i></a>
+                        <a href=""><i class="material-icons">near_me</i></a>
+                        {% if favourite is True %}
+                        <a href="{% url 'posts:postfavourite' post.id %}" style="margin-left: auto;"><i
+                                class="material-icons" style="font-size: 35px;">bookmark</i></a>
+                        {% else %}
+                        <a href="{% url 'posts:postfavourite' post.id %}" style="margin-left: auto;"><i
+                                class="material-icons" style="font-size: 35px;">bookmark_border</i></a>
+                        {% endif %}
+                    </div>
+                    <div class="likes-comments">
+                        <div class="like-counts">
+                            <span id="liked">{{ post.total_likes }} like{{ post.total_likes|pluralize }}</span>
+                        </div>
+                        <div class="timeline">
+                            <a href="{% url 'posts:postdetails' post.id %}"
+                                title="{{ post.posted | date:'F d, Y' }}">{{ post.posted|naturaltime }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    footer
                 </div>
             </div>
         </div>
