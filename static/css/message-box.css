@@ -38,15 +38,15 @@
 .container .users-container .card-body .user-tile {
   display: flex;
   align-items: center;
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: rgba(240, 240, 241, 0.9);
   width: 116%;
   height: 85px;
-  margin-left: -1.3rem;
+  margin-left: -1.25rem;
   gap: 5px;
 }
 .container .users-container .card-body .user-tile i {
   font-size: 55px;
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.4);
   padding-left: 1rem;
 }
 .container .users-container .card-body .user-tile p {
