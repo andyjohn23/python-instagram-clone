@@ -4,6 +4,16 @@
   margin-top: 5rem;
   width: 65%;
 }
+.edit-profile .edit-profile-form .card-header {
+  background-color: rgba(240, 240, 240, 0.4);
+}
+.edit-profile .edit-profile-form .card-header .nav-tabs > li a{
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+.edit-profile .edit-profile-form .card-header .nav-tabs {
+  left: 50%;
+  transform: translatex(30%);
+}
 .username-profile {
   display: flex;
   align-items: center;
@@ -21,8 +31,8 @@
   margin-top: 1rem;
 }
 .edit-profile-form .profile-form #message {
-    display: block;
-    width: 300px;
+  display: block;
+  width: 300px;
 }
 .edit-profile-form .profile-form h1 {
   font-size: 20px;
@@ -36,6 +46,7 @@
   margin-left: 7rem;
   margin-right: auto;
   margin-bottom: 5rem;
+  margin-top: 1rem;
 }
 .edit-profile-form .profile-form label {
   font-size: 16px;
@@ -81,6 +92,9 @@
   outline: none;
   border: none;
   color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 /* smaller phones media query */
 @media screen and (min-device-width: 280px) and (max-device-width: 653px) {
@@ -96,6 +110,14 @@
   }
   .username-profile {
     margin-left: 5rem;
+  }
+  .edit-profile-form .profile-form input[type="submit"] {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .edit-profile .edit-profile-form .card-header .nav-tabs {
+    left: 50%;
+    transform: translatex(13%);
   }
 }
 /* iphone x media query */
@@ -113,6 +135,14 @@
   .username-profile {
     margin-left: 5rem;
   }
+  .edit-profile-form .profile-form input[type="submit"] {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .edit-profile .edit-profile-form .card-header .nav-tabs {
+    left: 50%;
+    transform: translatex(13%);
+  }
 }
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
   .edit-profile {
@@ -127,6 +157,14 @@
   }
   .username-profile {
     margin-left: 5rem;
+  }
+  .edit-profile-form .profile-form input[type="submit"] {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .edit-profile .edit-profile-form .card-header .nav-tabs {
+    left: 50%;
+    transform: translatex(13%);
   }
 }
 /* ipad media query */
