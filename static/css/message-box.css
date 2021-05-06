@@ -38,9 +38,9 @@
 .container .users-container .card-body .user-tile {
   display: flex;
   align-items: center;
-  background-color: rgba(240, 240, 241, 0.9);
+  background-color: rgba(240, 240, 252, 0.9);
   width: 116%;
-  height: 85px;
+  height: 75px;
   margin-left: -1.25rem;
   gap: 5px;
 }
