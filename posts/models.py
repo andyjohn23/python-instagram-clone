@@ -53,19 +53,23 @@ class Post(models.Model):
 
     def __str__(self):
         return self.caption
-    
+
     class Meta:
         ordering = ('-posted',)
+
 
 LIKE_CHOICES = [
     ('like', 'like'),
     ('unlike', 'unlike'),
 ]
 
+
 class Likes(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    value = models.CharField(choices=LIKE_CHOICES, default='like', max_length=10)
+    value = models.CharField(choices=LIKE_CHOICES,
+                             default='like', max_length=10)
 
     def __str__(self):
         return str(self.post)
@@ -81,10 +85,17 @@ class postExtraImages(models.Model):
 
 
 class Follow(models.Model):
-    follower = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="follower")
     following = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="following")
+    follower = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="follower")
+    created = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ('-created',)
+
+    def __str__(self):
+        return '{} follows {}'.format(self.follower, self.following)
 
 
 class Stream(models.Model):

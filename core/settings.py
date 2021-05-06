@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'posts.apps.PostsConfig',
     'comments.apps.CommentsConfig',
+    'messaging.apps.MessagingConfig',
     'avatar',
     'active_link',
     'easy_thumbnails',
