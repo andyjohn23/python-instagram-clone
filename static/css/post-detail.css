@@ -50,12 +50,35 @@
   color: rgba(0, 0, 0, 0.7);
 }
 .container .post-detail-card .card-body {
+  width: auto;
   height: 180px;
   max-height: 180px;
   overflow-y: auto;
 }
 .container .post-detail-card .card-body::-webkit-scrollbar {
   display: none;
+}
+.container .post-detail-card .card-body .users-comments span {
+  font-size: 10px;
+  font-weight: normal;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  text-decoration: none;
+}
+.container .post-detail-card .card-body .users-comments a {
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+  text-decoration-style: solid;
+  text-decoration: none;
+}
+.container .post-detail-card .card-body .users-comments a i {
+  font-size: 29px;
+}
+.container .post-detail-card .card-body .users-comments p {
+  width: 245px;
+  word-wrap: break-word;
 }
 .container .post-detail-card .card-footer {
   border-top: 0.2px solid rgba(0, 0, 0, 0.1);

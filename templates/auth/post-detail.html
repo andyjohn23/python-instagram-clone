@@ -24,18 +24,38 @@
                         <a href=""><i class="material-icons">more_horiz</i></a>
                     </div>
                 </div>
-                <div class="card-body text-success">
-                    <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the
-                        card's content.Some quick example text to build on the card title and make up the bulk of the
-                        card's content.Some quick example text to build on the card title and make up the bulk of the
-                        card's content.Some quick example text to build on the card title and make up the bulk of the
-                        card's content.Some quick example text to build on the card title and make up the bulk of the
-                        card's content.Some quick example text to build on the card title and make up the bulk of the
-                        card's content.Some quick example text to build on the card title and make up the bulk of the
-                        card's content.Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                <div class="card-body">
+                    <div class="users-comments">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <a href="{% url 'profile' post.user %}"><i class="material-icons">account_circle</i></a>
+                            </div>&nbsp;
+                            <div class="col-md-5">
+                                <p>
+                                    <a
+                                        href="{% url 'profile' post.user %}">{{ post.user.username|truncatechars:10 }}</a>&nbsp;
+                                    {{ post.caption }}<br>
+                                    <span>{{ post.posted|naturaltime }}</span>
+                                </p>
+                            </div>
+                        </div>
+                        {% for comment in comments %}
+                        <div class="row">
+                            <div class="col-md-1">
+                                <a href="{% url 'profile' comment.user %}"><i
+                                        class="material-icons">account_circle</i></a>
+                            </div>&nbsp;
+                            <div class="col-md-5">
+                                <p>
+                                    <a
+                                        href="{% url 'profile' comment.user %}">{{ comment.user.profile.user|truncatechars:10 }}</a>&nbsp;
+                                    {{ comment.body }}<br>
+                                    <span>{{ comment.date_commented|naturaltime }}</span>
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="like-comment-share">
