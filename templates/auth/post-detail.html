@@ -26,7 +26,15 @@
                 </div>
                 <div class="card-body text-success">
                     <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the
+                        card's content.Some quick example text to build on the card title and make up the bulk of the
+                        card's content.Some quick example text to build on the card title and make up the bulk of the
+                        card's content.Some quick example text to build on the card title and make up the bulk of the
+                        card's content.Some quick example text to build on the card title and make up the bulk of the
+                        card's content.Some quick example text to build on the card title and make up the bulk of the
+                        card's content.Some quick example text to build on the card title and make up the bulk of the
+                        card's content.Some quick example text to build on the card title and make up the bulk of the
                         card's content.</p>
                 </div>
                 <div class="card-footer">
@@ -58,7 +66,11 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    footer
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="body" placeholder="Add a comment..." required>
+                        <input type="submit" name="action" value="Post">
+                    </form>
                 </div>
             </div>
         </div>

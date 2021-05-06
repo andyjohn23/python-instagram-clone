@@ -49,6 +49,14 @@
   font-weight: 500;
   color: rgba(0, 0, 0, 0.7);
 }
+.container .post-detail-card .card-body {
+  height: 180px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.container .post-detail-card .card-body::-webkit-scrollbar {
+  display: none;
+}
 .container .post-detail-card .card-footer {
   border-top: 0.2px solid rgba(0, 0, 0, 0.1);
   background-color: white;
