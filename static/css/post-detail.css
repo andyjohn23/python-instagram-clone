@@ -104,6 +104,32 @@
   cursor: pointer;
   text-decoration: none;
 }
+.container .post-detail-card .card-footer form input[type="text"] {
+  padding-left: 10px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: normal;
+  color: black;
+  font-family: sans-serif;
+  width: auto;
+}
+.container .post-detail-card .card-footer form input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+  font-weight: normal;
+  font-family: sans-serif;
+}
+.container .post-detail-card .card-footer form input[type="submit"] {
+  float: right;
+  border: none;
+  color: #0e93cd;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: sans-serif;
+  background-color: white;
+  outline: none;
+}
 /* smaller phones media query */
 @media screen and (min-device-width: 280px) and (max-device-width: 653px) {
   .container {
