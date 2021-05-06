@@ -7,72 +7,30 @@
 
 {% block content %}
 <div class="container">
-    <div class="card mb-3">
-        <div class="row g-0">
-            <div class="col-md-8">
+    <div class="row">
+        <div class="col-md-8 padding-0">
+            <div class="card post-image">
                 <img src="{{ post.image.url }}" alt="{{ post.image.url }}">
             </div>
-            <div class="col-md-4">
-                <div class="card-body">
-                    <div class="card-title">
-                        <a href="{% url 'profile' post.user %}">
-                            <i class="material-icons">account_circle</i>
-                        </a>
-                        <a href="{% url 'profile' post.user %}">{{ post.user.username|truncatechars:9 }}</a>
-                        <div class="view-more">
-                            <a href=""><i class="material-icons">more_horiz</i></a>
-                        </div>
+        </div>
+        <div class="col-md-4 padding-0">
+            <div class="card post-detail-card">
+                <div class="card-header">
+                    <a href="{% url 'profile' post.user %}">
+                        <i class="material-icons">account_circle</i>
+                    </a>
+                    <a href="{% url 'profile' post.user %}">{{ post.user.username|truncatechars:9 }}</a>
+                    <div class="view-more">
+                        <a href=""><i class="material-icons">more_horiz</i></a>
                     </div>
-                    <div class="users-comments">
-                        <a href="{% url 'profile' post.user %}"><i class="material-icons">account_circle</i></a>
-                        <p>
-                            <a href="{% url 'profile' post.user %}">{{ post.user.username|truncatechars:10 }}</a>&nbsp;
-                            {{ post.caption }}<br>
-                            <span>{{ post.posted|naturaltime }}</span>
-                        </p>
-                        {% for comment in comments %}
-                        <a href="{% url 'profile' comment.user %}"><i class="material-icons">account_circle</i></a>
-                        <p>
-                            <a
-                                href="{% url 'profile' comment.user %}">{{ comment.user.profile.user|truncatechars:10 }}</a>&nbsp;
-                            {{ comment.body }}<br>
-                            <span>{{ comment.date_commented|naturaltime }}</span>
-                        </p>
-                        {% endfor %}
-                    </div>
-                    <div class="like-comment-share">
-                        <form>
-                            {% csrf_token %}
-                            <button type="submit" style="margin-left: 10px;"><i
-                                    class="material-icons">favorite_border</i></button>
-                        </form>
-                        <a href=""><i style="transform: rotateY(180deg);"
-                                class="material-icons">chat_bubble_outline</i></a>
-                        <a href=""><i class="material-icons">near_me</i></a>
-                        {% if favourite is True %}
-                        <a href="{% url 'posts:postfavourite' post.id %}" style="margin-left: auto;"><i
-                                class="material-icons" style="font-size: 35px;">bookmark</i></a>
-                        {% else %}
-                        <a href="{% url 'posts:postfavourite' post.id %}" style="margin-left: auto;"><i
-                                class="material-icons" style="font-size: 35px;">bookmark_border</i></a>
-                        {% endif %}
-                    </div>
-                    <div class="likes-comments">
-                        <div class="like-counts">
-                            <span id="liked">{{ post.total_likes }} like{{ post.total_likes|pluralize }}</span>
-                        </div>
-                        <div class="timeline">
-                            <a href="{% url 'posts:postdetails' post.id %}"
-                                title="{{ post.posted | date:'F d, Y' }}">{{ post.posted|naturaltime }}</a>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <form method="POST">
-                            {% csrf_token %}
-                            <input type="text" name="body" placeholder="Add a comment..." required>
-                            <input type="submit" name="action" value="Post">
-                        </form>
-                    </div>
+                </div>
+                <div class="card-body text-success">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
+                <div class="card-footer">
+                    Footer
                 </div>
             </div>
         </div>
