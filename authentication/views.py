@@ -233,3 +233,8 @@ def commentHome(request, post_id):
     }
 
     return HttpResponse(template.render(context, request))
+
+
+@login_required(login_url='index')
+def changePassword(request):
+    return render(request, 'auth/change-password.html')
