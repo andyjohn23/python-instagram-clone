@@ -6,5 +6,32 @@
 {% endblock %}
 
 {% block content %}
-<h1 style="margin-top: 5rem;">hello message</h1>
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-4 padding-0">
+            <div class="card user-message">
+                <div class="card users-container">
+                    <div class="card-header bg-transparent border-success">Header</div>
+                    <div class="card-body text-success">
+                        <h5 class="card-title">Success card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success">Footer</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 padding-0">
+            <div class="card message-container">
+                <div class="card-header bg-transparent border-success">Header</div>
+                <div class="card-body text-success">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
+                <div class="card-footer bg-transparent border-success">Footer</div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

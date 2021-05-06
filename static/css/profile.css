@@ -255,6 +255,8 @@ img {
   color: #fff;
   width: 300px;
   height: 310px;
+  outline: none;
+  border: none;
 }
 .gallery-item:hover .gallery-item-info,
 .gallery-item:focus .gallery-item-info {
@@ -416,6 +418,9 @@ img {
   }
   .gallery {
     grid-template-columns: repeat(1, 1fr);
+    margin-left: -59rem;
+  }
+  .no-posts {
     margin-left: -59rem;
   }
   .footer {

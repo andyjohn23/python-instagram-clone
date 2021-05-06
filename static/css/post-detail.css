@@ -160,6 +160,8 @@
 /* smaller phones media query */
 @media screen and (min-device-width: 280px) and (max-device-width: 653px) {
   .container {
+    margin-top: 0.5rem;
+    margin-left: 0rem;
     width: 100vw;
   }
   .container .card {
@@ -187,50 +189,58 @@
 /* iphone x media query */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
   .container {
+    margin-top: 0.5rem;
+    margin-left: 0rem;
     width: 100vw;
   }
   .container .card {
-    margin-left: -29rem;
-    width: 90vw;
+    width: 100%;
   }
   .container .card img {
-    width: 100vw;
+    width: 100%;
   }
   .container .card .card-body .card-title {
     display: none;
   }
   .container .card .card-body .users-comments {
-    width: 265px;
+    width: 270px;
   }
   .container .card .card-body .like-comment-share {
     padding: 12px;
   }
   .container .card .card-body .likes-comments {
     padding: 12px;
+  }
+  .card-footer form input[type="text"] {
+    width: 250px;
   }
 }
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
   .container {
+    margin-top: 0.5rem;
+    margin-left: 0rem;
     width: 100vw;
   }
   .container .card {
-    margin-left: -27rem;
-    width: 82vw;
+    width: 100%;
   }
   .container .card img {
-    width: 97vw;
+    width: 100%;
   }
   .container .card .card-body .card-title {
     display: none;
   }
   .container .card .card-body .users-comments {
-    width: 265px;
+    width: 270px;
   }
   .container .card .card-body .like-comment-share {
     padding: 12px;
   }
   .container .card .card-body .likes-comments {
     padding: 12px;
+  }
+  .card-footer form input[type="text"] {
+    width: 250px;
   }
 }
 /* ipad media query */
