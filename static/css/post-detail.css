@@ -1,9 +1,12 @@
 .container {
   margin-top: 5rem;
   width: 70vw;
-  height: auto;
+  height: 403px;
   background-color: white;
   border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+.container .card-post {
+  height: 100%;
 }
 .padding-0 {
   padding-right: 0;
@@ -11,6 +14,7 @@
 }
 .container .post-image {
   border: none;
+  height: 400px;
 }
 .container .card img {
   width: 100%;
@@ -159,12 +163,10 @@
     width: 100vw;
   }
   .container .card {
-    margin-left: -29rem;
     width: 100%;
   }
   .container .card img {
-    width: 350px;
-    margin-left: -1.1rem;
+    width: 100%;
   }
   .container .card .card-body .card-title {
     display: none;
