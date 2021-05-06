@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/message-box.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/emojionearea.min.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -11,27 +12,50 @@
         <div class="col-md-4 padding-0">
             <div class="card user-message">
                 <div class="card users-container">
-                    <div class="card-header bg-transparent border-success">Header</div>
+                    <div class="card-header">Header</div>
                     <div class="card-body text-success">
                         <h5 class="card-title">Success card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
                             card's content.</p>
                     </div>
-                    <div class="card-footer bg-transparent border-success">Footer</div>
                 </div>
             </div>
         </div>
         <div class="col-md-8 padding-0">
             <div class="card message-container">
-                <div class="card-header bg-transparent border-success">Header</div>
+                <div class="card-header">Header</div>
                 <div class="card-body text-success">
                     <h5 class="card-title">Success card title</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                         card's content.</p>
                 </div>
-                <div class="card-footer bg-transparent border-success">Footer</div>
+                <div class="card-footer">
+                    <div class="send-form">
+                        <form method="POST" action="">
+                            <textarea id="myTextarea" placeholder="Message..." class="form-control" name="caption" rows="2" maxlength="150"
+                                required></textarea>
+                            <input type="submit" value="Send" class="text-center" />
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script src="{% static 'js/emojionearea.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#myTextarea").emojioneArea({
+            pickerPosition: "top",
+            tonesStyle: "bullet",
+            events: {
+                keyup: function (editor, event) {
+                    console.log('event:keyup');
+                    countChar(this);
+                }
+            }
+        });
+    });
+</script>
 {% endblock %}

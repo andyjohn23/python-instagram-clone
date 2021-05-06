@@ -15,12 +15,51 @@
 }
 .container .users-container {
   width: auto;
-  height: 100%;
+  height: auto;
   border: none;
+}
+.container .users-container .card-header {
+  background-color: white !important;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
 }
 .container .message-container {
   width: auto;
   height: 100%;
   border: none;
   border-left: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+.container .message-container .card-header {
+  background-color: white !important;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+.container .card-footer {
+  border: none;
+  background-color: white !important;
+}
+.container .card-footer .send-form form textarea {
+  resize: none;
+  font-size: 15px;
+  font-weight: normal;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.7);
+}
+.container .card-footer .send-form textarea:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+}
+.container .card-footer .send-form input[type="submit"] {
+  float: right;
+  margin-top: 0.5rem;
+  width: 20%;
+  height: 33px;
+  font-size: 14px;
+  font-weight: bolder;
+  font-family: sans-serif;
+  border-radius: 5px;
+  background-color: #0e93cd;
+  outline: none;
+  border: none;
+  color: white;
 }
