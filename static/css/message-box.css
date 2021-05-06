@@ -21,6 +21,14 @@
 .container .users-container .card-header {
   background-color: white !important;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+  height: 49px;
+}
+.container .users-container .card-header .new-message {
+  display: flex;
+  gap: 5rem;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: sans-serif;
 }
 .container .message-container {
   width: auto;
