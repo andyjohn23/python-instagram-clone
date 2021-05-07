@@ -6,7 +6,7 @@ from .models import Message
 # Create your views here.
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def message(request):
     user = request.user
     messages = Message.get_messages(user=user)

@@ -19,7 +19,7 @@ from comments.forms import commentForm
 # Create your views here.
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def PostDetail(request, post_id):
     user = request.user
     post = get_object_or_404(Post, id=post_id)
@@ -59,7 +59,7 @@ def PostDetail(request, post_id):
     return HttpResponse(template.render(context, request))
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def NewPost(request):
     user = request.user.id
 
@@ -80,7 +80,7 @@ def NewPost(request):
     return render(request, 'auth/new-posts.html')
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def like(request):
     user = request.user
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
@@ -95,7 +95,7 @@ def like(request):
     return JsonResponse({'form': is_liked})
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def favourites(request, post_id):
     user = request.user
     post = Post.objects.get(id=post_id)
@@ -110,7 +110,7 @@ def favourites(request, post_id):
     return HttpResponseRedirect(reverse('posts:postdetails', args=[post_id]))
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def follow(request, option, username):
     user = request.user
     following = get_object_or_404(UserAccount, username=username)

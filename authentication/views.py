@@ -23,7 +23,7 @@ from comments.forms import commentForm
 # Create your views here.
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def userProfile(request, username):
     user = get_object_or_404(UserAccount, username=username)
     profile = Profile.objects.get(user=user)
@@ -59,7 +59,7 @@ def userProfile(request, username):
     return HttpResponse(template.render(context, request))
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def home(request):
     user = request.user
     suggest_users = Profile.objects.all().exclude(user=user)
@@ -112,7 +112,7 @@ def register(request, *arg, **kwargs):
 
 def logout_user(request, *args, **kwargs):
     logout(request)
-    return redirect("authentication:index")
+    return redirect("authentication:authentication:index")
 
 
 def login_user(request, *args, **kwargs):
@@ -180,7 +180,7 @@ def get_redirect_if_exists(request):
     return redirect
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def editProfile(request):
 
     if request.method == 'POST':
@@ -206,7 +206,7 @@ def editProfile(request):
     return render(request, 'auth/edit-profile.html', context)
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def commentHome(request, post_id):
     user = request.user
     post = get_object_or_404(Post, id=post_id)
@@ -235,6 +235,6 @@ def commentHome(request, post_id):
     return HttpResponse(template.render(context, request))
 
 
-@login_required(login_url='index')
+@login_required(login_url='authentication:index')
 def changePassword(request):
     return render(request, 'auth/change-password.html')
