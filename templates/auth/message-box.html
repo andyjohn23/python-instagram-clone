@@ -67,9 +67,12 @@
                 <div class="card-footer">
                     <div class="send-form">
                         <form method="POST" action="">
-                            <textarea id="myTextarea" placeholder="Message..." class="form-control" name="caption"
-                                rows="1" required></textarea>
-                            <input type="submit" value="Send" class="text-center" />
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <textarea id="myTextarea" placeholder="Message..." class="form-control" name="caption"
+                                    rows="1" required></textarea>
+                            </div>
+                            <input type="submit" value="Send">
                         </form>
                     </div>
                 </div>
@@ -78,6 +81,7 @@
     </div>
 </div>
 <script src="{% static 'js/emojionearea.min.js' %}"></script>
+<script src="{% static 'js/message-box.js' %}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#myTextarea").emojioneArea({

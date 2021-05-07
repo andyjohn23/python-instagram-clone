@@ -20,6 +20,7 @@ function validation() {
     return false;
   }
 }
+
 setTimeout(function () {
   if ($("#message").length > 0) {
     $("#message").fadeToggle();
