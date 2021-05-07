@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import Message
 from django.template import loader
+from authentication.models import UserAccount
 
 # Create your views here.
 
@@ -56,3 +57,13 @@ def directMessage(request, username):
     }
 
     return HttpResponse(template.render(context, request))
+
+@login_required(login_url='authentication:index')
+def sendDirect(request):
+    sender = request.user
+    recipient = request.POST.get('to_user')
+    body = request.POST.get('body')
+
+    if request.method == 'POST':
+        to_user = UserAccount.objects.get(username=recipient)
+        Message.get_messages(sender, to_user, body)
