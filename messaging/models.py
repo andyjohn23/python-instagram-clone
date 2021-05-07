@@ -35,7 +35,7 @@ class Message(models.Model):
         for message in messages:
             users.append({
                 'user': UserAccount.objects.get(pk=message['recipient']),
-                'last': message['-last'],
+                'last': message['last'],
                 'unread': Message.objects.filter(user=user, recipient__pk=message['recipient'], is_read=False).count()
 
             })

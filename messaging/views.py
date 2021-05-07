@@ -33,3 +33,26 @@ def message(request):
     }
 
     return HttpResponse(template.render(context, request))
+
+
+@login_required(login_url='authentication:index')
+def directMessage(request, username):
+    user = request.user
+    messages = Message.get_messages(user=user)
+    active_user = username
+    directs = Message.objects.filter(user=user, recipient__username=username)
+    directs.update(is_read=True)
+
+    for message in messages:
+        if message['user'].username == username:
+            message['unread'] = 0
+
+    template = loader.get_template('auth/message-box.html')
+
+    context = {
+        'messages': messages,
+        'directs': directs,
+        'active_user': active_user
+    }
+
+    return HttpResponse(template.render(context, request))
