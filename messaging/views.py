@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import Message
+from django.template import loader
 
 # Create your views here.
 
@@ -23,12 +24,12 @@ def message(request):
             if message['user'].username == active_user:
                 message['unread'] = 0
 
-        context = {
-            'messages': messages,
-            'directs': directs,
-            'active_user': active_user
-        }
-
     template = loader.get_template('auth/message-box.html')
+
+    context = {
+        'messages': messages,
+        'directs': directs,
+        'active_user': active_user
+    }
 
     return HttpResponse(template.render(context, request))

@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authentication.urls', namespace="authentication")),
     path('post/', include('posts.urls', namespace="posts")),
-    path('direct/', include('messaging.urls', namespace="messaging")),
+    path('direct/inbox/', include('messaging.urls', namespace="messaging")),
     path('logout/', auth_views.logout_user, name='logout'),
     path('<username>/', auth_views.userProfile, name='profile'),
     path('<username>/saved/', auth_views.userProfile, name='favourites'),

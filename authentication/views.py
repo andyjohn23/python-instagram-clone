@@ -112,7 +112,7 @@ def register(request, *arg, **kwargs):
 
 def logout_user(request, *args, **kwargs):
     logout(request)
-    return redirect("authentication:authentication:index")
+    return redirect("authentication:index")
 
 
 def login_user(request, *args, **kwargs):

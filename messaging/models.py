@@ -1,6 +1,7 @@
 from django.db import models
 from authentication.models import UserAccount
 from django.utils import timezone
+from django.db.models import Max
 
 # Create your models here.
 
@@ -27,7 +28,7 @@ class Message(models.Model):
 
         return sender_message
 
-    def get_message(user):
+    def get_messages(user):
         users = []
         messages = Message.objects.filter(user=user).values(
             'recipient').annotate(last=Max('date')).order_by('-last')
@@ -38,5 +39,5 @@ class Message(models.Model):
                 'unread': Message.objects.filter(user=user, recipient__pk=message['recipient'], is_read=False).count()
 
             })
-            
+
         return users
