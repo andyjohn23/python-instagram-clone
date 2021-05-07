@@ -33,7 +33,8 @@
                     </div>
                     <div class="card-body">
                         {% for message in messages %}
-                        <a class="{% if active_user == message.user.username %}is-active{% endif %}" href="{% url 'messaging:direct' message.user.username %}">
+                        <a class="{% if active_user == message.user.username %}is-active{% endif %}" 
+                        onclick="location.href='{% url 'messaging:direct' message.user.username %}'">
                             <div class="card user-tile">
                                 <i class="material-icons">account_circle</i>
                                 <p>{{ message.user.username }}</p>
@@ -47,11 +48,7 @@
         <div class="col-md-8 padding-0">
             <div class="card message-container">
                 <div class="card-header">
-                    {% if active_user == message.user.username %}
-                    {% for message in messages %}
-                    <h1>{{ message.user.username }}</h1>
-                    {% endfor %}
-                    {% endif %}
+                    <p>{{ direct.recipient.username }}</p>
                 </div>
                 <div class="card-body">
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
