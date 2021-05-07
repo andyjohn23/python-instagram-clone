@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from .models import Message
 from django.template import loader
 from authentication.models import UserAccount
@@ -67,3 +67,7 @@ def sendDirect(request):
     if request.method == 'POST':
         to_user = UserAccount.objects.get(username=recipient)
         Message.get_messages(sender, to_user, body)
+
+        return redirect('messaging:message')
+    else:
+        return HttpResponseBadRequest()

@@ -60,10 +60,11 @@
                 </div>
                 <div class="card-footer">
                     <div class="send-form">
-                        <form method="POST" action="">
+                        <form method="POST" action="{% url 'messaging:send-direct' %}">
                             {% csrf_token %}
                             <div class="form-group">
-                                <textarea id="myTextarea" placeholder="Message..." class="form-control" name="caption"
+                                <input type="hidden" name="to_user" value="{{ active_user }}"
+                                <textarea id="myTextarea" placeholder="Message..." class="form-control" name="body"
                                     rows="1" required></textarea>
                             </div>
                             <input type="submit" value="Send">
