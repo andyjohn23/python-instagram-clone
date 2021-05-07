@@ -12,6 +12,8 @@ class Message(models.Model):
     date = models.DateTimeField(default=timezone.now)
     is_read = models.BooleanField(default=False)
 
-    
+    def send_message(sender, recipient, body):
+        sender_message = Message(user=sender, sender=sender, recipient=recipient, body=body, is_read=True)
+        sender_message.save()
 
 
