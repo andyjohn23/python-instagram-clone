@@ -33,8 +33,8 @@
                     </div>
                     <div class="card-body">
                         {% for message in messages %}
-                        <a class="{% if active_user == message.user.username %}is-active{% endif %}" 
-                        onclick="location.href='{% url 'messaging:direct' message.user.username %}'">
+                        <a class="{% if active_direct == message.user.username %}is-active{% endif %}"
+                            onclick="location.href='{% url 'messaging:direct' message.user.username %}'">
                             <div class="card user-tile">
                                 <i class="material-icons">account_circle</i>
                                 <p>{{ message.user.username }}</p>
@@ -48,7 +48,7 @@
         <div class="col-md-8 padding-0">
             <div class="card message-container">
                 <div class="card-header">
-                    <p>{{ direct.recipient.username }}</p>
+                    test
                 </div>
                 <div class="card-body">
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -60,14 +60,13 @@
                 </div>
                 <div class="card-footer">
                     <div class="send-form">
-                        <form method="POST" action="{% url 'messaging:send-direct' %}">
+                        <form role="form" method="POST" action="{% url 'messaging:send-direct' %}">
                             {% csrf_token %}
-                            <div class="form-group">
-                                <input type="hidden" name="to_user" value="{{ active_user }}"
-                                <textarea id="myTextarea" placeholder="Message..." class="form-control" name="body"
-                                    rows="1" required></textarea>
-                            </div>
-                            <input type="submit" value="Send">
+                            <input type="hidden" name="to_user" value="{{ active_user }}" />
+                            <textarea id="myTextarea" name="body" placeholder="Message..." class="form-control"
+                                rows="1"></textarea>
+
+                            <input type="submit" name="action" value="Send">
                         </form>
                     </div>
                 </div>

@@ -10,28 +10,27 @@ from authentication.models import UserAccount
 
 @login_required(login_url='authentication:index')
 def message(request):
-    user = request.user
-    messages = Message.get_messages(user=user)
-    active_user = None
+    messages = Message.get_messages(user=request.user)
+    active_direct = None
     directs = None
 
     if messages:
         message = messages[0]
-        active_user = message['user'].username
-        directs = Message.objects.filter(user=user, recipient=message['user'])
+        active_direct = message['user'].username
+        directs = Message.objects.filter(
+            user=request.user, recipient=message['user'])
         directs.update(is_read=True)
-
         for message in messages:
-            if message['user'].username == active_user:
+            if message['user'].username == active_direct:
                 message['unread'] = 0
 
-    template = loader.get_template('auth/message-box.html')
-
     context = {
-        'messages': messages,
         'directs': directs,
-        'active_user': active_user
+        'messages': messages,
+        'active_direct': active_direct,
     }
+
+    template = loader.get_template('auth/message-box.html')
 
     return HttpResponse(template.render(context, request))
 
@@ -40,34 +39,34 @@ def message(request):
 def directMessage(request, username):
     user = request.user
     messages = Message.get_messages(user=user)
-    active_user = username
-    directs = Message.objects.filter(user=user, recipient__username=username)
+    active_direct = username
+    directs = Message.objects.filter(
+        user=user, recipient__username=username)
     directs.update(is_read=True)
-
     for message in messages:
         if message['user'].username == username:
             message['unread'] = 0
 
-    template = loader.get_template('auth/message-box.html')
-
     context = {
-        'messages': messages,
         'directs': directs,
-        'active_user': active_user
+        'messages': messages,
+        'active_direct': active_direct,
     }
+
+    template = loader.get_template('auth/message-box.html')
 
     return HttpResponse(template.render(context, request))
 
+
 @login_required(login_url='authentication:index')
 def sendDirect(request):
-    sender = request.user
-    recipient = request.POST.get('to_user')
+    from_user = request.user
+    to_user_username = request.POST.get('to_user')
     body = request.POST.get('body')
 
     if request.method == 'POST':
-        to_user = UserAccount.objects.get(username=recipient)
-        Message.get_messages(sender, to_user, body)
-
-        return redirect('messaging:message')
+        to_user = User.objects.get(username=to_user_username)
+        Message.send_message(from_user, to_user, body)
+        return redirect('message')
     else:
-        return HttpResponseBadRequest()
+        HttpResponseBadRequest()
