@@ -77,7 +77,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -175,9 +175,9 @@ LOGIN_URL = '/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 cloudinary.config(
-    cloud_name=config('CLOUDINARY_NAME'),
-    api_key=config('CLOUDINARY_API'),
-    api_secret=config('CLOUDINARY_SECRET')
+    CLOUDINARY_NAME='dsegpnwwz'
+    CLOUDINARY_API='614316826143734'
+    CLOUDINARY_SECRET='Z_lpcQ2E3valQHygKZWHgQj_Mnk'
 )
 
 django_heroku.settings(locals())
