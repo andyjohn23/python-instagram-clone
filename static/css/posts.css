@@ -209,6 +209,7 @@
   .users__post .card {
     width: 100vw;
     border: none;
+    margin-left: -1rem;
     margin-top: -1.5rem;
   }
   .card-body img {
@@ -226,6 +227,7 @@
   .users__post .card {
     width: 100vw;
     border: none;
+    margin-left: -1rem;
     margin-top: -1.5rem;
   }
   .card-body img {
