@@ -21,7 +21,7 @@
                     </a>
                     <a href="{% url 'profile' post.user %}">{{ post.user.username|truncatechars:9 }}</a>
                     <div class="view-more">
-                        <a href=""><i class="material-icons">more_horiz</i></a>
+                        <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#postModal{{ post.id }}"><i class="material-icons">more_horiz</i></a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -91,6 +91,22 @@
                         <input type="text" name="body" placeholder="Add a comment..." required>
                         <input type="submit" name="action" value="Post">
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="postModal{{ post.id }}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-5">
+                <div class="modal-body">
+                    <div class="go-to-post">
+                        <button type="button" onclick="location.href='{% url 'posts:postedit' post.id %}'">Edit Post</button>
+                        <hr class="horizontal-line">
+                        <button type="button" onclick="location.href=''">Delete Post</button>
+                        <hr class="horizontal-line">
+                        <button type="button" data-bs-dismiss="modal">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>

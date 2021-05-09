@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 from .models import Post, Stream, Likes, Follow
 from authentication.models import Profile, UserAccount
 from django.template import loader
@@ -134,3 +134,9 @@ def follow(request, option, username):
         return HttpResponseRedirect(reverse('profile', args=[username]))
     except UserAccount.DoesNotExist:
         return HttpResponseRedirect(reverse('profile', args=[username]))
+
+@login_required(login_url='authentication:index')
+class updatePostView(UpdateView):
+    model = Post
+    template_name = 'auth/update_post.html'
+    fields = ['image', 'caption']
