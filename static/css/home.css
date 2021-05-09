@@ -103,11 +103,8 @@
     flex: 1;
     width: 100vw;
   }
-  .suggest__container {
-    margin-left: -58.8rem;
-  }
   .suggestion__container {
-    width: 100vw;
+    width: 90vw;
   }
 }
 /* iphone x media query */
@@ -115,11 +112,16 @@
   .home__content .home__userContent {
     display: none;
   }
-  .suggest__container {
-    margin-left: -55.5rem;
+  .suggestion__container {
+    width: 90vw;
+  }
+}
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+  .home__content .home__userContent {
+    display: none;
   }
   .suggestion__container {
-    width: 100vw;
+    width: 90vw;
   }
 }
 /* ipad media query */
@@ -127,10 +129,16 @@
   .home__content .home__userContent {
     display: none;
   }
+  .suggestion__container {
+    width: 90vw;
+  }
 }
 /* ipad pro media query */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
   .home__content .home__userContent {
     display: none;
+  }
+  .suggestion__container {
+    width: 90vw;
   }
 }
