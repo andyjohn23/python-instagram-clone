@@ -208,7 +208,6 @@
 @media screen and (min-device-width: 280px) and (max-device-width: 653px) {
   .users__post .card {
     width: 100vw;
-    margin-left: -1.9rem;
     border: none;
     margin-top: -1.5rem;
   }
@@ -226,13 +225,14 @@
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
   .users__post .card {
     width: 100vw;
-    margin-left: -1.9rem;
     border: none;
     margin-top: -1.5rem;
   }
   .card-body img {
     width: 100%;
-    margin-left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    object-position: center;
   }
   .card-footer form input[type="text"] {
     width: 80%;
