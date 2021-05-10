@@ -28,11 +28,9 @@
                     <input type="hidden" name="post_id" value="{{ post_item.id }}">
                     <button type="submit" class="like-btn{{ post_item.id }}">
                         {% if user not in post_item.liked.all %}
-                        like
-                        <!-- <i class="material-icons">favorite_border</i> -->
+                        <i class="material-icons">favorite_border</i>
                         {% else %}
-                        unlike
-                        <!-- <i style="color: red;" class="material-icons">favorite</i> -->
+                        <i style="color: red;" class="material-icons">favorite</i>
                         {% endif %}
                     </button>
                 </form>
@@ -98,5 +96,5 @@
     </div>
     {% endfor %}
 </div>
-<script src="{% static 'js/posts.js' %}"></script>
+<!-- <script src="{% static 'js/posts.js' %}"></script> -->
 {% endblock %}

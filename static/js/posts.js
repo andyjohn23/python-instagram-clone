@@ -21,12 +21,13 @@ $(document).ready(function () {
       },
       success: function (response) {
         if (trim === "unlike") {
-          $(`like-btn${post_id}`).text("like");
+          $(`like-btn${post_id}`).text('like');
           res = trimCount - 1;
         } else {
-          $(`like-btn${post_id}`).text("unlike");
+          $(`like-btn${post_id}`).text('unlike');
           res = trimCount + 1;
         }
+
         $(`.like-counts${post_id}`).text(res);
       },
       error: function (response) {

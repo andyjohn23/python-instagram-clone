@@ -63,44 +63,6 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="{% static 'js/main.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".like-form").submit(function (e) {
-                e.preventDefault();
-
-                const post_id = $(this).attr("id");
-                const likeText = $(`like-btn${post_id}`).text();
-                const trim = $.trim(likeText);
-
-                const url = $(this).attr("action");
-
-                let res;
-                const likes = $(`.like-counts${post_id}`).text();
-                const trimCount = parseInt(likes);
-
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: {
-                        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
-                        post_id: post_id,
-                    },
-                    success: function (response) {
-                        if (trim === "unlike") {
-                            $(`like-btn${post_id}`).text("like");
-                        } else {
-                            $(`like-btn${post_id}`).text("unlike");
-                        }
-                    },
-                    error: function (response) {
-                        console.log("error", response);
-                    },
-                });
-            });
-        });
-
-    </script>
-
 </body>
 
 </html>

@@ -21,7 +21,8 @@
                     </a>
                     <a href="{% url 'profile' post.user %}">{{ post.user.username|truncatechars:9 }}</a>
                     <div class="view-more">
-                        <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#postModal{{ post.id }}"><i class="material-icons">more_horiz</i></a>
+                        <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#postModal{{ post.id }}"><i
+                                class="material-icons">more_horiz</i></a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -59,11 +60,20 @@
                 </div>
                 <div class="card-footer">
                     <div class="like-comment-share">
-                        <form>
+                        {% if request.user.is_authenticated %}
+                        <form action="{% url 'posts:detail-like'%}" method="POST" class="like-form"
+                            id="{{ post.id }}">
                             {% csrf_token %}
-                            <button type="submit" style="margin-left: 10px;"><i
-                                    class="material-icons">favorite_border</i></button>
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            <button type="submit" class="like-btn{{ post.id }}" style="margin-left: 10px;">
+                                {% if user not in post.liked.all %}
+                                <i class="material-icons">favorite_border</i>
+                                {% else %}
+                                <i style="color: red;" class="material-icons">favorite</i>
+                                {% endif %}
+                            </button>
                         </form>
+                        {% endif %}
                         <a href=""><i style="transform: rotateY(180deg);"
                                 class="material-icons">chat_bubble_outline</i></a>
                         <a href=""><i class="material-icons">near_me</i></a>
@@ -76,8 +86,13 @@
                         {% endif %}
                     </div>
                     <div class="likes-comments">
-                        <div class="like-counts">
-                            <span id="liked">{{ post.total_likes }} like{{ post.total_likes|pluralize }}</span>
+                        <div class="like" style="display: flex; align-items: center; gap: 5px;">
+                            <div class="like-counts{{ post.id }}">
+                                <span>{{ post.total_likes }}</span>
+                            </div>
+                            <div class="like-counts">
+                                <span>like{{ post.total_likes|pluralize }}</span>
+                            </div>
                         </div>
                         <div class="timeline">
                             <a href="{% url 'posts:postdetails' post.id %}"
@@ -101,7 +116,8 @@
             <div class="modal-content rounded-5">
                 <div class="modal-body">
                     <div class="go-to-post">
-                        <button type="button" onclick="location.href='{% url 'posts:postedit' post.id %}'">Edit Post</button>
+                        <button type="button" onclick="location.href='{% url 'posts:postedit' post.id %}'">Edit
+                            Post</button>
                         <hr class="horizontal-line">
                         <button type="button" onclick="location.href=''">Delete Post</button>
                         <hr class="horizontal-line">
