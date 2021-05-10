@@ -93,6 +93,15 @@ class Follow(models.Model):
 
     class Meta:
         ordering = ('-created',)
+    
+    @property
+    def get_following(self):
+        return self.following.all()
+
+    @property   
+    def get_following_users(self):
+        following_list = [p for p in self.get_following]
+        return following_list
 
     def __str__(self):
         return '{} follows {}'.format(self.follower, self.following)
