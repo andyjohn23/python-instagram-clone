@@ -16,6 +16,7 @@ from django.views.generic import TemplateView
 from django.db import transaction
 from comments.models import Comments
 from comments.forms import commentForm
+from django.template import RequestContext
 # Create your views here.
 
 
@@ -39,7 +40,6 @@ def PostDetail(request, post_id):
             return HttpResponseRedirect(reverse('posts:postdetails', args=[post_id]))
     else:
         form = commentForm(request.POST)
-
 
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
@@ -72,7 +72,8 @@ def NewPost(request):
             created = Post.objects.get_or_create(
                 image=image, caption=caption, user_id=user)
 
-            messages.success(request, f'Post uploaded successfully see in profile')
+            messages.success(
+                request, f'Post uploaded successfully see in profile')
             return redirect('posts:newpost')
     else:
         form = NewPostForm()
@@ -83,16 +84,34 @@ def NewPost(request):
 @login_required(login_url='authentication:index')
 def like(request):
     user = request.user
-    post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    is_liked = False
-    if post.liked.filter(id=user.id).exists():
-        post.liked.remove(user)
-        is_liked = False
-    else:
-        post.liked.add(user)
-        is_liked = True
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post_obj = Post.objects.get(id=post_id)
 
-    return JsonResponse({'form': is_liked})
+        if user in post_obj.liked.all():
+            post_obj.liked.remove(user)
+
+        else:
+            post_obj.liked.add(user)
+
+            like, created = Likes.objects.get_or_create(
+                user=user, post_id=post_id)
+
+            if not created:
+                if like.value == 'like':
+                    like.value == 'unlike'
+                else:
+                    like.value == 'like'
+                post_obj.save()
+                like.save()
+
+                data = {
+                    'value': like.value,
+                    'likes': post_obj.liked.all().count()
+                }
+                return JsonResponse(data, safe=False)
+
+        return redirect('authentication:home')
 
 
 @login_required(login_url='authentication:index')
@@ -134,6 +153,7 @@ def follow(request, option, username):
         return HttpResponseRedirect(reverse('profile', args=[username]))
     except UserAccount.DoesNotExist:
         return HttpResponseRedirect(reverse('profile', args=[username]))
+
 
 @login_required(login_url='authentication:index')
 def updatePostView(request, post_id):

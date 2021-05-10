@@ -238,3 +238,4 @@ def commentHome(request, post_id):
 @login_required(login_url='authentication:index')
 def changePassword(request):
     return render(request, 'auth/change-password.html')
+

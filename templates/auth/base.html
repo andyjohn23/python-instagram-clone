@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -65,27 +64,43 @@
     <script src="{% static 'js/main.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
     <script>
-        $(document).on('click', '#like', function (event) {
-            event.preventDefault();
-            var pk = $(this).attr('value');
-            $.ajax({
-                type: 'POST',
-                url: '{% url "posts:postlike" %}',
-                data: {
-                    'post_id': pk,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'
-                },
-                dataType: 'json',
-                success: function (json) {
-                    document.getElementById("liked").innerHTML = json["form"];
-                    console.log(json);
-                },
-                error: function (rs, e) {
-                    console.log(rs.responseText);
-                },
+        $(document).ready(function () {
+            $(".like-form").submit(function (e) {
+                e.preventDefault();
+
+                const post_id = $(this).attr("id");
+                const likeText = $(`like-btn${post_id}`).text();
+                const trim = $.trim(likeText);
+
+                const url = $(this).attr("action");
+
+                let res;
+                const likes = $(`.like-counts${post_id}`).text();
+                const trimCount = parseInt(likes);
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+                        post_id: post_id,
+                    },
+                    success: function (response) {
+                        if (trim === "unlike") {
+                            $(`like-btn${post_id}`).text("like");
+                        } else {
+                            $(`like-btn${post_id}`).text("unlike");
+                        }
+                    },
+                    error: function (response) {
+                        console.log("error", response);
+                    },
+                });
             });
         });
+
     </script>
+
 </body>
 
 </html>

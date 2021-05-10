@@ -23,15 +23,18 @@
             <img src="{{ post_item.image.url }}" alt="{{ post_item.image.url }}">
             <div class="like-comment-share">
                 {% if request.user.is_authenticated %}
-                <form>
+                <form action="{% url 'posts:postlike'%}" method="POST" class="like-form" id="{{ post_item.id }}">
                     {% csrf_token %}
-                    {% if user not in post_item.liked.all %}
-                    <button type="submit" id="like" name="post_id" value="{{ post_item.id }}"><i
-                            class="material-icons">favorite_border</i></button>
-                    {% else %}
-                    <button type="submit" id="like" name="post_id" value="{{ post_item.id }}"><i style="color: red;"
-                            class="material-icons">favorite</i></button>
-                    {% endif %}
+                    <input type="hidden" name="post_id" value="{{ post_item.id }}">
+                    <button type="submit" class="like-btn{{ post_item.id }}">
+                        {% if user not in post_item.liked.all %}
+                        like
+                        <!-- <i class="material-icons">favorite_border</i> -->
+                        {% else %}
+                        unlike
+                        <!-- <i style="color: red;" class="material-icons">favorite</i> -->
+                        {% endif %}
+                    </button>
                 </form>
                 {% endif %}
                 <a href=""><i style="transform: rotateY(180deg);" class="material-icons">chat_bubble_outline</i></a>
@@ -45,16 +48,21 @@
                 {% endif %}
             </div>
             <div class="likes-comments">
-                <div class="like-counts">
-                    <span id="liked">{{ post_item.total_likes }} like{{ post_item.total_likes|pluralize }}</span>
-                    <!-- <span>like{{ post_item.liked.all.count|pluralize }}</span> -->
+                <div class="like" style="display: flex; align-items: center; gap: 5px;">
+                    <div class="like-counts{{ post_item.id }}">
+                        <span>{{ post_item.total_likes }}</span>
+                    </div>
+                    <div class="like-counts">
+                        <span>like{{ post_item.total_likes|pluralize }}</span>
+                    </div>
                 </div>
                 <div class="owner-caption">
                     <a href="">{{ post_item.user.username }}</a>
                     <p>{{ post_item.caption }}</p>
                 </div>
                 {% if post_item.comment.all.count %}
-                <a href="{% url 'posts:postdetails' post_item.id %}" class="views">View all {{ post_item.comment.all.count }} comment(s)</a>
+                <a href="{% url 'posts:postdetails' post_item.id %}" class="views">View all
+                    {{ post_item.comment.all.count }} comment(s)</a>
                 {% else %}
                 {% endif %}
                 <div class="timeline">
@@ -90,4 +98,5 @@
     </div>
     {% endfor %}
 </div>
+<script src="{% static 'js/posts.js' %}"></script>
 {% endblock %}
