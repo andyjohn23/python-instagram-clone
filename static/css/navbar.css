@@ -113,6 +113,16 @@
   text-decoration: none;
   background-color: white;
 }
+.navbar .search-results {
+  margin-top: 21rem;
+  position: absolute;
+  margin-left: 25rem;
+  width: 300px;
+  height: 300px;
+  background-color: white;
+  box-shadow: 2px 2px 2px -3px rgba(0, 0, 0, 0.9);
+  border-radius: 6px;
+}
 /* smaller phones media query */
 @media screen and (min-device-width: 280px) and (max-device-width: 653px) {
   .navbar .navbar-brand img {

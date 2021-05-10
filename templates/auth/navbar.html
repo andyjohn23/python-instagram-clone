@@ -16,8 +16,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="search-form" action="">
+                {% csrf_token %}
                 <input type="search" class="form-control" placeholder="Search" aria-label="Search"/>
             </form>
+            <div class="card search-results" id="result-card">test</div>
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a href="/" class="nav-link">
