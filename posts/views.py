@@ -136,7 +136,10 @@ def follow(request, option, username):
         return HttpResponseRedirect(reverse('profile', args=[username]))
 
 @login_required(login_url='authentication:index')
-class updatePostView(UpdateView):
-    model = Post
-    template_name = 'auth/update_post.html'
-    fields = ['image', 'caption']
+def updatePostView(request, post_id):
+    post = Post.objects.get(id=post_id)
+    form = NewPostForm(instance=post)
+    context = {
+        'form': form
+    }
+    return render(request, 'auth/update_post.html')
