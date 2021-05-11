@@ -1,80 +1,122 @@
-{% include 'auth/navbar.html' %}
-{% load static %}
-{% block extra_head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/new-posts.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/emojionearea.min.css' %}">
-{% endblock %}
-
-{% block content %}
+{% include 'auth/navbar.html' %} {% load static %} {% block extra_head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/new-posts.css' %}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/emojionearea.min.css' %}"
+/>
+{% endblock %} {% block content %}
 <div class="container d-flex justify-content-center">
-    <div class="post-form">
-        <form method="POST" enctype="multipart/form-data" name="myform" onsubmit="return validation()">
-            {% csrf_token %}
-            <h2>ADD A NEW POST</h2>
-            {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}" id="message">
-                {{ message }}
-            </div>
-            {% endfor %}
-            {% endif %}
-            <div class="mb-4">
-                <label class="form-label">Choose photo</label><br>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <input type="file" name="image" onchange="preview_image(event)">
-                    <img id="output_image" style="max-width:200px; max-height: 130px; object-fit: cover;">
-                </div>
-            </div>
-            <div class="mb-4">
-                <label for="addCaption" class="form-label">Add caption</label>
-                <textarea id="myTextarea" class="form-control" name="caption" rows="5" maxlength="150"
-                    required></textarea>
-                <label class="character-count"><span id="chars">150</span>&nbsp;characters left</label>
-            </div>
-            <input type="submit" value="Post" class="text-center" onclick="submitForm()" />
-        </form>
-    </div>
+  <div class="post-form">
+    <form
+      method="POST"
+      enctype="multipart/form-data"
+      name="myform"
+      onsubmit="return validation()"
+    >
+      {% csrf_token %}
+      <h2>ADD A NEW POST</h2>
+      {% if messages %} {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" id="message">
+        {{ message }}
+      </div>
+      {% endfor %} {% endif %}
+      <div class="mb-4">
+        <label class="form-label">Choose photo</label><br />
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <input
+            type="file"
+            name="content"
+            onchange="preview_image(event)"
+            multiple
+            id="gallery-photo-add"
+          />
+          <div
+            class="gallery"
+          ></div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="addCaption" class="form-label">Add caption</label>
+        <textarea
+          id="myTextarea"
+          class="form-control"
+          name="caption"
+          rows="5"
+          maxlength="150"
+          required
+        ></textarea>
+        <label class="character-count"
+          ><span id="chars">150</span>&nbsp;characters left</label
+        >
+      </div>
+      <input
+        type="submit"
+        value="Post"
+        class="text-center"
+        onclick="submitForm()"
+      />
+    </form>
+  </div>
 </div>
 {% block scripts %}
 <script src="{% static 'js/new-posts.js' %}"></script>
 <script src="{% static 'js/emojionearea.min.js' %}"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#myTextarea").emojioneArea({
-            pickerPosition: "top",
-            tonesStyle: "bullet",
-            events: {
-                keyup: function (editor, event) {
-                    console.log('event:keyup');
-                    countChar(this);
-                }
-            }
-        });
+  $(document).ready(function () {
+    $("#myTextarea").emojioneArea({
+      pickerPosition: "top",
+      tonesStyle: "bullet",
+      events: {
+        keyup: function (editor, event) {
+          console.log("event:keyup");
+          countChar(this);
+        },
+      },
     });
+  });
 
-    /*Character Counter */
-    function countChar(val) {
-        var len = val.getText().length;
-        if (len >= 150) {
-            val.value = val.content.substring(0, 150);
-            $('#chars').text(0);
-        } else {
-            $('#chars').text(150 - len);
-        }
+  /*Character Counter */
+  function countChar(val) {
+    var len = val.getText().length;
+    if (len >= 150) {
+      val.value = val.content.substring(0, 150);
+      $("#chars").text(0);
+    } else {
+      $("#chars").text(150 - len);
     }
+  }
 </script>
-<script type='text/javascript'>
-    function preview_image(event) {
-        var reader = new FileReader();
-        reader.onload = function () {
-            var output = document.getElementById('output_image');
-            output.src = reader.result;
+<script type="text/javascript">
+  $(function () {
+    // Multiple images preview in browser
+    var imagesPreview = function (input, placeToInsertImagePreview) {
+      if (input.files) {
+        var filesAmount = input.files.length;
+
+        for (i = 0; i < filesAmount; i++) {
+          var reader = new FileReader();
+
+          reader.onload = function (event) {
+            $($.parseHTML("<img>"))
+              .attr("src", event.target.result)
+              .appendTo(placeToInsertImagePreview);
+          };
+
+          reader.readAsDataURL(input.files[i]);
         }
-        reader.readAsDataURL(event.target.files[0]);
-    }
+      }
+    };
+
+    $("#gallery-photo-add").on("change", function () {
+      imagesPreview(this, "div.gallery");
+    });
+  });
 </script>
 {% endblock %}
-<div>
-    {% include 'auth/footer.html' %}
-</div>
+<div>{% include 'auth/footer.html' %}</div>
 {% endblock %}

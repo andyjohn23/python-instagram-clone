@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, UpdateView
-from .models import Post, Stream, Likes, Follow
+from .models import Post, Stream, Likes, Follow, PostFileContent
 from authentication.models import Profile, UserAccount
 from django.template import loader
 from django.template.loader import render_to_string
@@ -61,24 +61,37 @@ def PostDetail(request, post_id):
 
 @login_required(login_url='authentication:index')
 def NewPost(request):
-    user = request.user.id
+    user = request.user
+    file_image = []
 
     if request.method == "POST":
         form = NewPostForm(request.POST, request.FILES)
         if form.is_valid():
-            image = form.cleaned_data.get('image')
+            content = request.FILES.getlist('content')
             caption = form.cleaned_data.get('caption')
 
-            created = Post.objects.get_or_create(
-                image=image, caption=caption, user_id=user)
+            for files in content:
+                file_instance = PostFileContent(files=files, user=user)
+                file_instance.save()
+                file_image.append(file_instance)
 
+
+            p, created = Post.objects.get_or_create(
+                caption=caption, user=user)
+            p.content.set(file_image)
+            p.save()
+            
             messages.success(
                 request, f'Post uploaded successfully see in profile')
             return redirect('posts:newpost')
     else:
         form = NewPostForm()
+    
+    context = {
+        'form': form
+    }
 
-    return render(request, 'auth/new-posts.html')
+    return render(request, 'auth/new-posts.html', context)
 
 
 @login_required(login_url='authentication:index')
@@ -188,9 +201,13 @@ def follow(request, option, username):
 
 @login_required(login_url='authentication:index')
 def updatePostView(request, post_id):
-    post = Post.objects.get(id=post_id)
-    form = NewPostForm(instance=post)
-    context = {
-        'form': form
-    }
-    return render(request, 'auth/update_post.html')
+    user = request.user.id
+    post = Post.objects.get(id=post_id, user_id=user)
+    post_form = NewPostForm(instance=post, data=request.POST)
+    if post_form.is_valid():
+        post_form.save()
+        return HttpResponseRedirect(reverse('posts:postedit'))
+    else:
+        post = Post.objects.get(pk=post_id, user_id=user)
+        post_form = NewPostForm(instance=post)
+    return render(request, 'auth/update_post.html', {'form': post_form})

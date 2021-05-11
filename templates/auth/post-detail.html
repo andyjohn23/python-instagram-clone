@@ -61,7 +61,7 @@
                 <div class="card-footer">
                     <div class="like-comment-share">
                         {% if request.user.is_authenticated %}
-                        <form action="{% url 'posts:detail-like'%}" method="POST" class="like-form"
+                        <form action="{% url 'posts:postlike'%}" method="POST" class="like-form"
                             id="{{ post.id }}">
                             {% csrf_token %}
                             <input type="hidden" name="post_id" value="{{ post.id }}">

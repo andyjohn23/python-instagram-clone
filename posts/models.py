@@ -28,11 +28,14 @@ class Tag(models.Model):
 
         return super().save(*args, **kwargs)
 
+class PostFileContent(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="owner")
+    files = CloudinaryField('files', blank=False)
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     caption = models.TextField(max_length=1500, verbose_name="caption")
-    image = CloudinaryField('post-image', blank=False)
+    content = models.ManyToManyField(PostFileContent, related_name="content")
     posted = models.DateTimeField(default=timezone.now)
     tags = models.ManyToManyField(Tag, related_name="tag", blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
