@@ -5,6 +5,9 @@
   margin: 0;
   padding: 0;
 }
+.footer {
+  display: none;
+}
 .home__content {
   margin-top: 5.5rem;
   display: flex;
@@ -106,6 +109,9 @@
   .suggestion__container {
     width: 90vw;
   }
+  .footer {
+    display: block;
+  }
 }
 /* iphone x media query */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
@@ -115,6 +121,9 @@
   .suggestion__container {
     width: 90vw;
   }
+  .footer {
+    display: block;
+  }
 }
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
   .home__content .home__userContent {
@@ -122,6 +131,9 @@
   }
   .suggestion__container {
     width: 90vw;
+  }
+  .footer {
+    display: block;
   }
 }
 /* ipad media query */
@@ -132,6 +144,9 @@
   .suggestion__container {
     width: 90vw;
   }
+  .footer {
+    display: block;
+  }
 }
 /* ipad pro media query */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
@@ -140,5 +155,8 @@
   }
   .suggestion__container {
     width: 90vw;
+  }
+  .footer {
+    display: block;
   }
 }
