@@ -1,6 +1,7 @@
 .user__content {
   position: fixed;
   display: block;
+  max-width: 380px;
   width: 380px;
 }
 .user__content .username {
@@ -41,4 +42,58 @@
   text-decoration: none;
   padding-top: -8rem;
   margin-left: auto;
+}
+.suggestion-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 0;
+  background: transparent;
+  height: auto;
+}
+.suggestion-container .userProfile {
+  display: flex;
+  margin-top: -0.4rem;
+  
+}
+.suggestion-container .userProfile i {
+  font-size: 40px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.2);
+  padding-left: 10px;
+}
+.suggestion-container .userProfile .user a {
+  font-size: 13px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.85);
+}
+.suggestion-container .userProfile .user p {
+  font-size: 11px;
+  font-family: sans-serif;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.35);
+}
+.suggestion-container .follow__button {
+  margin-left: auto;
+}
+.suggestion-container .follow__button button {
+  font-size: 13px;
+  font-family: sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 2px;
+  padding: 0 1rem;
+  outline: none;
+  box-shadow: none;
+  color: #0e93cd;
+  background: transparent;
+}
+.suggestion-container .follow__button button:hover {
+  color: #0e93cd;
+}
+.suggestion-container .follow__button button:focus {
+  outline: none !important;
+  outline-width: 0 !important;
+  border: none;
+  box-shadow: none;
 }

@@ -190,6 +190,7 @@
   -webkit-border-radius: 15px !important;
   -moz-border-radius: 15px !important;
   border-radius: 15px !important; 
+  padding: 0 !important;
 }
 .modal-body .go-to-post button{
   display: flex;

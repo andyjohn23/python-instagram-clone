@@ -17,5 +17,19 @@
         <p>Suggestions For You</p>
         <a href="">See All</a>
     </div>
+    <div class="suggestion-container">
+        {% for profile in suggest_users %}
+        <div class="userProfile">
+            <i class="material-icons">account_circle</i>
+            <div class="user">
+                <a href="{% url 'profile' profile.user %}">{{ profile }}</a>
+                <p>Suggested for you</p>
+            </div>
+        </div>
+        <div class="follow__button">
+            <button type="button" onclick="location.href='{% url 'follow' profile.user 1 %}'">Follow</button>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
