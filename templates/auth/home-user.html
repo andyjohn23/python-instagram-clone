@@ -15,7 +15,7 @@
     </div>
     <div class="container suggestion">
         <p>Suggestions For You</p>
-        <a href="">See All</a>
+        <a href="{% url 'authentication:explore-suggested' %}">See All</a>
     </div>
     <div class="suggestion-container">
         {% for profile in suggest_users %}

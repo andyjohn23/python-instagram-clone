@@ -249,3 +249,16 @@ def userSearchResults(request):
         print(qs)
         return JsonResponse({'data': users})
     return JsonResponse({})
+
+
+@login_required(login_url='authentication:index')
+def exploreSuggested(request):
+    user = request.user
+    suggest_users = Profile.objects.all().exclude(user=user)
+
+    template = loader.get_template('auth/explore-suggested.html')
+    context = {
+        'suggest_users': suggest_users,
+    }
+
+    return HttpResponse(template.render(context, request))

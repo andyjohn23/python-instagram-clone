@@ -1,0 +1,30 @@
+{% include 'auth/navbar.html' %}
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center">
+    <div class="suggest__container">
+        <h1>Suggestions For You</h1>
+        <div class="suggestion__container">
+            {% for profile in suggest_users %}
+            <div class="userProfile">
+                <i class="material-icons">account_circle</i>
+                <div class="username">
+                    <a href="{% url 'profile' profile.user %}">{{ profile }}</a>
+                    <p>Suggested for you</p>
+                </div>
+            </div>
+            <div class="follow__button">
+                <button type="button" onclick="location.href='{% url 'follow' profile.user 1 %}'">Follow</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div>
+    {% include 'auth/footer.html' %}
+</div>
+{% endblock %}

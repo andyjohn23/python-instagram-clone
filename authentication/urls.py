@@ -10,6 +10,7 @@ urlpatterns = [
     path('signup/', views.register, name="signup"),
     path('search/', userSearchResults, name="search"),
     path('home/', views.home, name="home"),
+    path('explore/suggested/', views.exploreSuggested, name="explore-suggested"),
     path('<uuid:post_id>/', views.commentHome, name="comment"),
     path('accounts/edit/', views.editProfile, name="settings"),
     path('accounts/password/change/', views.changePassword, name="password"),
