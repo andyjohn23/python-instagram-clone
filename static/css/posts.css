@@ -1,8 +1,10 @@
 .users__post .card {
+  max-width: 600px;
   width: 600px;
   height: auto;
   border: 0.5px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  margin: 0;
 }
 .card-header {
   display: flex;
@@ -34,13 +36,17 @@
   padding: 2px;
 }
 .card-body img {
-  width: 600px;
-  height: 475px;
+  width: 100%;
+  margin: 0; 
+  margin-top: 1.5rem;
   object-fit: cover;
   object-position: center;
-  margin-right: 0;
-  margin-left: -1.3rem;
+  margin-right: auto;
+  margin-left: auto;
   pointer-events: none;
+}
+.fill-space {
+  padding: 0px !important;
 }
 .card-body .likes-comments .views {
   margin-top: -0.75rem;
@@ -67,6 +73,7 @@
   display: flex;
   justify-items: center;
   gap: 12px;
+  padding: 15px !important;
   margin-top: 0.5rem;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -97,6 +104,7 @@
 }
 .card-body .likes-comments {
   float: left;
+  padding: 15px !important;
 }
 .card-body .likes-comments span {
   font-size: 15px;

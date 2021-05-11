@@ -63,3 +63,19 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['bio']
+
+class UserSearchForm(forms.Form):
+    q = forms.CharField()
+    c = forms.ModelChoiceField(
+        queryset=UserAccount.objects.all().order_by('username'))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['c'].label = ''
+        self.fields['c'].required = False
+        self.fields['c'].label = 'Category'
+        self.fields['q'].label = 'Search For'
+        self.fields['q'].widget.attrs.update(
+            {'class': 'form-control menudd'})
+        self.fields['q'].widget.attrs.update(
+            {'data-toggle': 'dropdown'})

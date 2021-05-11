@@ -239,3 +239,13 @@ def commentHome(request, post_id):
 def changePassword(request):
     return render(request, 'auth/change-password.html')
 
+
+@login_required(login_url='authentication:index')
+def userSearchResults(request):
+    if request.is_ajax():
+        users = request.POST.get('users')
+        print(users)
+        qs = UserAccount.objects.filter(username__icontains=users)
+        print(qs)
+        return JsonResponse({'data': users})
+    return JsonResponse({})

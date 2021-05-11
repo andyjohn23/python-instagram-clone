@@ -19,8 +19,8 @@
                         class="material-icons">more_horiz</i></a>
             </div>
         </div>
-        <div class="card-body text-center">
-            <img src="{{ post_item.image.url }}" alt="{{ post_item.image.url }}">
+        <div class="card-body text-center fill-space">
+            <img class="img-fluid" src="{{ post_item.image.url }}" alt="{{ post_item.image.url }}">
             <div class="like-comment-share">
                 {% if request.user.is_authenticated %}
                 <form action="{% url 'posts:postlike'%}" method="POST" class="like-form" id="{{ post_item.id }}">
