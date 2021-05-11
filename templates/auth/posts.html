@@ -38,10 +38,10 @@
                 <a href=""><i style="transform: rotateY(180deg);" class="material-icons">chat_bubble_outline</i></a>
                 <a href=""><i class="material-icons">near_me</i></a>
                 {% if favourite is True %}
-                <a href="{% url 'posts:postfavourite' post_item.id %}" style="margin-left: auto;"><i
+                <a onclick="location.href='{% url 'posts:postfavourite' post_item.id %}'" style="margin-left: auto; cursor: pointer;"><i
                         class="material-icons" style="font-size: 35px;">bookmark</i></a>
                 {% else %}
-                <a href="{% url 'posts:postfavourite' post_item.id %}" style="margin-left: auto;"><i
+                <a onclick="location.href='{% url 'posts:postfavourite' post_item.id %}'" style="margin-left: auto; cursor: pointer;"><i
                         class="material-icons" style="font-size: 35px; padding-right: 15px !important;">bookmark_border</i></a>
                 {% endif %}
             </div>
