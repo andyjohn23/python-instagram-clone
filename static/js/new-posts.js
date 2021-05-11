@@ -26,3 +26,10 @@ setTimeout(function () {
     $("#message").fadeToggle();
   }
 }, 3000);
+
+function submitForm() {
+  var form = document.getElementsByName("myform")[0];
+  form.submit();
+  form.reset();
+  return false;
+}
